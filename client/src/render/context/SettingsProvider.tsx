@@ -41,7 +41,7 @@ const defaultContext: Settings = {
 
 export const SettingsContext = createContext<Settings>(defaultContext);
 
-const SettingsProvider: React.FC = ({ children }) => {
+const SettingsProvider = ({ children }: React.PropsWithChildren) => {
   const [settings, setSettings] = useState(defaultContext.settings)
 
   useEffect(() => {

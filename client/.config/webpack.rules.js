@@ -25,24 +25,6 @@ module.exports = [
     },
   },
 
-  {
-    test: /\.jsx?$/,
-    exclude: /node_modules/,
-    use: {
-      loader: "babel-loader",
-      options: {
-        presets: [
-          [
-            "@babel/preset-react",
-            {
-              runtime: "automatic",
-            },
-          ],
-        ],
-      },
-    },
-  },
-
   // Assets
   {
     test: /\.(png|svg|jpg|jpeg|gif|woff|woff2|eot|ttf|otf)$/i,

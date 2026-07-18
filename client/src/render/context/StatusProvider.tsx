@@ -19,7 +19,7 @@ const defaultContext: Status = {
 
 export const StatusContext = createContext<Status>(defaultContext);
 
-const StatusProvider: React.FC = ({ children }) => {
+const StatusProvider = ({ children }: React.PropsWithChildren) => {
   const [loading, setLoading] = useState(true);
   const [online, setOnline] = useState(false)
   const [metrics, setMetrics] = useState<MetricsV2 | null>(null)

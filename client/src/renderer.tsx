@@ -8,23 +8,30 @@
  */
 
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import App from "./render/App";
 import DownloadsProvider from "./render/context/DownloadProvider";
 import SettingsProvider from "./render/context/SettingsProvider";
 import StatusProvider from "./render/context/StatusProvider";
 import "./render/index.css";
 
+const container = document.getElementById("root");
+
+if (!container) {
+  throw new Error("Renderer root element was not found");
+}
+
+const root = createRoot(container);
+
 function render() {
-  ReactDOM.render(
+  root.render(
     <StatusProvider>
       <DownloadsProvider>
         <SettingsProvider>
           <App />
         </SettingsProvider>
       </DownloadsProvider>
-    </StatusProvider>,
-    document.getElementById("root")
+    </StatusProvider>
   );
 }
 

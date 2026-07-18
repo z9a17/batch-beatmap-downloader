@@ -13,7 +13,7 @@ const defaultContext: Downloads = {
 
 export const DownloadsContext = createContext<Downloads>(defaultContext);
 
-const DownloadsProvider: React.FC = ({ children }) => {
+const DownloadsProvider = ({ children }: React.PropsWithChildren) => {
   const [downloads, setDownloads] = useState<ReportedDownloadStatus[]>([])
 
   useEffect(() => {

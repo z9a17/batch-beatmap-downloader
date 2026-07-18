@@ -86,17 +86,17 @@ export const Status = () => {
           <div className="stat-value">{activeDownloads.length}</div>
           <div className="stat-label">public active downloads</div>
         </div>
-        <div className="stat-card" style={{ "--stat-glow": "rgba(34, 211, 238, 0.16)" } as React.CSSProperties}>
+        <div className="stat-card">
           <SpeedRoundedIcon className="mb-4 text-cyan-300" />
           <div className="stat-value">{bytesToFileSize(currentBandwidth)}/s</div>
           <div className="stat-label">current public throughput</div>
         </div>
-        <div className="stat-card" style={{ "--stat-glow": "rgba(96, 165, 250, 0.16)" } as React.CSSProperties}>
+        <div className="stat-card">
           <DataObjectRoundedIcon className="mb-4 text-blue-300" />
           <div className="stat-value">{databaseTotal.toLocaleString()}</div>
           <div className="stat-label">indexed difficulties</div>
         </div>
-        <div className="stat-card" style={{ "--stat-glow": "rgba(52, 211, 153, 0.16)" } as React.CSSProperties}>
+        <div className="stat-card">
           <CloudDoneRoundedIcon className="mb-4 text-emerald-300" />
           <div className="stat-value">{metrics.Download.DailyStats.Maps.toLocaleString()}</div>
           <div className="stat-label">sets delivered today</div>

@@ -1,7 +1,7 @@
 import { app, BrowserWindow, nativeTheme, shell } from "electron";
 import isDev from "electron-is-dev";
 import Store from "electron-persist-secure/lib/store";
-import updateElectronApp from 'update-electron-app'
+import { updateElectronApp } from 'update-electron-app'
 import log from 'electron-log'
 updateElectronApp({ logger: log })
 
@@ -19,7 +19,6 @@ declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require("electron-squirrel-startup")) {
-  // eslint-disable-line global-require
   app.quit();
 }
 
@@ -41,7 +40,7 @@ const createWindow = (): void => {
     width: 1320,
     minHeight: 680,
     minWidth: 1040,
-    title: "Batch Beatmap Downloader",
+    title: "Batch Beatmap Downloader Community",
     titleBarStyle: "hidden",
     titleBarOverlay: {
       color: "#070912",

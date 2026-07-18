@@ -17,7 +17,7 @@ export class DownloadIPC {
     binaryPath.then(() => res())
   });
 
-  private ipc: IPC;
+  private ipc!: IPC;
   private queue: DownloadRequest[] = [];
   private available = true;
 

@@ -4,7 +4,7 @@ import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import TuneRoundedIcon from "@mui/icons-material/TuneRounded";
 import AccountTreeRoundedIcon from "@mui/icons-material/AccountTreeRounded";
 import { cloneDeep } from "lodash";
-import ReactDOM from "react-dom";
+import { createPortal } from "react-dom";
 import { toast } from "react-toastify";
 
 import { DownloadDetails, QueryOrder } from "../../models/api";
@@ -35,6 +35,7 @@ export const Query = () => {
   const [limit, setLimit] = useState<number>();
   const [order, setOrder] = useState<QueryOrder>();
   const [simpleMode, setSimpleMode] = useStickyState(true, "simple");
+  const [showCompatibilityModal, setShowCompatibilityModal] = useState(false);
   const ruleCount = useMemo(() => countRules(tree), [tree]);
 
   const exportData = async () => {
@@ -92,32 +93,36 @@ export const Query = () => {
       return;
     }
 
-    const node = document.getElementById("modal");
-    if (!node) return;
-    node.classList.remove("hidden");
-    ReactDOM.render(
-      <div className="w-full max-w-lg rounded-2xl border border-[#303a5a] bg-[#111524] p-7 shadow-2xl shadow-black/50">
-        <div className="eyebrow">Mode compatibility</div>
-        <h3 className="mt-2 text-xl font-semibold text-white">Flatten this advanced query?</h3>
-        <p className="mt-3 leading-6 text-[#959db5]">
-          Simple mode cannot preserve nested groups, OR connectors, or NOT rules. Converting keeps compatible filters and flattens the rest.
-        </p>
-        <div className="mt-6 flex justify-end gap-2">
-          <Button color="none" className="button-secondary" onClick={() => node.classList.add("hidden")}>Stay advanced</Button>
-          <Button onClick={() => {
-            setSimpleMode(true);
-            node.classList.add("hidden");
-          }}>Convert query</Button>
-        </div>
-      </div>,
-      node,
-    );
+    setShowCompatibilityModal(true);
   };
 
   if (!tree.group) return null;
 
   return (
     <div className="page-stack">
+      {showCompatibilityModal && document.getElementById("modal") && createPortal(
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#05070d]/85 p-8">
+          <div className="w-full max-w-lg rounded-2xl border border-[#303a5a] bg-[#111524] p-7 shadow-2xl shadow-black/50">
+            <div className="eyebrow">Mode compatibility</div>
+            <h3 className="mt-2 text-xl font-semibold text-white">Flatten this advanced query?</h3>
+            <p className="mt-3 leading-6 text-[#959db5]">
+              Simple mode cannot preserve nested groups, OR connectors, or NOT rules. Converting keeps compatible filters and flattens the rest.
+            </p>
+            <div className="mt-6 flex justify-end gap-2">
+              <Button color="none" className="button-secondary" onClick={() => setShowCompatibilityModal(false)}>
+                Stay advanced
+              </Button>
+              <Button onClick={() => {
+                setSimpleMode(true);
+                setShowCompatibilityModal(false);
+              }}>
+                Convert query
+              </Button>
+            </div>
+          </div>
+        </div>,
+        document.getElementById("modal")!,
+      )}
       {!validPath ? (
         <InvalidPath />
       ) : (

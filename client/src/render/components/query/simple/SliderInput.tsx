@@ -6,11 +6,6 @@ import is_number from "is-number";
 import { TInputItemSlider } from "../../../../models/simple";
 import { TInputItemProps } from "./InputItem";
 
-// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-const createSliderWithTooltip = Slider.createSliderWithTooltip;
-// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
-const Range = createSliderWithTooltip(Slider.Range);
-
 export const SliderInput: React.FC<TInputItemProps<TInputItemSlider>> = ({ label, value, onChange, min, max, step }) => {
   const updateValue = (newValue: string, index: number) => {
     // todo handle x.
@@ -34,9 +29,10 @@ export const SliderInput: React.FC<TInputItemProps<TInputItemSlider>> = ({ label
             onChange={(value) => updateValue(value, 0)}
           />
         </div>
-        <Range
+        <Slider
+          range
           value={value}
-          onChange={onChange}
+          onChange={(nextValue) => onChange(nextValue as number[])}
           min={min}
           max={max}
           step={step}

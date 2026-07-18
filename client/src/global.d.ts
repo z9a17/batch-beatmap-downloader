@@ -21,6 +21,3 @@ declare type SettingsValue =
 declare type SettingsObject = {
   [key: string]: SettingsValue;
 };
-
-declare module "*.png";
-declare module "*.svg";
