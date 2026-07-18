@@ -21,7 +21,6 @@ export const Home = () => {
       {!validPath && <InvalidPath />}
 
       <section className="hero-block">
-        <span className="hero-index">01</span>
         <div className="relative z-[1] max-w-3xl">
           <div className="section-kicker mb-5">Community preview</div>
           <h2 className="max-w-2xl text-[36px] font-semibold leading-[1.08] tracking-[-0.055em] text-white">

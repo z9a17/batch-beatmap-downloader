@@ -9,6 +9,20 @@ export interface ChangeLogItem {
 
 export const changeLog: ChangeLogItem[] = [
   {
+    version: "1.4.0-alpha.9",
+    date: 1784332800000,
+    changes: [
+      {
+        title: "Interface",
+        changes: [
+          "Removed the oversized 01 decoration from Overview",
+          "Removed the oversized LOG decoration from Release Notes",
+          "Kept the flat blue-charcoal layout and readability palette unchanged",
+        ],
+      },
+    ],
+  },
+  {
     version: "1.4.0-alpha.8",
     date: 1784332800000,
     changes: [
