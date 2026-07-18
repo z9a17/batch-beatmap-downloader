@@ -105,7 +105,7 @@ const evaluate = (webSocketDebuggerUrl, expression) => new Promise((resolve, rej
 });
 
 try {
-  const deadline = Date.now() + 30_000;
+  const deadline = Date.now() + 45_000;
   let target;
 
   while (Date.now() < deadline && !target) {
@@ -130,15 +130,30 @@ try {
 
   let state;
   while (Date.now() < deadline) {
-    state = await evaluate(
-      target.webSocketDebuggerUrl,
-      `({
-        bridgeAvailable: typeof window.electron === "object",
-        rootChildren: document.getElementById("root")?.childElementCount ?? 0,
-        shellMounted: Boolean(document.querySelector(".app-shell")),
-        sidebarText: document.querySelector(".app-sidebar")?.textContent ?? ""
-      })`,
-    );
+    try {
+      state = await evaluate(
+        target.webSocketDebuggerUrl,
+        `({
+          bridgeAvailable: typeof window.electron === "object",
+          rootChildren: document.getElementById("root")?.childElementCount ?? 0,
+          shellMounted: Boolean(document.querySelector(".app-shell")),
+          sidebarText: document.querySelector(".app-sidebar")?.textContent ?? ""
+        })`,
+      );
+    } catch (error) {
+      output.push(`Renderer inspection retry: ${error}\n`);
+
+      try {
+        const response = await fetch(`http://127.0.0.1:${port}/json/list`);
+        const targets = await response.json();
+        target = targets.find((candidate) => candidate.type === "page") ?? target;
+      } catch {
+        // Keep the last known target and retry while the application is alive.
+      }
+
+      await wait(250);
+      continue;
+    }
 
     if (
       state?.bridgeAvailable
