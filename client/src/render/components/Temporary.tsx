@@ -66,7 +66,7 @@ export const Temporary = () => {
         </div>
         <div className="flex items-center gap-3">
           <span className="pill">{tempCount} waiting</span>
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-400/10 text-cyan-300">
+          <div className="icon-plain text-cyan-300">
             <AutoAwesomeMotionRoundedIcon />
           </div>
         </div>
@@ -110,7 +110,7 @@ export const Temporary = () => {
       </div>
 
       {!isWindows && (
-        <div className="mt-4 rounded-xl border border-amber-400/20 bg-amber-400/[0.06] px-4 py-3 text-[13px] leading-5 text-amber-200/80">
+        <div className="mt-4 border-l-2 border-amber-400 px-4 py-2 text-[13px] leading-5 text-amber-200/80">
           Cross-filesystem moves behave differently outside Windows; verify the destination before transferring.
         </div>
       )}

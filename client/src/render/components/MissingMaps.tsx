@@ -30,7 +30,7 @@ export const FindMissingMaps = () => {
           <h2 className="panel-title mt-1">Find missing beatmaps</h2>
           <p className="panel-description mt-1">Compare collection.db with your local Songs folder and recover indexed gaps.</p>
         </div>
-        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-400/10 text-emerald-300">
+        <div className="icon-plain text-emerald-300">
           <PlaylistAddCheckRoundedIcon />
         </div>
       </div>

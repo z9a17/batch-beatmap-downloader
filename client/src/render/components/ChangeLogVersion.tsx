@@ -12,9 +12,9 @@ export const ChangeLogVersion = ({ item, latest = false }: PropTypes) => {
   const [expanded, setExpanded] = useState(latest);
 
   return (
-    <article className="overflow-hidden rounded-2xl border border-[#222a42] bg-[#111524]">
+    <article className="timeline-entry">
       <button className="flex w-full items-center gap-4 px-6 py-5 text-left" onClick={() => setExpanded((value) => !value)}>
-        <div className={`flex h-10 min-w-[78px] items-center justify-center rounded-xl text-xs font-bold ${latest ? "bg-blue-500/15 text-blue-200" : "bg-white/[0.035] text-[#8d96af]"}`}>
+        <div className={`min-w-[92px] border-l-2 pl-3 font-mono text-xs font-bold ${latest ? "border-blue-500 text-blue-200" : "border-[#354055] text-[#8d96af]"}`}>
           v{item.version}
         </div>
         <div className="min-w-0 flex-1">
@@ -26,9 +26,9 @@ export const ChangeLogVersion = ({ item, latest = false }: PropTypes) => {
       </button>
 
       {expanded && (
-        <div className="grid grid-cols-2 gap-4 border-t border-[#222a42] bg-[#0a0e19]/45 p-6">
+        <div className="grid grid-cols-2 gap-x-10 border-t border-[#202631] px-6 py-5">
           {item.changes.map((change) => (
-            <section key={change.title} className="rounded-xl border border-[#1d2438] bg-white/[0.015] p-4">
+            <section key={change.title} className="border-l border-[#354055] py-1 pl-4">
               <h3 className="text-xs font-semibold uppercase tracking-[0.1em] text-[#93c5fd]">{change.title}</h3>
               <ul className="mt-3 space-y-2">
                 {change.changes.map((text) => (

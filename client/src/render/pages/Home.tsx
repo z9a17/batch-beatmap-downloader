@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
-import BoltRoundedIcon from "@mui/icons-material/BoltRounded";
 import LibraryMusicRoundedIcon from "@mui/icons-material/LibraryMusicRounded";
 import TuneRoundedIcon from "@mui/icons-material/TuneRounded";
 
@@ -21,12 +20,10 @@ export const Home = () => {
     <div className="page-stack">
       {!validPath && <InvalidPath />}
 
-      <section className="rounded-[18px] border border-[#2a3150] bg-[#111524] p-7">
-        <div className="max-w-3xl">
-          <div className="pill pill-accent mb-5">
-            <BoltRoundedIcon sx={{ fontSize: 15 }} />
-            Community preview
-          </div>
+      <section className="hero-block">
+        <span className="hero-index">01</span>
+        <div className="relative z-[1] max-w-3xl">
+          <div className="section-kicker mb-5">Community preview</div>
           <h2 className="max-w-2xl text-[36px] font-semibold leading-[1.08] tracking-[-0.055em] text-white">
             Build the beatmap library you actually want.
           </h2>
@@ -34,19 +31,19 @@ export const Home = () => {
             Search by difficulty, metadata, mapper, and play style—then move thousands of sets through one focused queue.
           </p>
           <div className="mt-6 flex items-center gap-3">
-            <Link to="/query" className="flex min-h-[42px] items-center gap-2 rounded-xl bg-blue-600 px-5 text-sm font-semibold text-white transition hover:bg-blue-500">
+            <Link to="/query" className="flex min-h-[42px] items-center gap-2 rounded-[2px] bg-blue-600 px-5 text-sm font-semibold text-white transition hover:bg-blue-500">
               Discover beatmaps <ArrowForwardRoundedIcon fontSize="small" />
             </Link>
-            <Link to="/downloads" className="button-secondary flex min-h-[42px] items-center rounded-xl px-5 text-sm font-semibold">
+            <Link to="/downloads" className="button-secondary flex min-h-[42px] items-center rounded-[2px] px-5 text-sm font-semibold">
               Open queue
             </Link>
           </div>
         </div>
       </section>
 
-      <div className="grid grid-cols-3 gap-4">
+      <div className="metric-strip grid-cols-3">
         <div className="stat-card">
-          <LibraryMusicRoundedIcon className="mb-4 text-[#a6aec2]" />
+          <LibraryMusicRoundedIcon className="mb-4 text-[#667086]" />
           <div className="stat-value">{beatmapSetCount.toLocaleString()}</div>
           <div className="stat-label">sets detected locally</div>
         </div>

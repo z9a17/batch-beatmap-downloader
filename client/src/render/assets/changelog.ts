@@ -9,6 +9,28 @@ export interface ChangeLogItem {
 
 export const changeLog: ChangeLogItem[] = [
   {
+    version: "1.4.0-alpha.7",
+    date: 1784332800000,
+    changes: [
+      {
+        title: "Interface",
+        changes: [
+          "Replaced decorative cards with open sections, metric rails, dividers, and edge-to-edge rows",
+          "Removed capsule styling from status labels and counters",
+          "Rebuilt navigation as a compact desktop rail with a blue active marker",
+          "Flattened search filters, download jobs, service metrics, and release history",
+        ],
+      },
+      {
+        title: "Visual language",
+        changes: [
+          "Introduced square controls, tabular telemetry, restrained blue rules, and stronger spacing",
+          "Kept boxes only where they communicate an actual input, button, table, or modal boundary",
+        ],
+      },
+    ],
+  },
+  {
     version: "1.4.0-alpha.6",
     date: 1784332800000,
     changes: [

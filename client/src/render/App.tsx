@@ -41,7 +41,7 @@ const pageDetails: Record<string, { eyebrow: string; title: string; description:
 
 const ApplicationFrame = () => {
   const { pathname } = useLocation();
-  const [version, setVersion] = useState("1.4.0-alpha.6");
+  const [version, setVersion] = useState("1.4.0-alpha.7");
   const currentPage = useMemo(() => pageDetails[pathname] ?? pageDetails["/"], [pathname]);
 
   useEffect(() => {
@@ -63,8 +63,8 @@ const ApplicationFrame = () => {
               <span className="hidden text-xs text-[#747d97] xl:inline">{currentPage.description}</span>
             </div>
           </div>
-          <div className="pill">
-            <span className="status-dot text-blue-400" />
+          <div className="flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.12em] text-[#6f7890]">
+            <span className="h-px w-8 bg-blue-500" />
             Community alpha
           </div>
         </header>

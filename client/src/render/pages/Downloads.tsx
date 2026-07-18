@@ -33,7 +33,7 @@ export const Downloads = () => {
   if (!online) {
     return (
       <div className="page-stack">
-        <div className="rounded-2xl border border-rose-400/20 bg-rose-400/[0.06] px-6 py-5 text-rose-100">
+        <div className="flat-alert text-rose-300">
           <div className="font-semibold">Transfer service is offline</div>
           <div className="mt-1 text-sm text-rose-100/55">Active jobs will remain paused until the inherited backend responds.</div>
         </div>
@@ -44,13 +44,13 @@ export const Downloads = () => {
   if (!downloads.length) {
     return (
       <div className="page-stack">
-        <div className="flex min-h-[360px] flex-col items-center justify-center rounded-[22px] border border-dashed border-[#303a5a] bg-white/[0.015] p-10 text-center">
-          <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-500/10 text-blue-300">
+        <div className="flat-empty">
+          <div className="text-blue-300">
             <DownloadingRoundedIcon sx={{ fontSize: 32 }} />
           </div>
           <h2 className="mt-5 text-xl font-semibold text-white">Your queue is clear</h2>
           <p className="mt-2 max-w-md leading-6 text-[#737d98]">Run a catalogue search, review the matches, and send a batch here when it is ready.</p>
-          <Link to="/query" className="mt-5 rounded-xl bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-500">
+          <Link to="/query" className="mt-5 rounded-[2px] bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-500">
             Discover beatmaps
           </Link>
         </div>
@@ -60,7 +60,7 @@ export const Downloads = () => {
 
   return (
     <div className="page-stack">
-      <div className="grid grid-cols-4 gap-3">
+      <div className="metric-strip grid-cols-4">
         <div className="stat-card">
           <DownloadingRoundedIcon className="mb-4 text-blue-300" />
           <div className="stat-value">{maps.toLocaleString()}</div>
@@ -94,7 +94,7 @@ export const Downloads = () => {
         <div className="mt-4"><LinearProgress value={progress * 100} variant="determinate" /></div>
       </section>
 
-      <div className="space-y-3">
+      <div>
         {downloads.map((download) => <DownloadSummary key={download.id} status={download} />)}
       </div>
     </div>

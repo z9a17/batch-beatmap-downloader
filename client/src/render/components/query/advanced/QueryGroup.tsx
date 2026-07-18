@@ -89,9 +89,8 @@ export const QueryGroup = ({ group, id, updateParent }: PropTypes) => {
   };
 
   return (
-    <div className="flex w-full overflow-hidden rounded-2xl border border-[#262e48] bg-[#0d111e]">
-      <div className="w-1 shrink-0 bg-blue-500" />
-      <div className="w-full p-4">
+    <div className="flex w-full border-l-2 border-blue-500 bg-white/[0.012]">
+      <div className="w-full py-4 pl-4">
         <div className="flex w-full flex-col">
           {group.children.map((child, index) => (
             <div key={child.id}>
@@ -107,7 +106,7 @@ export const QueryGroup = ({ group, id, updateParent }: PropTypes) => {
                   />
                   <RemoveCircleIcon
                     onClick={() => removeChild(child.id)}
-                    className="-ml-4 -mt-3 cursor-pointer rounded-full bg-[#0d111e] text-rose-400 transition hover:text-rose-300"
+                    className="-ml-4 -mt-3 cursor-pointer bg-[#0d111e] text-rose-400 transition hover:text-rose-300"
                     fontSize="large"
                   />
                 </div>
@@ -131,13 +130,13 @@ export const QueryGroup = ({ group, id, updateParent }: PropTypes) => {
           <div className="mt-4 flex items-center gap-2 border-t border-[#1d2438] pt-4">
             <button
               onClick={() => addChild(cloneDeep(getLastRule()))}
-              className="button-secondary min-h-[36px] rounded-[10px] px-3 text-xs font-semibold"
+              className="button-secondary min-h-[36px] px-3 text-xs font-semibold"
             >
               + Add Rule
             </button>
             <button
               onClick={() => addChild(cloneDeep(defaultGroup))}
-              className="button-secondary min-h-[36px] rounded-[10px] px-3 text-xs font-semibold"
+              className="button-secondary min-h-[36px] px-3 text-xs font-semibold"
             >
               + Add Group
             </button>

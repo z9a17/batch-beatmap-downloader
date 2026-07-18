@@ -29,52 +29,45 @@ export const Menu = ({ version }: PropTypes) => {
 
   return (
     <aside className="app-sidebar flex h-screen flex-col">
-      <div className="flex h-[74px] items-center gap-3 border-b border-[#222a42]/60 px-5">
-        <img src={appIcon} className="h-10 w-10 rounded-[10px]" alt="" />
+      <div className="flex h-[68px] items-center gap-3 border-b border-[#202631] px-[18px]">
+        <img src={appIcon} className="h-8 w-8" alt="" />
         <div className="min-w-0">
-          <div className="truncate text-[15px] font-semibold tracking-[-0.03em] text-white">Beatmap Downloader</div>
-          <div className="mt-0.5 text-xs font-semibold uppercase tracking-[0.13em] text-[#8791aa]">Community build</div>
+          <div className="truncate text-[14px] font-semibold tracking-[-0.025em] text-white">Beatmap Downloader</div>
+          <div className="mt-0.5 text-[10px] font-bold uppercase tracking-[0.16em] text-[#687287]">Community / Windows</div>
         </div>
       </div>
 
-      <nav className="flex-1 space-y-1 overflow-auto px-3 py-5">
-        <div className="mb-3 px-3 text-xs font-bold uppercase tracking-[0.13em] text-[#737d98]">Workspace</div>
+      <nav className="flex-1 overflow-auto px-3 py-6">
+        <div className="mb-3 px-[18px] text-[10px] font-bold uppercase tracking-[0.16em] text-[#586276]">Workspace</div>
         {pages.map(({ link, title, description, icon }) => {
           const active = pathname === link;
           return (
             <Link
               key={link}
               to={link}
-              className={classNames(
-                "group flex items-center gap-3 rounded-xl border px-3 py-3 transition-all",
-                active
-                  ? "border-blue-500/30 bg-blue-500/10 text-white shadow-inner shadow-blue-500/5"
-                  : "border-transparent text-[#8d96af] hover:border-[#222a42] hover:bg-white/[0.025] hover:text-white",
-              )}
+              className={classNames("nav-entry", active && "nav-entry-active")}
             >
-              <span className={classNames("flex h-9 w-9 items-center justify-center rounded-lg", active ? "bg-blue-500/15 text-blue-300" : "bg-white/[0.03] text-[#68708a] group-hover:text-[#b1b8cc]")}>
-                {icon}
-              </span>
+              <span className="nav-icon">{icon}</span>
               <span className="min-w-0">
                 <span className="block text-[13px] font-semibold">{title}</span>
-                <span className="mt-0.5 block truncate text-xs text-[#8791aa]">{description}</span>
+                <span className="mt-0.5 block truncate text-[11px] text-[#667086]">{description}</span>
               </span>
             </Link>
           );
         })}
       </nav>
 
-      <div className="space-y-3 border-t border-[#222a42]/60 p-4">
+      <div className="border-t border-[#202631] px-[18px] py-4">
         <button
           onClick={() => window.electron.openUrl("https://github.com/z9a17/batch-beatmap-downloader")}
-          className="flex w-full items-center justify-between rounded-xl border border-[#222a42] bg-white/[0.02] px-3 py-2.5 text-xs font-semibold text-[#a6aec2] transition hover:border-[#303a5a] hover:bg-white/[0.045] hover:text-white"
+          className="link-row border-t-0 pt-0"
         >
           <span className="flex items-center gap-2"><GitHubIcon fontSize="small" />Project on GitHub</span>
           <span className="text-xs text-[#8791aa]">↗</span>
         </button>
-        <div className="flex items-center justify-between px-1">
+        <div className="flex items-center justify-between border-t border-[#202631] pt-3">
           <span className={classNames(
-            "pill px-2.5 py-1.5",
+            "pill",
             loading
               ? "pill-checking"
               : online
@@ -84,7 +77,7 @@ export const Menu = ({ version }: PropTypes) => {
             <span className="status-dot" />
             {loading ? "Checking service" : online ? "Service online" : "Service offline"}
           </span>
-          <span className="text-xs font-medium text-[#737d98]">v{version}</span>
+          <span className="font-mono text-[10px] text-[#596276]">v{version}</span>
         </div>
       </div>
     </aside>
