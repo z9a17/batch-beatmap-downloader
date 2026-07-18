@@ -18,7 +18,7 @@
     "package:win": "electron-forge package --platform win32",
     "make:mac": "electron-forge make --platform darwin",
     "make:linux": "electron-forge make --platform linux",
-    "make:win": "npm run package:win && electron-builder --win nsis --x64 --prepackaged \"out/Batch Beatmap Downloader Community-win32-x64\" --config .config/electron-builder.yml",
+    "make:win": "npm run package:win && electron-builder --win nsis --x64 --prepackaged \"out/Batch Beatmap Downloader Community-win32-x64\" --config .config/electron-builder.yml --publish never",
     "publish:mac": "electron-forge publish --platform darwin",
     "publish:linux": "electron-forge publish --platform linux",
     "publish:win": "npm run package:win && electron-builder --win nsis --x64 --prepackaged \"out/Batch Beatmap Downloader Community-win32-x64\" --config .config/electron-builder.yml --publish always"
