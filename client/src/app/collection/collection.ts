@@ -6,8 +6,13 @@ import axios from "axios";
 import { serverUri } from "../ipc/main";
 import { BeatmapHashMap } from "../../models/api";
 import { beatmapIds, loadBeatmaps } from "../beatmaps";
+import { getClientMode } from "../settings";
 
 export const addCollection = async (hashes: string[], name: string) => {
+  if (await getClientMode() === "lazer") {
+    throw new Error("Collection creation is not available for osu!lazer yet.");
+  }
+
   const osuPath = await settings.get("path") as string;
   const backup = await readCollections(osuPath)
   const newCollections = cloneDeep(backup)
@@ -30,6 +35,10 @@ export const addCollection = async (hashes: string[], name: string) => {
 }
 
 export const checkCollections = async () => {
+  if (await getClientMode() === "lazer") {
+    throw new Error("Collection comparison is not available for osu!lazer yet.");
+  }
+
   const osuPath = await settings.get("path") as string;
   const collections = await readCollections(osuPath)
 

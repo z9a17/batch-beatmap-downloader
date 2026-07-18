@@ -9,6 +9,29 @@ export interface ChangeLogItem {
 
 export const changeLog: ChangeLogItem[] = [
   {
+    version: "1.5.0-alpha.1",
+    date: 1784332800000,
+    changes: [
+      {
+        title: "osu!lazer",
+        changes: [
+          "Added a persistent osu!stable and osu!lazer client switch",
+          "Added read-only client.realm library detection through a bundled helper",
+          "Added separate lazer data, executable, and import staging locations",
+          "Added explicit .osz importing with Realm confirmation before staged files are removed",
+          "Disabled stable collection operations while lazer mode is active",
+        ],
+      },
+      {
+        title: "Verification",
+        changes: [
+          "Added packaged-helper and installed-helper smoke tests",
+          "Added an isolated packaged-interface test for switching into lazer mode",
+        ],
+      },
+    ],
+  },
+  {
     version: "1.4.0-alpha.10",
     date: 1784332800000,
     changes: [

@@ -57,16 +57,32 @@ work. The interface labels inherited service data accordingly.
 - Windows 10 or newer for the primary supported build
 - Node.js 22
 - npm 10
-- An existing osu!stable installation, or a compatible folder containing
-  `collection.db`
+- .NET 8 SDK when building the Windows client from source
+- An osu!stable folder containing `collection.db`, or an osu!lazer data folder
+  containing `client.realm`
 
-osu!lazer-native storage is not supported in this alpha.
+## osu! client modes
+
+The client can switch between osu!stable and osu!lazer without replacing either
+saved path.
+
+- Stable libraries are detected from the `Songs` directory. Staged downloads
+  can be moved into that directory.
+- Lazer libraries are read from `client.realm` through a bundled read-only
+  helper. Downloads are staged as `.osz` archives and passed to `osu!.exe`;
+  archives are removed only after their set IDs appear in the lazer library.
+- Lazer data locations redirected through `%APPDATA%\osu\storage.ini` and the
+  standard Windows lazer executable location are detected automatically.
+- Stable collection comparison and creation remain available in stable mode.
+  Lazer collection editing is deliberately disabled until it can be implemented
+  without unsafe database writes.
 
 ## Development
 
 ```powershell
 cd client
 npm ci
+npm run build:lazer-reader
 npm run typecheck
 npm run lint
 npm start

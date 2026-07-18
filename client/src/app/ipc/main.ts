@@ -13,6 +13,7 @@ import {
 } from "./downloads";
 import {
   handleBrowse,
+  handleBrowseExecutable,
   handleCheckCollections,
   handleGetPlatform,
   handleGetSettings,
@@ -59,6 +60,7 @@ ipcMain.handle("set-setting", handleSetSetting);
 ipcMain.handle("get-settings", handleGetSettings);
 ipcMain.handle("set-settings", handleSetSettings);
 ipcMain.handle("browse", handleBrowse);
+ipcMain.handle("browse-executable", handleBrowseExecutable);
 ipcMain.handle("load-beatmaps", handleLoadBeatmaps);
 ipcMain.handle("check-collections", handleCheckCollections)
 ipcMain.handle("reset-temp-path", handleResetTempPath);

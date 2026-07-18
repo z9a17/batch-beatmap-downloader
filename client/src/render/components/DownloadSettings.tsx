@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 import { DownloadDetails } from "../../models/api";
 import { bytesToFileSize } from "../util/fileSize";
 import Button from "./util/Button";
+import { useSettings } from "../context/SettingsProvider";
 
 interface PropTypes {
   result: DownloadDetails;
@@ -26,16 +27,18 @@ const switchColors = {
 };
 
 export const DownloadSettings = ({ result }: PropTypes) => {
+  const { settings } = useSettings();
+  const isLazer = settings.clientMode === "lazer";
   const [force, setForce] = useState(false);
   const [collection, setCollection] = useState(false);
   const [collectionName, setCollectionName] = useState("");
 
   const download = () => {
     toast.success("Download queued");
-    window.electron.startDownload(force, collectionName);
+    window.electron.startDownload(force, isLazer ? "" : collectionName);
   };
 
-  const downloadDisabled = useMemo(() => collection && collectionName.trim() === "", [collection, collectionName]);
+  const downloadDisabled = useMemo(() => !isLazer && collection && collectionName.trim() === "", [isLazer, collection, collectionName]);
   const fileSize = useMemo(
     () => bytesToFileSize(force ? result.totalSizeForce : result.totalSize),
     [force, result.totalSizeForce, result.totalSize],
@@ -78,11 +81,13 @@ export const DownloadSettings = ({ result }: PropTypes) => {
             </div>
             <div className="min-w-0 flex-1">
               <div className="text-sm font-semibold text-white">Create a collection</div>
-              <div className="mt-1 text-[13px] leading-5 text-[#a4b0c2]">Group downloaded difficulties in osu!stable.</div>
+              <div className="mt-1 text-[13px] leading-5 text-[#a4b0c2]">
+                {isLazer ? "Not available for osu!lazer in this test build." : "Group downloaded difficulties in osu!stable."}
+              </div>
             </div>
-            <Switch {...switchColors} checked={collection} onChange={setCollection} />
+            <Switch {...switchColors} checked={!isLazer && collection} disabled={isLazer} onChange={setCollection} />
           </div>
-          {collection && (
+          {!isLazer && collection && (
             <input
               className="mt-3"
               placeholder="Collection name"

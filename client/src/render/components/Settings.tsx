@@ -1,10 +1,12 @@
-import React from "react";
-import Switch from "react-switch";
 import FolderRoundedIcon from "@mui/icons-material/FolderRounded";
 import SpeedRoundedIcon from "@mui/icons-material/SpeedRounded";
+import React from "react";
+import Switch from "react-switch";
+import { toast } from "react-toastify";
 
 import { useSettings } from "../context/SettingsProvider";
 import { Browse } from "./Browse";
+import Button from "./util/Button";
 import { NumericInput } from "./util/NumericInput";
 import { Tooltip } from "./util/Tooltip";
 
@@ -22,16 +24,44 @@ const switchColors = {
 };
 
 export const Settings = () => {
-  const { settings, setPath, setAltPathEnabled, setAltPath, setMaxConcurrentDownloads } = useSettings();
-  const { path, altPathEnabled, altPath, beatmapSetCount, maxConcurrentDownloads } = settings;
+  const {
+    settings,
+    setClientMode,
+    setPath,
+    setLazerExecutablePath,
+    setAltPathEnabled,
+    setAltPath,
+    setMaxConcurrentDownloads,
+  } = useSettings();
+  const {
+    clientMode,
+    path,
+    validPath,
+    lazerExecutablePath,
+    validLazerExecutable,
+    altPathEnabled,
+    altPath,
+    beatmapSetCount,
+    maxConcurrentDownloads,
+    beatmapScanError,
+  } = settings;
+  const isLazer = clientMode === "lazer";
+
+  const browseExecutable = async () => {
+    const result = await window.electron.browseExecutable();
+    if (result.canceled) return;
+
+    await setLazerExecutablePath(result.filePaths[0]);
+    toast.success("osu!lazer executable updated");
+  };
 
   return (
     <section className="content-box">
       <div className="panel-header">
         <div>
           <div className="eyebrow">Library</div>
-          <h2 className="panel-title mt-1">Storage and delivery</h2>
-          <p className="panel-description mt-1">Set download locations and concurrent connections.</p>
+          <h2 className="panel-title mt-1">osu! client</h2>
+          <p className="panel-description mt-1">Select the client whose local library and import flow should be used.</p>
         </div>
         <div className="icon-plain">
           <FolderRoundedIcon />
@@ -41,30 +71,69 @@ export const Settings = () => {
       <div className="divide-y divide-[#334055]">
         <div className="grid grid-cols-[180px_minmax(0,1fr)] items-center gap-5 py-4">
           <div>
-            <div className="text-sm font-semibold text-white">osu! installation</div>
-            <div className="mt-1 text-[13px] leading-5 text-[#a4b0c2]">The stable client folder containing collection.db.</div>
+            <div className="text-sm font-semibold text-white">Client</div>
+            <div className="mt-1 text-[13px] leading-5 text-[#a4b0c2]">Switching keeps each client’s path.</div>
           </div>
-          <div className="flex flex-wrap items-center gap-3">
-            <Browse path={path} update={setPath} />
-            {!altPathEnabled && (
-              <span className="pill"><span className="status-dot text-cyan-400" />{beatmapSetCount.toLocaleString()} sets found</span>
-            )}
+          <div className="segmented w-fit">
+            <button
+              className={`segmented-item ${!isLazer ? "segmented-item-active" : ""}`}
+              onClick={() => setClientMode("stable")}
+            >
+              osu!stable
+            </button>
+            <button
+              className={`segmented-item ${isLazer ? "segmented-item-active" : ""}`}
+              onClick={() => setClientMode("lazer")}
+            >
+              osu!lazer
+            </button>
           </div>
         </div>
 
         <div className="grid grid-cols-[180px_minmax(0,1fr)] items-center gap-5 py-4">
           <div>
-            <div className="text-sm font-semibold text-white">Alternate songs folder</div>
-            <div className="mt-1 text-[13px] leading-5 text-[#a4b0c2]">Store downloads outside the detected osu! location.</div>
+            <div className="text-sm font-semibold text-white">{isLazer ? "lazer data folder" : "stable installation"}</div>
+            <div className="mt-1 text-[13px] leading-5 text-[#a4b0c2]">
+              {isLazer ? "Folder containing client.realm." : "Folder containing collection.db and Songs."}
+            </div>
           </div>
           <div className="flex flex-wrap items-center gap-3">
-            <Switch {...switchColors} onChange={setAltPathEnabled} checked={altPathEnabled} />
-            {altPathEnabled && <Browse path={altPath} update={setAltPath} />}
-            {altPathEnabled && (
-              <span className="pill">{altPath ? beatmapSetCount.toLocaleString() : 0} sets found</span>
-            )}
+            <Browse path={path} update={setPath} />
+            <span className={validPath ? "text-[13px] text-emerald-300" : "text-[13px] text-rose-300"}>
+              {validPath ? `${beatmapSetCount.toLocaleString()} sets detected` : "Path not connected"}
+            </span>
           </div>
         </div>
+
+        {isLazer && (
+          <div className="grid grid-cols-[180px_minmax(0,1fr)] items-center gap-5 py-4">
+            <div>
+              <div className="text-sm font-semibold text-white">lazer executable</div>
+              <div className="mt-1 text-[13px] leading-5 text-[#a4b0c2]">Used to import completed `.osz` files.</div>
+            </div>
+            <div className="flex min-w-0 items-center gap-3">
+              <input className="input-height min-w-[220px] flex-1" value={lazerExecutablePath} disabled />
+              <Button color="none" className="button-secondary shrink-0" onClick={browseExecutable}>Browse</Button>
+              <span className={validLazerExecutable ? "text-[13px] text-emerald-300" : "text-[13px] text-rose-300"}>
+                {validLazerExecutable ? "Ready" : "Not found"}
+              </span>
+            </div>
+          </div>
+        )}
+
+        {!isLazer && (
+          <div className="grid grid-cols-[180px_minmax(0,1fr)] items-center gap-5 py-4">
+            <div>
+              <div className="text-sm font-semibold text-white">Alternate songs folder</div>
+              <div className="mt-1 text-[13px] leading-5 text-[#a4b0c2]">Store downloads outside the detected stable location.</div>
+            </div>
+            <div className="flex flex-wrap items-center gap-3">
+              <Switch {...switchColors} onChange={setAltPathEnabled} checked={altPathEnabled} />
+              {altPathEnabled && <Browse path={altPath} update={setAltPath} />}
+              {altPathEnabled && <span className="text-[13px] text-[#a4b0c2]">{altPath ? `${beatmapSetCount.toLocaleString()} sets detected` : "No folder selected"}</span>}
+            </div>
+          </div>
+        )}
 
         <div className="grid grid-cols-[180px_minmax(0,1fr)] items-center gap-5 py-4">
           <div>
@@ -89,6 +158,12 @@ export const Settings = () => {
           </div>
         </div>
       </div>
+
+      {beatmapScanError && (
+        <div className="mt-4 border-l-2 border-rose-400 px-4 py-2 text-[13px] leading-5 text-rose-200">
+          Local library scan failed: {beatmapScanError}
+        </div>
+      )}
     </section>
   );
 };

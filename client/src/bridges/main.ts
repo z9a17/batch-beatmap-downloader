@@ -18,6 +18,7 @@ import {
 import { handleGetBeatmapDetails, handleGetMetrics, handleQuery } from "./query";
 import {
   handleCheckValidPath,
+  handleBrowseExecutable,
   handleGetSettings,
   handleGetTempData,
   handleGetVersion,
@@ -50,6 +51,7 @@ export const electronBridge = {
 
   openUrl: handleOpenUrl,
   browse: handleBrowse,
+  browseExecutable: handleBrowseExecutable,
   quit: handleQuit,
   getPlatform: handleGetPlatform,
 

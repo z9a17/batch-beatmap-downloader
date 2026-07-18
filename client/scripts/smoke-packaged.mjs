@@ -1,6 +1,7 @@
 import { spawn, spawnSync } from "node:child_process";
-import { access } from "node:fs/promises";
+import { access, mkdtemp, rm } from "node:fs/promises";
 import { createServer } from "node:net";
+import os from "node:os";
 import path from "node:path";
 
 const executablePath = process.env.BBD_SMOKE_EXECUTABLE
@@ -12,6 +13,7 @@ const executablePath = process.env.BBD_SMOKE_EXECUTABLE
   );
 
 await access(executablePath);
+const smokeUserData = await mkdtemp(path.join(os.tmpdir(), "bbd-community-smoke-"));
 
 const port = await new Promise((resolve, reject) => {
   const server = createServer();
@@ -34,7 +36,11 @@ const port = await new Promise((resolve, reject) => {
 const output = [];
 const application = spawn(
   executablePath,
-  [`--remote-debugging-port=${port}`, "--enable-logging"],
+  [
+    `--remote-debugging-port=${port}`,
+    `--user-data-dir=${smokeUserData}`,
+    "--enable-logging",
+  ],
   {
     env: {
       ...process.env,
@@ -178,7 +184,50 @@ try {
     );
   }
 
-  console.log(`Packaged renderer smoke test passed: ${JSON.stringify(state)}`);
+  await evaluate(
+    target.webSocketDebuggerUrl,
+    `(() => {
+      const button = [...document.querySelectorAll("button")]
+        .find((candidate) => candidate.textContent?.includes("osu!lazer"));
+      if (!button) throw new Error("Could not find the osu!lazer client toggle");
+      button.click();
+      return true;
+    })()`,
+  );
+
+  let lazerState;
+  while (Date.now() < deadline) {
+    lazerState = await evaluate(
+      target.webSocketDebuggerUrl,
+      `({
+        bodyText: document.body.textContent ?? "",
+        lazerActive: [...document.querySelectorAll("button")]
+          .some((candidate) => candidate.textContent?.includes("osu!lazer")
+            && candidate.classList.contains("segmented-item-active"))
+      })`,
+    );
+
+    if (
+      lazerState?.lazerActive
+      && lazerState.bodyText.includes("lazer data folder")
+      && lazerState.bodyText.includes("lazer import staging")
+    ) {
+      break;
+    }
+
+    await wait(250);
+  }
+
+  if (
+    !lazerState?.lazerActive
+    || !lazerState.bodyText.includes("lazer data folder")
+    || !lazerState.bodyText.includes("lazer import staging")
+  ) {
+    throw new Error(`Packaged client did not switch into osu!lazer mode: ${JSON.stringify(lazerState)}`);
+  }
+
+  console.log(`Packaged renderer and osu!lazer toggle smoke test passed: ${JSON.stringify(state)}`);
 } finally {
   stopApplication();
+  await rm(smokeUserData, { force: true, recursive: true }).catch(() => undefined);
 }

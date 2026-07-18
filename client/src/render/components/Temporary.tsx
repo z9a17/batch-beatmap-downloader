@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Switch from "react-switch";
 import AutoAwesomeMotionRoundedIcon from "@mui/icons-material/AutoAwesomeMotionRounded";
+import { toast } from "react-toastify";
 
+import { useSettings } from "../context/SettingsProvider";
 import { Browse } from "./Browse";
 import Button from "./util/Button";
 import { Tooltip } from "./util/Tooltip";
@@ -18,6 +20,8 @@ const switchColors = {
 };
 
 export const Temporary = () => {
+  const { settings } = useSettings();
+  const isLazer = settings.clientMode === "lazer";
   const [temp, setTemp] = useState(true);
   const [tempCount, setTempCount] = useState(0);
   const [tempPath, setTempPath] = useState("");
@@ -39,19 +43,35 @@ export const Temporary = () => {
   useEffect(() => {
     updateData();
     window.electron.getPlatform().then((platform) => setIsWindows(platform === "win32"));
-  }, []);
+  }, [settings.clientMode]);
 
-  const handleToggle = () => window.electron.setSetting("temp", !temp).then(updateData);
+  const handleToggle = () => {
+    if (isLazer) return;
+    window.electron.setSetting("temp", !temp).then(updateData);
+  };
   const handleSetTempPath = (path: string) => window.electron.setSetting("tempPath", path).then(updateData);
   const handleResetPath = () => window.electron.resetTempPath().then(updateData);
   const handleSetTempAuto = (auto: boolean) => window.electron.setSetting("autoTemp", auto).then(updateData);
 
-  const handleMoveDownloads = () => {
+  const handleMoveDownloads = async () => {
     setMoving(true);
-    window.electron.moveTempDownloads().then(() => {
+    try {
+      const result = await window.electron.moveTempDownloads();
+      if (result.mode === "lazer") {
+        if (result.remaining === 0) {
+          toast.success(`${result.imported.toLocaleString()} sets imported into osu!lazer`);
+        } else {
+          toast.warning(`${result.imported.toLocaleString()} imported; ${result.remaining.toLocaleString()} remain in staging`);
+        }
+      } else {
+        toast.success(`${result.imported.toLocaleString()} archives moved into Songs`);
+      }
       updateData();
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : String(error));
+    } finally {
       setMoving(false);
-    });
+    }
   };
 
   return (
@@ -59,9 +79,11 @@ export const Temporary = () => {
       <div className="panel-header">
         <div>
           <div className="eyebrow">Staging</div>
-          <h2 className="panel-title mt-1">Temporary download folder</h2>
+          <h2 className="panel-title mt-1">{isLazer ? "lazer import staging" : "Temporary download folder"}</h2>
           <p className="panel-description mt-1">
-            Stage incoming archives away from Songs, then move them together to avoid interrupting song selection.
+            {isLazer
+              ? "Downloads remain here until osu!lazer confirms that they were imported."
+              : "Stage incoming archives away from Songs, then move them together to avoid interrupting song selection."}
           </p>
         </div>
         <div className="flex items-center gap-3">
@@ -76,9 +98,9 @@ export const Temporary = () => {
         <div className="grid grid-cols-[180px_minmax(0,1fr)] items-center gap-5 py-4">
           <div>
             <div className="text-sm font-semibold text-white">Use staging folder</div>
-            <div className="mt-1 text-[13px] leading-5 text-[#a4b0c2]">Recommended for large queues.</div>
+            <div className="mt-1 text-[13px] leading-5 text-[#a4b0c2]">{isLazer ? "Required because lazer manages its own file storage." : "Recommended for large queues."}</div>
           </div>
-          <Switch {...switchColors} checked={temp} onChange={handleToggle} />
+          <Switch {...switchColors} checked={isLazer || temp} disabled={isLazer} onChange={handleToggle} />
         </div>
 
         {temp && (
@@ -86,7 +108,7 @@ export const Temporary = () => {
             <div className="grid grid-cols-[180px_minmax(0,1fr)] items-center gap-5 py-4">
               <div>
                 <div className="text-sm font-semibold text-white">Staging location</div>
-                <div className="mt-1 text-[13px] leading-5 text-[#a4b0c2]">Must share a drive with your Songs folder.</div>
+                <div className="mt-1 text-[13px] leading-5 text-[#a4b0c2]">{isLazer ? "Any writable folder can be used." : "Must share a drive with your Songs folder."}</div>
               </div>
               <div className="flex min-w-0 items-center gap-3">
                 <Browse path={tempPath} update={handleSetTempPath} />
@@ -98,10 +120,10 @@ export const Temporary = () => {
             <div className="grid grid-cols-[180px_minmax(0,1fr)] items-center gap-5 py-4">
               <div>
                 <div className="flex items-center gap-1.5 text-sm font-semibold text-white">
-                  Auto transfer
-                  <Tooltip title="Move completed archives into the Songs folder automatically when a queue finishes." />
+                  {isLazer ? "Auto import" : "Auto transfer"}
+                  <Tooltip title={isLazer ? "Launch osu!lazer and import completed downloads when a queue finishes." : "Move completed archives into the Songs folder automatically when a queue finishes."} />
                 </div>
-                <div className="mt-1 text-[13px] leading-5 text-[#a4b0c2]">Move files automatically when the queue finishes.</div>
+                <div className="mt-1 text-[13px] leading-5 text-[#a4b0c2]">{isLazer ? "Import files automatically when the queue finishes." : "Move files automatically when the queue finishes."}</div>
               </div>
               <Switch {...switchColors} checked={tempAuto} onChange={handleSetTempAuto} />
             </div>
@@ -117,7 +139,7 @@ export const Temporary = () => {
 
       <div className="mt-5 flex justify-end">
         <Button disabled={tempCount === 0 || moving} onClick={handleMoveDownloads}>
-          {moving ? "Moving archives…" : "Move staged archives"}
+          {moving ? (isLazer ? "Importing archives…" : "Moving archives…") : (isLazer ? "Import into osu!lazer" : "Move staged archives")}
         </Button>
       </div>
     </section>

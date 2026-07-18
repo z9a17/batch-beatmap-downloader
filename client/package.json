@@ -1,7 +1,7 @@
 {
   "name": "batch-beatmap-downloader-community",
   "productName": "Batch Beatmap Downloader Community",
-  "version": "1.4.0-alpha.10",
+  "version": "1.5.0-alpha.1",
   "description": "A desktop app for discovering and downloading osu! beatmaps in bulk.",
   "main": ".webpack/main",
   "repository": {
@@ -11,13 +11,16 @@
   "scripts": {
     "start": "electron-forge start",
     "build:icons": "node scripts/build-icon.mjs",
+    "build:lazer-reader": "node scripts/build-lazer-reader.mjs",
     "lint": "cross-env NODE_ENV=development eslint \"src/**/*.{ts,tsx}\" --cache",
     "typecheck": "tsc --noEmit",
     "smoke:win": "node scripts/smoke-packaged.mjs",
+    "smoke:lazer-reader:win": "node scripts/smoke-lazer-reader.mjs",
     "smoke:installer:win": "pwsh -NoProfile -ExecutionPolicy Bypass -File scripts/smoke-installer.ps1",
     "package:mac": "electron-forge package --platform darwin",
     "package:linux": "electron-forge package --platform linux",
     "package:win": "electron-forge package --platform win32",
+    "prepackage:win": "npm run build:lazer-reader",
     "make:mac": "electron-forge make --platform darwin",
     "make:linux": "electron-forge make --platform linux",
     "make:win": "npm run package:win && electron-builder --win nsis --x64 --prepackaged \"out/Batch Beatmap Downloader Community-win32-x64\" --config .config/electron-builder.yml --publish never",

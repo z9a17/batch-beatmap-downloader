@@ -2,6 +2,7 @@ import {
   ipcRenderer,
 } from "electron";
 import { MissingMaps, ReportedDownloadStatus } from "../models/api";
+import { TransferResult } from "../models/client";
 
 export const handleStartDownload = (force: boolean, collectionName: string) => {
   return ipcRenderer.invoke("start-download", force, collectionName) as Promise<void>
@@ -46,5 +47,5 @@ export const handleListenForDownloads = (callback: (downloads: ReportedDownloadS
 };
 
 export const handleMoveAllDownloads = () => {
-  return ipcRenderer.invoke("move-all-downloads") as Promise<void>
+  return ipcRenderer.invoke("move-all-downloads") as Promise<TransferResult>
 };
