@@ -530,18 +530,6 @@ input:disabled {
   border-left: 3px solid var(--accent);
 }
 
-.hero-index {
-  position: absolute;
-  top: 28px;
-  right: 4px;
-  color: #263244;
-  font-family: "Cascadia Mono", "SFMono-Regular", Consolas, monospace;
-  font-size: 112px;
-  font-weight: 700;
-  line-height: 1;
-  user-select: none;
-}
-
 .metric-strip {
   display: grid;
   border-top: 1px solid var(--border);
