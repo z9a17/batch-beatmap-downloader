@@ -8,7 +8,7 @@ The upstream history is preserved, including the original MIT license.
 
 ## Current release
 
-`1.4.0-alpha.9` is the current community preview. It includes:
+`1.4.0-alpha.10` is the current community preview. It includes:
 
 - a card-free blue interface built from open sections, dividers, metric rails, and edge-to-edge rows;
 - compact inline status labels instead of decorative capsules;

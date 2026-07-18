@@ -26,9 +26,9 @@ export const FindMissingMaps = () => {
     <section className="content-box">
       <div className="panel-header mb-0">
         <div>
-          <div className="eyebrow">Collection repair</div>
+          <div className="eyebrow">Collections</div>
           <h2 className="panel-title mt-1">Find missing beatmaps</h2>
-          <p className="panel-description mt-1">Compare collection.db with your local Songs folder and recover indexed gaps.</p>
+          <p className="panel-description mt-1">Find collection entries whose mapsets are not installed locally.</p>
         </div>
         <div className="icon-plain text-emerald-300">
           <PlaylistAddCheckRoundedIcon />

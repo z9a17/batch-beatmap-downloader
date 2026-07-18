@@ -13,35 +13,35 @@ import "./index.css";
 
 const pageDetails: Record<string, { eyebrow: string; title: string; description: string }> = {
   "/": {
-    eyebrow: "Command center",
+    eyebrow: "Setup",
     title: "Overview",
-    description: "Configure your library and jump into a curated beatmap search.",
+    description: "Configure osu! folders, download locations, and transfer limits.",
   },
   "/query": {
-    eyebrow: "Library builder",
+    eyebrow: "Search",
     title: "Discover",
-    description: "Shape a precise collection from the indexed beatmap catalogue.",
+    description: "Filter and sort the indexed beatmap catalogue.",
   },
   "/downloads": {
-    eyebrow: "Transfer queue",
+    eyebrow: "Queue",
     title: "Downloads",
-    description: "Track active jobs, throughput, failures, and completed sets.",
+    description: "View queued downloads and transfer progress.",
   },
   "/status": {
-    eyebrow: "Infrastructure",
+    eyebrow: "Status",
     title: "Service",
-    description: "Inspect the inherited API, catalogue, and live delivery health.",
+    description: "Check metadata and download service availability.",
   },
   "/changelog": {
-    eyebrow: "What changed",
+    eyebrow: "Versions",
     title: "Release notes",
-    description: "A running history of improvements to Batch Beatmap Downloader.",
+    description: "Version history and technical changes.",
   },
 };
 
 const ApplicationFrame = () => {
   const { pathname } = useLocation();
-  const [version, setVersion] = useState("1.4.0-alpha.9");
+  const [version, setVersion] = useState("1.4.0-alpha.10");
   const currentPage = useMemo(() => pageDetails[pathname] ?? pageDetails["/"], [pathname]);
 
   useEffect(() => {
@@ -63,10 +63,7 @@ const ApplicationFrame = () => {
               <span className="hidden text-xs text-[#9aa6b8] xl:inline">{currentPage.description}</span>
             </div>
           </div>
-          <div className="flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.12em] text-[#929eb1]">
-            <span className="h-px w-8 bg-blue-500" />
-            Community alpha
-          </div>
+          <span className="font-mono text-[11px] text-[#929eb1]">v{version}</span>
         </header>
         <div className="app-content">
           <Routes>

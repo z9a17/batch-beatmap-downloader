@@ -59,7 +59,7 @@ export const Temporary = () => {
       <div className="panel-header">
         <div>
           <div className="eyebrow">Staging</div>
-          <h2 className="panel-title mt-1">Quiet import</h2>
+          <h2 className="panel-title mt-1">Temporary download folder</h2>
           <p className="panel-description mt-1">
             Stage incoming archives away from Songs, then move them together to avoid interrupting song selection.
           </p>
@@ -101,7 +101,7 @@ export const Temporary = () => {
                   Auto transfer
                   <Tooltip title="Move completed archives into the Songs folder automatically when a queue finishes." />
                 </div>
-                <div className="mt-1 text-[13px] leading-5 text-[#a4b0c2]">Finish without another manual step.</div>
+                <div className="mt-1 text-[13px] leading-5 text-[#a4b0c2]">Move files automatically when the queue finishes.</div>
               </div>
               <Switch {...switchColors} checked={tempAuto} onChange={handleSetTempAuto} />
             </div>

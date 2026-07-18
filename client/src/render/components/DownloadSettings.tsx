@@ -46,7 +46,7 @@ export const DownloadSettings = ({ result }: PropTypes) => {
     <div>
       <div className="eyebrow">Queue setup</div>
       <h2 className="panel-title mt-1">Download selection</h2>
-      <p className="panel-description mt-1">Review this batch before handing it to the transfer queue.</p>
+      <p className="panel-description mt-1">Review the selected sets before starting the download.</p>
 
       <div className="mt-5 grid grid-cols-2 border-y border-[#303c4d]">
         <div className="py-4 pr-4">

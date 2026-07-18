@@ -33,7 +33,7 @@ export const Status = () => {
         <div className="flex min-h-[280px] items-center justify-center border-l-[3px] border-[#46566d]">
           <div className="text-center">
             <CircularProgress size={30} />
-            <div className="mt-4 text-sm text-[#9aa6b8]">Checking inherited infrastructure…</div>
+            <div className="mt-4 text-sm text-[#9aa6b8]">Checking service…</div>
           </div>
         </div>
       </div>
@@ -67,7 +67,7 @@ export const Status = () => {
             <CloudDoneRoundedIcon />
           </div>
           <div>
-            <div className="font-semibold text-emerald-100">Inherited service online</div>
+            <div className="font-semibold text-emerald-100">Service online</div>
             <div className="mt-1 text-sm text-emerald-100/50">Metadata queries and archive delivery are responding.</div>
           </div>
         </div>

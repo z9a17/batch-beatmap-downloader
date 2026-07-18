@@ -9,6 +9,20 @@ export interface ChangeLogItem {
 
 export const changeLog: ChangeLogItem[] = [
   {
+    version: "1.4.0-alpha.10",
+    date: 1784332800000,
+    changes: [
+      {
+        title: "Interface text",
+        changes: [
+          "Removed promotional headlines and labels",
+          "Replaced vague descriptions with direct instructions",
+          "Renamed preset searches and empty states to describe their function",
+        ],
+      },
+    ],
+  },
+  {
     version: "1.4.0-alpha.9",
     date: 1784332800000,
     changes: [

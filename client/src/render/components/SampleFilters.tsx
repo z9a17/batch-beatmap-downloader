@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
-import AutoAwesomeRoundedIcon from "@mui/icons-material/AutoAwesomeRounded";
+import FilterAltRoundedIcon from "@mui/icons-material/FilterAltRounded";
 
 import {
   allFarm,
@@ -21,10 +21,10 @@ interface Filter {
 }
 
 const filters: Filter[] = [
-  { name: "Ranked essentials", detail: "All ranked osu!standard sets", tree: allRankedOsu, accent: "#22d3ee" },
-  { name: "Loved catalogue", detail: "Community-loved beatmaps", tree: allLoved, accent: "#fb7185" },
-  { name: "Sotarks collection", detail: "Every indexed Sotarks set", tree: allSotarks, accent: "#60a5fa" },
-  { name: "Seven star range", detail: "Ranked maps from 7★ to 8★", tree: allRanked7Star, accent: "#fb923c" },
+  { name: "Ranked osu!standard", detail: "All indexed ranked osu!standard sets", tree: allRankedOsu, accent: "#22d3ee" },
+  { name: "Loved", detail: "All indexed Loved beatmaps", tree: allLoved, accent: "#fb7185" },
+  { name: "Sotarks", detail: "All indexed sets mapped by Sotarks", tree: allSotarks, accent: "#60a5fa" },
+  { name: "Ranked 7★–8★", detail: "Ranked beatmaps from 7★ to 8★", tree: allRanked7Star, accent: "#fb923c" },
   { name: "Stream maps", detail: "Sets tagged for stream patterns", tree: allStream, accent: "#60a5fa" },
   { name: "Farm maps", detail: "Sets tagged as performance farm", tree: allFarm, accent: "#f472b6" },
 ];
@@ -36,11 +36,11 @@ export const SampleFilters = () => {
     <section className="content-box">
       <div className="panel-header">
         <div>
-          <div className="eyebrow">Quick starts</div>
-          <h2 className="panel-title mt-1">Curated searches</h2>
-          <p className="panel-description mt-1">Start from a useful filter and refine it in Discover.</p>
+          <div className="eyebrow">Presets</div>
+          <h2 className="panel-title mt-1">Example filters</h2>
+          <p className="panel-description mt-1">Load a preset filter into Discover.</p>
         </div>
-        <AutoAwesomeRoundedIcon className="text-[#8d99ac]" />
+        <FilterAltRoundedIcon className="text-[#8d99ac]" />
       </div>
       <div className="grid grid-cols-3 border-t border-[#303c4d]">
         {filters.map((filter) => (

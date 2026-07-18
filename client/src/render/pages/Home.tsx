@@ -22,16 +22,15 @@ export const Home = () => {
 
       <section className="hero-block">
         <div className="relative z-[1] max-w-3xl">
-          <div className="section-kicker mb-5">Community preview</div>
           <h2 className="max-w-2xl text-[36px] font-semibold leading-[1.08] tracking-[-0.055em] text-white">
-            Build the beatmap library you actually want.
+            Search and download osu! beatmaps in bulk.
           </h2>
           <p className="mt-4 max-w-2xl text-[15px] leading-7 text-[#b6c0ce]">
-            Search by difficulty, metadata, mapper, and play style—then move thousands of sets through one focused queue.
+            Configure your folders below, then search the indexed catalogue by difficulty, metadata, mapper, or play style.
           </p>
           <div className="mt-6 flex items-center gap-3">
             <Link to="/query" className="flex min-h-[42px] items-center gap-2 rounded-[2px] bg-blue-600 px-5 text-sm font-semibold text-white transition hover:bg-blue-500">
-              Discover beatmaps <ArrowForwardRoundedIcon fontSize="small" />
+              Search beatmaps <ArrowForwardRoundedIcon fontSize="small" />
             </Link>
             <Link to="/downloads" className="button-secondary flex min-h-[42px] items-center rounded-[2px] px-5 text-sm font-semibold">
               Open queue

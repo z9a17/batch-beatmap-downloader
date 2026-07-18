@@ -18,7 +18,7 @@ export const ChangeLogVersion = ({ item, latest = false }: PropTypes) => {
           v{item.version}
         </div>
         <div className="min-w-0 flex-1">
-          <div className="text-sm font-semibold text-white">{latest ? "Latest community build" : `Version ${item.version}`}</div>
+          <div className="text-sm font-semibold text-white">{latest ? "Current version" : `Version ${item.version}`}</div>
           <div className="mt-1 text-xs text-[#a4b0c2]">{new Date(item.date).toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" })}</div>
         </div>
         {latest && <span className="pill pill-accent">Current</span>}
