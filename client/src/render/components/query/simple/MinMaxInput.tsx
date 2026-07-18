@@ -16,13 +16,13 @@ export const MinMaxInput: React.FC<TInputItemProps<TInputItemMinMax>> = ({ label
   }
 
   return (
-    <div className="flex items-center w-full">
-      <span className="min-w-[8rem] label">{label}</span>
-      <div className="flex items-center gap-2">
+    <div className="field-row">
+      <span className="field-label">{label}</span>
+      <div className="grid grid-cols-2 gap-2">
         <NumericInput
           placeholder="Min"
           step={step}
-          className="p-1 px-2 w-16"
+          className="min-w-0"
           value={convertValue(value[0])}
           onChange={(value) => updateValue(value, 0)}
         />
@@ -30,7 +30,7 @@ export const MinMaxInput: React.FC<TInputItemProps<TInputItemMinMax>> = ({ label
         <NumericInput
           placeholder="Max"
           step={step}
-          className="p-1 px-2 w-16"
+          className="min-w-0"
           value={convertValue(value[1])}
           onChange={(value) => updateValue(value, 1)}
         />

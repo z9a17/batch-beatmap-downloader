@@ -6,9 +6,9 @@ import classNames from "classnames"
 
 export const SwitchInput: React.FC<TInputItemProps<TInputItemSwitch>> = ({ label, value, onChange }) => {
   return (
-    <div className="flex items-center w-full">
-      <span className="min-w-[8rem] label">{label}</span>
-      <div className="flex items-center gap-2">
+    <div className="field-row">
+      <span className="field-label">{label}</span>
+      <div className="segmented w-fit">
         <SwitchButton
           text="Yes"
           onChange={onChange}
@@ -37,9 +37,10 @@ const SwitchButton = ({ text, onChange, target, value }: {
       onClick={() => onChange(value === target ? undefined : target)}
       color="none"
       className={classNames(
-        { 'bg-blue-300 dark:bg-blue-400 hover:bg-blue-500 dark:hover:bg-blue-600': value === undefined || value !== target},
-        { 'bg-blue-500 dark:bg-blue-600 hover:bg-blue-400 dark:hover:bg-blue-500': value === target },
-    )}>
+        "segmented-item min-h-0 px-3 py-1.5",
+        { "text-[#737d98] hover:text-white": value === undefined || value !== target },
+        { "segmented-item-active": value === target },
+      )}>
       {text}
     </Button>
   );

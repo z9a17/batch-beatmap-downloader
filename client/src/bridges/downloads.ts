@@ -1,7 +1,7 @@
 import {
   ipcRenderer,
 } from "electron";
-import { DownloadStatus, MissingMaps, ReportedDownloadStatus } from "../models/api";
+import { MissingMaps, ReportedDownloadStatus } from "../models/api";
 
 export const handleStartDownload = (force: boolean, collectionName: string) => {
   return ipcRenderer.invoke("start-download", force, collectionName) as Promise<void>

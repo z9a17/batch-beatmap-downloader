@@ -1,4 +1,3 @@
-import isNumber from "is-number";
 import React from "react";
 import Switch from "react-switch";
 import Select from "react-select";
@@ -43,6 +42,17 @@ const defaultOrder = {
   direction: "DESC"
 }
 
+const switchColors = {
+  onColor: "#7c3aed",
+  offColor: "#242b40",
+  onHandleColor: "#ffffff",
+  offHandleColor: "#68708a",
+  uncheckedIcon: false,
+  checkedIcon: false,
+  height: 22,
+  width: 42,
+};
+
 export const QuerySettings = ({ limit, updateLimit, order, updateOrder }: PropTypes) => {
   const enable = (enabled: boolean) => {
     if (enabled) {
@@ -55,40 +65,48 @@ export const QuerySettings = ({ limit, updateLimit, order, updateOrder }: PropTy
   };
 
   return (
-    <div className="flex flex-col gap-4">
-      <div className="flex items-center h-10">
-        <label className="w-32 label">Query Limit</label>
+    <div>
+      <div className="panel-header mb-0">
+        <div>
+          <div className="eyebrow">Result policy</div>
+          <h2 className="panel-title mt-1">Limit and order</h2>
+          <p className="panel-description mt-1">Cap broad searches and make the most relevant matches arrive first.</p>
+        </div>
         <Switch
+          {...switchColors}
           onChange={(enabled) => enable(enabled)}
           checked={limit !== undefined}
         />
       </div>
 
       {limit && (
-        <div className="flex flex-col gap-4">
-          <div className="flex items-center">
-            <label className="w-32">Limit</label>
+        <div className="mt-5 grid grid-cols-[160px_minmax(0,1fr)_minmax(0,1fr)] gap-3 rounded-2xl border border-[#222a42] bg-[#0b0f1b]/65 p-4">
+          <div>
+            <label className="field-label mb-2 block">Maximum results</label>
             <NumericInput
-              className="input-height p-2 w-40 border-gray-300 border rounded focus:outline-blue-500"
+              className="input-height"
               value={limit}
               onChange={(n) => updateLimit(Math.max(1, n || 1))}
               step={1}
             />
           </div>
 
-          <div className="flex items-center">
-            <label className="w-32 label">Order by</label>
+          <div>
+            <label className="field-label mb-2 block">Order by</label>
             <Select
               menuPlacement="top"
-              className="w-52 my-react-select-container"
+              className="my-react-select-container"
               classNamePrefix="my-react-select"
               options={orderOptions}
               value={orderOptions.find(item => order?.by === item.value)}
               onChange={(e) => e && order && updateOrder({ ...order, by: e.value })}
             />
+          </div>
+          <div>
+            <label className="field-label mb-2 block">Direction</label>
             <Select
               menuPlacement="top"
-              className="w-40 ml-4 my-react-select-container"
+              className="my-react-select-container"
               classNamePrefix="my-react-select"
               options={directionOptions}
               value={directionOptions.find(item => order?.direction === item.value)}

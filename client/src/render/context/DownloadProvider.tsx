@@ -1,7 +1,7 @@
 import React, {
-  useState, createContext, useEffect, PropsWithChildren, useContext,
+  useState, createContext, useEffect, useContext,
 } from 'react';
-import { DownloadStatus, ReportedDownloadStatus } from '../../models/api';
+import { ReportedDownloadStatus } from '../../models/api';
 
 export interface Downloads {
   downloads: ReportedDownloadStatus[]
@@ -13,7 +13,7 @@ const defaultContext: Downloads = {
 
 export const DownloadsContext = createContext<Downloads>(defaultContext);
 
-const DownloadsProvider: React.FC<PropsWithChildren<any>> = ({ children }) => {
+const DownloadsProvider: React.FC = ({ children }) => {
   const [downloads, setDownloads] = useState<ReportedDownloadStatus[]>([])
 
   useEffect(() => {

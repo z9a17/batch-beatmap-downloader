@@ -1,10 +1,9 @@
 import { debounce } from 'lodash';
 import React, {
-  useState, createContext, useEffect, PropsWithChildren, useContext,
+  useState, createContext, useEffect, useContext,
 } from 'react';
 
 interface SettingsObject {
-  darkMode: boolean;
   path: string;
   altPath: string;
   altPathEnabled: boolean;
@@ -17,7 +16,6 @@ interface SettingsObject {
 export interface Settings {
   settings: SettingsObject
 
-  toggleDarkMode: (on?: boolean) => void
   setPath: (path: string) => void;
   setAltPathEnabled: (enabled: boolean) => void;
   setAltPath: (path: string) => void;
@@ -26,7 +24,6 @@ export interface Settings {
 
 const defaultContext: Settings = {
   settings: {
-    darkMode: true,
     path: "",
     altPath: "",
     altPathEnabled: false,
@@ -36,7 +33,6 @@ const defaultContext: Settings = {
     autoTransfer: false,
   },
 
-  toggleDarkMode: () => null,
   setPath: () => null,
   setAltPathEnabled: () => null,
   setAltPath: () => null,
@@ -45,13 +41,12 @@ const defaultContext: Settings = {
 
 export const SettingsContext = createContext<Settings>(defaultContext);
 
-const SettingsProvider: React.FC<PropsWithChildren<any>> = ({ children }) => {
+const SettingsProvider: React.FC = ({ children }) => {
   const [settings, setSettings] = useState(defaultContext.settings)
 
   useEffect(() => {
     window.electron.getSettings().then((res) => {
       setSettings({
-        darkMode: res.darkMode as boolean ?? true,
         path: res.path as string ?? "",
         altPath: res.altPath as string ?? "",
         altPathEnabled: res.altPathEnabled as boolean ?? false,
@@ -60,18 +55,9 @@ const SettingsProvider: React.FC<PropsWithChildren<any>> = ({ children }) => {
         validPath: res.validPath as boolean ?? false,
         autoTransfer: res.autoTransfer as boolean ?? false,
       })
-
-      document.documentElement.classList.toggle('dark', res.darkMode as boolean ?? true);
+      document.documentElement.classList.add("dark");
     })
   }, []);
-
-  const toggleDarkMode = (on?: boolean) => {
-    let newValue = !settings.darkMode
-    if (on !== undefined) newValue = on
-    document.documentElement.classList.toggle('dark', newValue)
-    window.electron.setSetting("darkMode", newValue)
-    setSettings(prev => ({ ...prev, darkMode: newValue }))
-  };
 
   const handleSetPath = async (path: string) => {
     const [validPath, beatmapSetCount] = await window.electron.setSetting("path", path)
@@ -115,7 +101,6 @@ const SettingsProvider: React.FC<PropsWithChildren<any>> = ({ children }) => {
     <SettingsContext.Provider
       value={{
         settings,
-        toggleDarkMode,
         setPath: handleSetPath,
         setAltPathEnabled: handleSetAltPathEnabled,
         setAltPath: handleSetAltPath,

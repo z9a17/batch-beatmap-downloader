@@ -24,7 +24,7 @@ import {
 } from "./settings";
 import { handleGetBeatmapDetails, handleGetMetrics, handleQuery } from "./query";
 
-export const serverUri = "https://v2.nzbasic.com";
+export const serverUri = process.env.BBD_API_URL ?? "https://v2.nzbasic.com";
 export type E = Electron.IpcMainInvokeEvent
 
 loadDownloads()

@@ -1,56 +1,62 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
+import AutoAwesomeRoundedIcon from "@mui/icons-material/AutoAwesomeRounded";
+
 import {
-  allRankedOsu,
-  allLoved,
-  allSotarks,
-  allRanked7Star,
-  Node,
-  allStream,
   allFarm,
-  ranked2015,
+  allLoved,
+  allRanked7Star,
+  allRankedOsu,
+  allSotarks,
+  allStream,
+  Node,
 } from "../../models/filter";
 
 interface Filter {
   name: string;
+  detail: string;
   tree: Node;
-  colour: string;
+  accent: string;
 }
 
 const filters: Filter[] = [
-  { name: "Ranked osu! Maps", tree: allRankedOsu, colour: "#ff5370" },
-  { name: "Loved Maps", tree: allLoved, colour: "#fd971f" },
-  { name: "Sotarks Maps", tree: allSotarks, colour: "#b267e6" },
-  { name: "Ranked 7* Maps", tree: allRanked7Star, colour: "#ff6600" },
-  { name: "Stream Maps", tree: allStream, colour: "#b78aff" },
-  { name: "Farm Maps", tree: allFarm, colour: "#ff2c96" },
-  // { name: "Ranked 2015 Maps", tree: ranked2015, colour: "#2edcff" }
+  { name: "Ranked essentials", detail: "All ranked osu!standard sets", tree: allRankedOsu, accent: "#22d3ee" },
+  { name: "Loved catalogue", detail: "Community-loved beatmaps", tree: allLoved, accent: "#fb7185" },
+  { name: "Sotarks collection", detail: "Every indexed Sotarks set", tree: allSotarks, accent: "#a78bfa" },
+  { name: "Seven star range", detail: "Ranked maps from 7★ to 8★", tree: allRanked7Star, accent: "#fb923c" },
+  { name: "Stream maps", detail: "Sets tagged for stream patterns", tree: allStream, accent: "#60a5fa" },
+  { name: "Farm maps", detail: "Sets tagged as performance farm", tree: allFarm, accent: "#f472b6" },
 ];
 
 export const SampleFilters = () => {
-  const loadFilter = (filter: Filter) => {
-    // load the filter tree into localstorage before redirecting
-    localStorage.setItem("tree", JSON.stringify(filter.tree));
-  };
+  const loadFilter = (filter: Filter) => localStorage.setItem("tree", JSON.stringify(filter.tree));
 
   return (
-    <div className="content-box flex flex-col dark:text-white w-full">
-      <span className="font-bold text-lg mb-4">Load a Preset Filter</span>
-      <div className="flex flex-row flex-wrap gap-4">
+    <section className="content-box">
+      <div className="panel-header">
+        <div>
+          <div className="eyebrow">Quick starts</div>
+          <h2 className="panel-title mt-1">Curated searches</h2>
+          <p className="panel-description mt-1">Start from a useful filter and refine it in Discover.</p>
+        </div>
+        <AutoAwesomeRoundedIcon className="text-violet-300" />
+      </div>
+      <div className="grid grid-cols-3 gap-3">
         {filters.map((filter) => (
           <Link
             onClick={() => loadFilter(filter)}
-            to={"/query"}
+            to="/query"
             key={filter.name}
-            style={{ backgroundColor: filter.colour }}
-            className="hover:saturate-200 dark:hover:saturate-200 transition duration-150 flex flex-col items-center justify-center w-52 h-20 rounded text-white"
+            className="panel-interactive group relative overflow-hidden rounded-2xl border border-[#222a42] bg-[#0d111e] p-4"
           >
-            <span className="font-medium text-xl text-center">
-              {filter.name}
-            </span>
+            <div className="mb-5 h-1 w-10 rounded-full" style={{ backgroundColor: filter.accent, boxShadow: `0 0 18px ${filter.accent}` }} />
+            <div className="font-semibold text-white">{filter.name}</div>
+            <div className="mt-1 text-xs leading-5 text-[#68708a]">{filter.detail}</div>
+            <ArrowForwardRoundedIcon className="absolute bottom-4 right-4 text-[#4f5871] transition group-hover:translate-x-0.5 group-hover:text-white" fontSize="small" />
           </Link>
         ))}
       </div>
-    </div>
+    </section>
   );
 };

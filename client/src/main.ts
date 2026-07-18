@@ -37,14 +37,19 @@ export let shouldBeClosed = false
 const createWindow = (): void => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    height: 720,
-    width: 1280,
-    minHeight: 720,
-    minWidth: 1280,
+    height: 820,
+    width: 1320,
+    minHeight: 680,
+    minWidth: 1040,
     title: "Batch Beatmap Downloader",
     titleBarStyle: "hidden",
+    titleBarOverlay: {
+      color: "#070912",
+      symbolColor: "#959db5",
+      height: 44,
+    },
     icon: "./render/assets/bbd.ico",
-    backgroundColor: "#fff",
+    backgroundColor: "#070912",
     webPreferences: {
       contextIsolation: true,
       nodeIntegration: false,
@@ -109,17 +114,11 @@ app.on("activate", () => {
   }
 });
 
-app.on('web-contents-created', (e, contents) => {
-
-  // Check for a webview
-  if (contents.getType() == 'webview') {
-
-    // Listen for any new window events
-    contents.on('new-window', (e, url) => {
-      e.preventDefault()
-      shell.openExternal(url)
-    })
-  }
+app.on('web-contents-created', (_event, contents) => {
+  contents.setWindowOpenHandler(({ url }) => {
+    shell.openExternal(url)
+    return { action: "deny" }
+  })
 })
 
 // let asyncOperationDone = false;

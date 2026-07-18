@@ -1,135 +1,122 @@
-import React, { useMemo, useState } from "react"
-import { ReportedDownloadStatus } from "../../models/api"
-import humanizeDuration from 'humanize-duration';
-import { toast } from "react-toastify";
-import { bytesToFileSize } from "../util/fileSize";
+import React, { useMemo, useState } from "react";
 import { LinearProgress } from "@mui/material";
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import PauseIcon from '@mui/icons-material/Pause';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import DeleteOutlineRoundedIcon from "@mui/icons-material/DeleteOutlineRounded";
+import ExpandMoreRoundedIcon from "@mui/icons-material/ExpandMoreRounded";
+import PauseRoundedIcon from "@mui/icons-material/PauseRounded";
+import PlayArrowRoundedIcon from "@mui/icons-material/PlayArrowRounded";
+import humanizeDuration from "humanize-duration";
+import { toast } from "react-toastify";
+
+import { ReportedDownloadStatus } from "../../models/api";
+import { bytesToFileSize } from "../util/fileSize";
 
 interface PropTypes {
-  status: ReportedDownloadStatus
+  status: ReportedDownloadStatus;
 }
 
-export const DownloadSummary: React.FC<PropTypes> = ({ status }) => {
-  const [loading, setLoading] = useState(false)
-  const [expanded, setExpanded] = useState(true)
+export const DownloadSummary = ({ status }: PropTypes) => {
+  const [loading, setLoading] = useState(false);
+  const [expanded, setExpanded] = useState(true);
 
   const estimatedTimeLeft = useMemo(() => {
-    if (status.speed === 0) {
-      return "Calculating..."
-    }
-
-    const remainingSize = (status.totalSize - status.totalProgress)
-    const speed = status.speed * 1024 * 1024
-    if (speed === 0) {
-      return "Calculating..."
-    }
-
-    const remainingTime = (remainingSize / speed) * 1000
-    return humanizeDuration(remainingTime, { round: true })
-  }, [status.speed, status.totalSize, status.totalProgress])
+    if (status.speed === 0) return "Calculating";
+    const remainingSize = status.totalSize - status.totalProgress;
+    const speed = status.speed * 1024 * 1024;
+    return humanizeDuration((remainingSize / speed) * 1000, { round: true });
+  }, [status.speed, status.totalSize, status.totalProgress]);
 
   const remove = () => {
-    setLoading(true)
+    setLoading(true);
     window.electron.deleteDownload(status.id).then(() => {
-      toast.success("Download deleted")
-      setLoading(false)
-    })
-  }
+      toast.success("Download removed");
+      setLoading(false);
+    });
+  };
 
   const togglePause = async () => {
-    setLoading(true)
+    setLoading(true);
     if (status.paused) {
-      await window.electron.resumeDownload(status.id)
-      toast.success("Download resumed")
+      await window.electron.resumeDownload(status.id);
+      toast.success("Download resumed");
     } else {
-      await window.electron.pauseDownload(status.id)
-      toast.success("Download paused")
+      await window.electron.pauseDownload(status.id);
+      toast.success("Download paused");
     }
-    setLoading(false)
-  }
+    setLoading(false);
+  };
 
-  const progress = useMemo(() => {
-    if (status.totalSize === 0) {
-      return 0;
-    }
-    return (status.totalProgress / status.totalSize) * 100;
-  }, [status.totalSize, status.totalProgress]);
+  const progress = status.totalSize === 0 ? 0 : (status.totalProgress / status.totalSize) * 100;
+  const remaining = status.all - status.completed - status.skipped - status.failed;
+  const finished = remaining === 0;
+  const state = finished ? "Complete" : status.paused ? "Paused" : "Downloading";
 
-  const [remaining, finished] = useMemo(() => {
-    const { all, completed, failed, skipped } = status;
-    const remaining = all - completed - skipped - failed;
-    const finished = remaining === 0
-    return [remaining, finished]
-  }, [status])
+  const details = [
+    ["Downloaded", status.completed.toLocaleString()],
+    ["Remaining", remaining.toLocaleString()],
+    ["Skipped", status.skipped.toLocaleString()],
+    ["Failed", status.failed.toLocaleString()],
+    ["Throughput", `${status.speed.toFixed(2)} MB/s`],
+    ["ETA", !status.paused && !finished ? estimatedTimeLeft : "—"],
+  ];
 
   return (
-    <div className="content-box hover:border-blue-400 flex flex-col" >
-      <div className="flex items-center gap-2">
-        <button onClick={remove} disabled={loading}>
-          <DeleteForeverIcon className="warning z-20" />
+    <article className="overflow-hidden rounded-2xl border border-[#222a42] bg-gradient-to-br from-[#131729] to-[#0e121f] shadow-lg shadow-black/10">
+      <div className="flex items-center gap-4 p-5">
+        <button
+          className="button-danger flex h-9 w-9 items-center justify-center rounded-xl"
+          onClick={remove}
+          disabled={loading}
+          aria-label="Delete download"
+        >
+          <DeleteOutlineRoundedIcon fontSize="small" />
         </button>
+
         {!finished && (
-          <button className="hover:text-blue-600 cursor-pointer" disabled={loading} onClick={togglePause}>
-            {status.paused ? <PlayArrowIcon /> : <PauseIcon />}
+          <button
+            className="button-secondary flex h-9 w-9 items-center justify-center rounded-xl"
+            disabled={loading}
+            onClick={togglePause}
+            aria-label={status.paused ? "Resume download" : "Pause download"}
+          >
+            {status.paused ? <PlayArrowRoundedIcon fontSize="small" /> : <PauseRoundedIcon fontSize="small" />}
           </button>
         )}
 
-        <div className="w-60 text-sm">{bytesToFileSize(status.totalProgress)}/{bytesToFileSize(status.totalSize)}</div>
-        <div className="w-full">
-          {remaining > 0 ? (
-            <LinearProgress
-              variant="determinate"
-              value={progress}
-            />
-          ) : (
-            <>Complete!</>
-          )}
+        <div className="min-w-[170px]">
+          <div className="flex items-center gap-2">
+            <span className={`status-dot ${finished ? "text-emerald-400" : status.paused ? "text-amber-300" : "text-violet-400"}`} />
+            <span className="text-sm font-semibold text-white">{state}</span>
+          </div>
+          <div className="mt-1 truncate text-[10px] text-[#626b84]">Job {status.id.slice(0, 8)}</div>
         </div>
-        <span className="ml-2">
-          {progress.toFixed(0)}%
-        </span>
-        <ExpandMoreIcon className="cursor-pointer hover:text-black dark:hover:text-white" onClick={() => setExpanded(prev => !prev)}/>
+
+        <div className="min-w-0 flex-1">
+          <div className="mb-2 flex items-center justify-between text-[11px] text-[#737d98]">
+            <span>{bytesToFileSize(status.totalProgress)} of {bytesToFileSize(status.totalSize)}</span>
+            <span className="font-semibold text-[#a6aec2]">{progress.toFixed(0)}%</span>
+          </div>
+          <LinearProgress variant="determinate" value={Math.min(progress, 100)} />
+        </div>
+
+        <button
+          className="flex h-9 w-9 items-center justify-center rounded-xl text-[#68708a] transition hover:bg-white/[0.04] hover:text-white"
+          onClick={() => setExpanded((value) => !value)}
+          aria-label={expanded ? "Collapse details" : "Expand details"}
+        >
+          <ExpandMoreRoundedIcon className={`transition-transform ${expanded ? "rotate-180" : ""}`} />
+        </button>
       </div>
 
       {expanded && (
-        <div className="flex flex-col gap-0 pt-4">
-          <div className="flex items-center">
-            <div className="w-44 label">Sets Downloaded</div>
-            <span>{status.completed}</span>
-          </div>
-
-          <div className="flex items-center">
-            <div className="w-44 label">Sets Remaining</div>
-            <span>{remaining}</span>
-          </div>
-
-          <div className="flex items-center">
-            <div className="w-44 label">Sets Skipped</div>
-            <span>{status.skipped}</span>
-          </div>
-
-          <div className="flex items-center">
-            <div className="w-44 label">Sets Failed</div>
-            <span>{status.failed}</span>
-          </div>
-
-          <div className="flex items-center">
-            <div className="w-44 label">Speed</div>
-            <span>{`${status.speed.toFixed(2)}MB/s`}</span>
-          </div>
-
-          {!status.paused && remaining !== 0 &&
-            <div className="flex items-center">
-              <div className="w-44 label">ETA</div>
-              <span>{estimatedTimeLeft}</span>
+        <div className="grid grid-cols-6 border-t border-[#222a42] bg-[#0a0e19]/55">
+          {details.map(([label, value], index) => (
+            <div key={label} className={`px-5 py-4 ${index > 0 ? "border-l border-[#1d2438]" : ""}`}>
+              <div className="text-sm font-semibold text-white">{value}</div>
+              <div className="mt-1 text-[10px] uppercase tracking-[0.1em] text-[#59627b]">{label}</div>
             </div>
-          }
+          ))}
         </div>
       )}
-    </div>
+    </article>
   );
-}
+};

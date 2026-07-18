@@ -40,8 +40,8 @@ export const ShareFilter = ({ tree, updateTree }: PropTypes) => {
 
   return (
     <div className="flex gap-2">
-      <Button onClick={copyTree}>Copy Filter</Button>
-      <Button onClick={loadTree}>Paste Filter</Button>
+      <Button color="none" className="button-secondary" onClick={copyTree}>Copy</Button>
+      <Button color="none" className="button-secondary" onClick={loadTree}>Paste</Button>
     </div>
   )
 };

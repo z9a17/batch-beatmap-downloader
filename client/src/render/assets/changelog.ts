@@ -9,6 +9,30 @@ export interface ChangeLogItem {
 
 export const changeLog: ChangeLogItem[] = [
   {
+    version: "1.4.0-alpha.1",
+    date: 1784332800000,
+    changes: [
+      {
+        title: "Interface",
+        changes: [
+          "Rebuilt the complete desktop interface around a dark-only design system",
+          "Introduced new overview, discovery, downloads, service, and release-note workspaces",
+          "Redesigned query controls, result review, transfer setup, and queue activity",
+          "Removed the light theme and its user-facing toggle",
+        ],
+      },
+      {
+        title: "Project",
+        changes: [
+          "Moved release ownership to the community fork",
+          "Updated the Electron runtime and packaging toolchain",
+          "Added reproducible Windows checks and release automation",
+          "Made inherited service dependencies explicit in the interface and documentation",
+        ],
+      },
+    ],
+  },
+  {
     version: "1.3.0",
     date: 1669446685871,
     changes: [

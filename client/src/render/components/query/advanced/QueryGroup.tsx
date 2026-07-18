@@ -2,11 +2,10 @@ import { FilterRule } from "./Rule";
 import { ConnectorDetails, Group, Node } from "../../../../models/filter";
 import { RuleType, Rule } from "../../../../models/rules";
 import { Connector } from "./Connector";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { nanoid } from 'nanoid';
 import { cloneDeep } from "lodash";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
-import { stringToColor } from "@davidcmeier/string-to-color";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 
 interface PropTypes {
@@ -90,17 +89,17 @@ export const QueryGroup = ({ group, id, updateParent }: PropTypes) => {
   };
 
   return (
-    <div className="flex w-full">
-      <div style={{ backgroundColor: stringToColor(id) }} className="w-2" />
-      <div className="p-4 rounded-l-none border-gray-300 dark:border-monokai-border dark:border-2 dark:border-l-0 border-l-0 border rounded flex items-stretch w-full">
-        <div className="flex flex-col">
+    <div className="flex w-full overflow-hidden rounded-2xl border border-[#262e48] bg-[#0d111e]">
+      <div className="w-1 shrink-0 bg-gradient-to-b from-violet-500 to-cyan-400" />
+      <div className="w-full p-4">
+        <div className="flex w-full flex-col">
           {group.children.map((child, index) => (
             <div key={child.id}>
               {index == 0 ? null : (
                 <Connector id={child.id} details={group.connector} update={updateConnector} />
               )}
               {child.group ? (
-                <div className="flex">
+                <div className="flex items-start">
                   <QueryGroup
                     group={child.group}
                     id={child.id}
@@ -108,12 +107,12 @@ export const QueryGroup = ({ group, id, updateParent }: PropTypes) => {
                   />
                   <RemoveCircleIcon
                     onClick={() => removeChild(child.id)}
-                    className="text-red-600 hover:text-red-700 hover:cursor-pointer rounded -ml-5 -mt-4 bg-white dark:bg-monokai-dark"
+                    className="-ml-4 -mt-3 cursor-pointer rounded-full bg-[#0d111e] text-rose-400 transition hover:text-rose-300"
                     fontSize="large"
                   />
                 </div>
               ) : (
-                <div className="flex gap-2 items-center">
+                <div className="flex items-center gap-2">
                   <FilterRule
                     rule={child?.rule??null}
                     id={child.id}
@@ -122,23 +121,23 @@ export const QueryGroup = ({ group, id, updateParent }: PropTypes) => {
                   {(id != "root" || index != 0) && (
                     <CancelOutlinedIcon
                       onClick={() => removeChild(child.id)}
-                      className="text-gray-400 dark:text-red-500 dark:hover:text-red-600 hover:cursor-pointer hover:text-red-500"
+                      className="cursor-pointer text-[#59627b] transition hover:text-rose-300"
                     />
                   )}
                 </div>
               )}
             </div>
           ))}
-          <div className="flex items-center gap-2 mt-4">
+          <div className="mt-4 flex items-center gap-2 border-t border-[#1d2438] pt-4">
             <button
               onClick={() => addChild(cloneDeep(getLastRule()))}
-              className="dark:text-white border-blue-600 text-gray-600 border-2 rounded px-2 py-1 hover:bg-blue-600 hover:text-white font-medium transition duration-150"
+              className="button-secondary min-h-[36px] rounded-[10px] px-3 text-xs font-semibold"
             >
               + Add Rule
             </button>
             <button
               onClick={() => addChild(cloneDeep(defaultGroup))}
-              className="dark:text-white border-blue-600 text-gray-600 border-2 rounded px-2 py-1 hover:bg-blue-600 hover:text-white font-medium transition duration-150"
+              className="button-secondary min-h-[36px] rounded-[10px] px-3 text-xs font-semibold"
             >
               + Add Group
             </button>

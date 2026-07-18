@@ -1,56 +1,56 @@
 import CircularProgress from "@mui/material/CircularProgress";
-import React from "react";
-import { useCallback, useState } from "react"
+import PlaylistAddCheckRoundedIcon from "@mui/icons-material/PlaylistAddCheckRounded";
+import React, { useCallback, useState } from "react";
 import { Link } from "react-router-dom";
+
 import { MissingMaps } from "../../models/api";
 import { bytesToFileSize } from "../util/fileSize";
 import Button from "./util/Button";
 
 export const FindMissingMaps = () => {
   const [loading, setLoading] = useState(false);
-  const [missing, setMissing] = useState<MissingMaps | null>(null)
+  const [missing, setMissing] = useState<MissingMaps | null>(null);
 
   const checkCollections = useCallback(async () => {
     setLoading(true);
     setMissing(null);
-    const res = await window.electron.checkCollections();
-    setMissing(res)
+    setMissing(await window.electron.checkCollections());
     setLoading(false);
-  }, [])
+  }, []);
 
   const download = useCallback(() => {
-    window.electron.createDownload(missing?.ids??[], missing?.totalSize??0, false, [], "")
-  }, [missing])
+    window.electron.createDownload(missing?.ids ?? [], missing?.totalSize ?? 0, false, [], "");
+  }, [missing]);
 
   return (
-    <div className="content-box gap-2 flex flex-col dark:text-white w-full items-start">
-      <span className="font-bold text-lg mb-4">Download missing maps (from collections)</span>
-      <div className="flex items-center gap-2">
-        <Button
-          onClick={checkCollections}
-          disabled={loading}
-          color="blue"
-        >
-          Check Collections
-        </Button>
-        {loading && <CircularProgress size={25} />}
+    <section className="content-box">
+      <div className="panel-header mb-0">
+        <div>
+          <div className="eyebrow">Collection repair</div>
+          <h2 className="panel-title mt-1">Find missing beatmaps</h2>
+          <p className="panel-description mt-1">Compare collection.db with your local Songs folder and recover indexed gaps.</p>
+        </div>
+        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-400/10 text-emerald-300">
+          <PlaylistAddCheckRoundedIcon />
+        </div>
       </div>
 
-      {missing && (
-        <div className="flex flex-col mt-2">
-          <span>Found {missing.ids.length} map(s) that can be downloaded.</span>
-          {missing.ids.length > 0 && (
-            <div className="flex flex-col items-start gap-2">
-              <span>Total size: {bytesToFileSize(missing.totalSize)}</span>
-              <Link className={`${loading ? 'pointer-events-none' : ''}`} to="/downloads">
-                <Button onClick={download} disabled={loading} color="green" >
-                  Download
-                </Button>
-              </Link>
-            </div>
-          )}
-        </div>
-      )}
-    </div>
-  )
-}
+      <div className="mt-5 flex items-center gap-3">
+        <Button onClick={checkCollections} disabled={loading}>
+          {loading ? "Scanning collections…" : "Scan collections"}
+        </Button>
+        {loading && <CircularProgress size={22} />}
+        {missing && (
+          <span className="pill">
+            {missing.ids.length} available · {bytesToFileSize(missing.totalSize)}
+          </span>
+        )}
+        {missing && missing.ids.length > 0 && (
+          <Link className="ml-auto" to="/downloads">
+            <Button onClick={download} disabled={loading} color="green">Queue missing sets</Button>
+          </Link>
+        )}
+      </div>
+    </section>
+  );
+};
