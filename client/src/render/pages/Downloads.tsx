@@ -45,12 +45,12 @@ export const Downloads = () => {
     return (
       <div className="page-stack">
         <div className="flex min-h-[360px] flex-col items-center justify-center rounded-[22px] border border-dashed border-[#303a5a] bg-white/[0.015] p-10 text-center">
-          <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-violet-500/10 text-violet-300">
+          <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-500/10 text-blue-300">
             <DownloadingRoundedIcon sx={{ fontSize: 32 }} />
           </div>
           <h2 className="mt-5 text-xl font-semibold text-white">Your queue is clear</h2>
           <p className="mt-2 max-w-md leading-6 text-[#737d98]">Run a catalogue search, review the matches, and send a batch here when it is ready.</p>
-          <Link to="/query" className="mt-5 rounded-xl bg-violet-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-violet-500">
+          <Link to="/query" className="mt-5 rounded-xl bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-500">
             Discover beatmaps
           </Link>
         </div>
@@ -62,7 +62,7 @@ export const Downloads = () => {
     <div className="page-stack">
       <div className="grid grid-cols-4 gap-3">
         <div className="stat-card">
-          <DownloadingRoundedIcon className="mb-4 text-violet-300" />
+          <DownloadingRoundedIcon className="mb-4 text-blue-300" />
           <div className="stat-value">{maps.toLocaleString()}</div>
           <div className="stat-label">sets across all jobs</div>
         </div>

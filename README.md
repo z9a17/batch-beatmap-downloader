@@ -8,10 +8,11 @@ The upstream history is preserved, including the original MIT license.
 
 ## Current release
 
-`1.4.0-alpha.5` is the current community preview. It includes:
+`1.4.0-alpha.6` is the current community preview. It includes:
 
-- a complete interface redesign with a restrained, flatter visual system;
-- a new application icon and a separate Windows application identity;
+- a complete blue interface redesign with a restrained, flatter visual system;
+- a new blue application icon and a separate Windows application identity;
+- a live service indicator that is green online and red offline;
 - a current supported Electron runtime and reproducible Windows packaging;
 - an NSIS setup wizard with a selectable installation folder;
 - verified Windows shortcuts and uninstall metadata that target the installed executable;

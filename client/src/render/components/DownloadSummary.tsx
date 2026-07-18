@@ -84,7 +84,7 @@ export const DownloadSummary = ({ status }: PropTypes) => {
 
         <div className="min-w-[170px]">
           <div className="flex items-center gap-2">
-            <span className={`status-dot ${finished ? "text-emerald-400" : status.paused ? "text-amber-300" : "text-violet-400"}`} />
+            <span className={`status-dot ${finished ? "text-emerald-400" : status.paused ? "text-amber-300" : "text-blue-400"}`} />
             <span className="text-sm font-semibold text-white">{state}</span>
           </div>
           <div className="mt-1 truncate text-xs text-[#8791aa]">Job {status.id.slice(0, 8)}</div>

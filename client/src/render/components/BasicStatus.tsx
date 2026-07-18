@@ -17,7 +17,13 @@ export const BasicStatus = ({ compact = false }: Props) => {
     return (
       <Link
         to="/status"
-        className={`stat-card panel-interactive block ${online ? "border-emerald-400/25 bg-emerald-400/[0.045]" : "border-rose-400/25 bg-rose-400/[0.045]"}`}
+        className={`stat-card panel-interactive block ${
+          loading
+            ? "border-[#303a5a] bg-white/[0.02]"
+            : online
+            ? "border-emerald-400/25 bg-emerald-400/[0.045]"
+            : "border-rose-400/25 bg-rose-400/[0.045]"
+        }`}
       >
         {loading ? (
           <CircularProgress size={24} />
@@ -40,8 +46,8 @@ export const BasicStatus = ({ compact = false }: Props) => {
           <h2 className="panel-title mt-1">Inherited service</h2>
           <p className="panel-description mt-1">This alpha still uses the original metadata and delivery backend.</p>
         </div>
-        <span className={`pill ${online ? "border-emerald-400/25 bg-emerald-400/10 text-emerald-300" : "border-rose-400/25 bg-rose-400/10 text-rose-300"}`}>
-          <span className="status-dot" />{online ? "Online" : "Offline"}
+        <span className={`pill ${loading ? "pill-checking" : online ? "pill-online" : "pill-offline"}`}>
+          <span className="status-dot" />{loading ? "Checking" : online ? "Online" : "Offline"}
         </span>
       </div>
     </section>

@@ -71,12 +71,12 @@ export const Status = () => {
             <div className="mt-1 text-sm text-emerald-100/50">Metadata queries and archive delivery are responding.</div>
           </div>
         </div>
-        <span className="pill border-emerald-400/20 text-emerald-300"><span className="status-dot" />Live</span>
+        <span className="pill pill-online"><span className="status-dot" />Live</span>
       </section>
 
       <div className="grid grid-cols-4 gap-3">
         <div className="stat-card">
-          <DownloadingRoundedIcon className="mb-4 text-violet-300" />
+          <DownloadingRoundedIcon className="mb-4 text-blue-300" />
           <div className="stat-value">{activeDownloads.length}</div>
           <div className="stat-label">public active downloads</div>
         </div>
@@ -103,7 +103,7 @@ export const Status = () => {
           <h2 className="panel-title mt-1">Indexed content</h2>
           <div className="mt-5 space-y-3">
             {[
-              ["Ranked", metrics.Database.NumberStoredRanked, "bg-violet-400"],
+              ["Ranked", metrics.Database.NumberStoredRanked, "bg-blue-400"],
               ["Loved", metrics.Database.NumberStoredLoved, "bg-rose-400"],
               ["Unranked", metrics.Database.NumberStoredUnranked, "bg-cyan-400"],
             ].map(([label, value, color]) => (

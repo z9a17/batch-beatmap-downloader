@@ -36,7 +36,7 @@ export const Connector = ({ id, details, update }: PropTypes) => {
           className={classNames("w-12 border border-[#303a5a] px-2 py-1 text-xs font-bold transition",
             { "rounded-l-lg border-r-0": index === 0 },
             { "rounded-r-lg border-l-0": index === types.length - 1 },
-            { "bg-violet-500/20 text-violet-200": details.type === type },
+            { "bg-blue-500/20 text-blue-200": details.type === type },
             { "bg-[#111524] text-[#68708a] hover:text-white": details.type !== type },
           )}
           disabled={type === details.type}

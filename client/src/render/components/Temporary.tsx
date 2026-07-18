@@ -7,7 +7,7 @@ import Button from "./util/Button";
 import { Tooltip } from "./util/Tooltip";
 
 const switchColors = {
-  onColor: "#7c3aed",
+  onColor: "#2563eb",
   offColor: "#242b40",
   onHandleColor: "#ffffff",
   offHandleColor: "#68708a",
@@ -91,7 +91,7 @@ export const Temporary = () => {
               <div className="flex min-w-0 items-center gap-3">
                 <Browse path={tempPath} update={handleSetTempPath} />
                 <Button color="none" className="button-secondary shrink-0" onClick={handleResetPath}>Reset</Button>
-                {!tempValid && <span className="pill border-rose-400/20 text-rose-300">Invalid path</span>}
+                {!tempValid && <span className="pill pill-offline">Invalid path</span>}
               </div>
             </div>
 

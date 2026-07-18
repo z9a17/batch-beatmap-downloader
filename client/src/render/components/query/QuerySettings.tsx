@@ -43,7 +43,7 @@ const defaultOrder = {
 }
 
 const switchColors = {
-  onColor: "#7c3aed",
+  onColor: "#2563eb",
   offColor: "#242b40",
   onHandleColor: "#ffffff",
   offHandleColor: "#68708a",

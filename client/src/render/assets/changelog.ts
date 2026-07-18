@@ -9,6 +9,27 @@ export interface ChangeLogItem {
 
 export const changeLog: ChangeLogItem[] = [
   {
+    version: "1.4.0-alpha.6",
+    date: 1784332800000,
+    changes: [
+      {
+        title: "Interface",
+        changes: [
+          "Replaced the purple accent system with a modern blue design throughout the application",
+          "Reworked the application icon in blue to match the updated identity",
+          "Kept health and warning colors semantic instead of tinting every state blue",
+        ],
+      },
+      {
+        title: "Service health",
+        changes: [
+          "Fixed the sidebar service indicator being overridden by the generic pill style",
+          "Made online explicitly green, offline explicitly red, and the initial check neutral",
+        ],
+      },
+    ],
+  },
+  {
     version: "1.4.0-alpha.5",
     date: 1784332800000,
     changes: [

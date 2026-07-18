@@ -15,7 +15,7 @@ interface PropTypes {
 }
 
 const switchColors = {
-  onColor: "#7c3aed",
+  onColor: "#2563eb",
   offColor: "#242b40",
   onHandleColor: "#ffffff",
   offHandleColor: "#68708a",
@@ -61,7 +61,7 @@ export const DownloadSettings = ({ result }: PropTypes) => {
 
       <div className="mt-5 divide-y divide-[#222a42] border-y border-[#222a42]">
         <div className="flex items-center gap-3 py-4">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-violet-500/10 text-violet-300">
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-500/10 text-blue-300">
             <ReplayRoundedIcon fontSize="small" />
           </div>
           <div className="min-w-0 flex-1">

@@ -14,9 +14,9 @@
   --text: #f4f6ff;
   --muted: #959db5;
   --subtle: #8791aa;
-  --accent: #8b5cf6;
-  --accent-strong: #7c3aed;
-  --accent-soft: rgba(139, 92, 246, 0.14);
+  --accent: #3b82f6;
+  --accent-strong: #2563eb;
+  --accent-soft: rgba(59, 130, 246, 0.14);
   --green: #34d399;
   --orange: #fb923c;
   --red: #fb7185;
@@ -159,7 +159,7 @@ input:focus-visible,
 }
 
 .eyebrow {
-  color: #b8a5ff;
+  color: #93c5fd;
   font-size: 12px;
   font-weight: 750;
   letter-spacing: 0.14em;
@@ -298,8 +298,8 @@ input:disabled {
 
 .segmented-item-active {
   background: var(--accent-soft);
-  color: #d8ccff;
-  box-shadow: inset 0 0 0 1px rgba(139, 92, 246, 0.28);
+  color: #bfdbfe;
+  box-shadow: inset 0 0 0 1px rgba(59, 130, 246, 0.28);
 }
 
 .pill {
@@ -313,6 +313,30 @@ input:disabled {
   color: var(--muted);
   font-size: 12px;
   font-weight: 650;
+}
+
+.pill.pill-accent {
+  border-color: rgba(59, 130, 246, 0.3);
+  background: rgba(59, 130, 246, 0.12);
+  color: #bfdbfe;
+}
+
+.pill.pill-online {
+  border-color: rgba(52, 211, 153, 0.34);
+  background: rgba(52, 211, 153, 0.12);
+  color: #6ee7b7;
+}
+
+.pill.pill-offline {
+  border-color: rgba(251, 113, 133, 0.34);
+  background: rgba(251, 113, 133, 0.12);
+  color: #fda4af;
+}
+
+.pill.pill-checking {
+  border-color: #303a5a;
+  background: rgba(255, 255, 255, 0.035);
+  color: #a6aec2;
 }
 
 .status-dot {
@@ -348,7 +372,7 @@ input:disabled {
 
 .box-selector-on {
   background: var(--accent-soft);
-  color: #d8ccff;
+  color: #bfdbfe;
 }
 
 .rc-slider-rail {
@@ -360,9 +384,9 @@ input:disabled {
 }
 
 .rc-slider-handle {
-  border-color: #a78bfa;
+  border-color: #60a5fa;
   background: #111524;
-  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.14);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.14);
 }
 
 .my-react-select-container .my-react-select__control {
@@ -427,7 +451,7 @@ input:disabled {
 }
 
 .MuiCircularProgress-root {
-  color: #a78bfa !important;
+  color: #60a5fa !important;
 }
 
 .Toastify__toast-container {

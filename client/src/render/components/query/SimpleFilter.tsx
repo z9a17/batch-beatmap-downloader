@@ -213,7 +213,7 @@ export const SimpleFilter: React.FC<PropTypes> = ({ tree, updateTree }) => {
               className={classNames(
                 "mb-1 w-full rounded-xl px-3 py-2.5 text-left text-xs font-semibold transition",
                 section.title === item.title
-                  ? "bg-violet-500/12 text-violet-200 shadow-inner shadow-violet-500/5"
+                  ? "bg-blue-500/12 text-blue-200 shadow-inner shadow-blue-500/5"
                   : "text-[#737d98] hover:bg-white/[0.03] hover:text-white",
               )}
               onClick={() => setSection(item)}

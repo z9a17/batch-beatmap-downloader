@@ -41,7 +41,7 @@ const pageDetails: Record<string, { eyebrow: string; title: string; description:
 
 const ApplicationFrame = () => {
   const { pathname } = useLocation();
-  const [version, setVersion] = useState("1.4.0-alpha.5");
+  const [version, setVersion] = useState("1.4.0-alpha.6");
   const currentPage = useMemo(() => pageDetails[pathname] ?? pageDetails["/"], [pathname]);
 
   useEffect(() => {
@@ -64,7 +64,7 @@ const ApplicationFrame = () => {
             </div>
           </div>
           <div className="pill">
-            <span className="status-dot text-violet-400" />
+            <span className="status-dot text-blue-400" />
             Community alpha
           </div>
         </header>

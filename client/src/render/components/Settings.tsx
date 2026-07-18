@@ -11,7 +11,7 @@ import { Tooltip } from "./util/Tooltip";
 const parallelTooltip = `The number of simultaneous download requests. Higher values can improve throughput, but may saturate your connection. Pause and resume active jobs after changing this value.`;
 
 const switchColors = {
-  onColor: "#7c3aed",
+  onColor: "#2563eb",
   offColor: "#242b40",
   onHandleColor: "#ffffff",
   offHandleColor: "#68708a",
@@ -33,7 +33,7 @@ export const Settings = () => {
           <h2 className="panel-title mt-1">Storage and delivery</h2>
           <p className="panel-description mt-1">Choose where beatmaps land and how aggressively transfers run.</p>
         </div>
-        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-500/10 text-violet-300">
+        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-500/10 text-blue-300">
           <FolderRoundedIcon />
         </div>
       </div>
