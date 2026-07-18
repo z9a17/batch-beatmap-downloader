@@ -41,7 +41,7 @@ const pageDetails: Record<string, { eyebrow: string; title: string; description:
 
 const ApplicationFrame = () => {
   const { pathname } = useLocation();
-  const [version, setVersion] = useState("1.4.0-alpha.1");
+  const [version, setVersion] = useState("1.4.0-alpha.2");
   const currentPage = useMemo(() => pageDetails[pathname] ?? pageDetails["/"], [pathname]);
 
   useEffect(() => {
@@ -52,10 +52,7 @@ const ApplicationFrame = () => {
 
   return (
     <div className="app-shell">
-      <div
-        id="modal"
-        className="absolute inset-0 z-50 hidden flex items-center justify-center bg-[#05070d]/80 p-8 backdrop-blur-md"
-      />
+      <div id="modal" />
       <Menu version={version} />
       <main className="app-workspace">
         <header className="app-titlebar">

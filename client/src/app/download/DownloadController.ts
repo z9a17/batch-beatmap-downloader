@@ -24,14 +24,14 @@ export class DownloadController {
   private force: boolean = false;
   private hashes: string[] = [];
   private status: DownloadStatus;
-  private startTime: Date;
+  private startTime = new Date();
   private downloadedSinceResume = 0;
 
   private concurrentDownloads: number = 3;
   private id: string;
   private toDownload: number[] = [];
-  private interval: NodeJS.Timer;
-  private ipc: DownloadIPC;
+  private interval?: ReturnType<typeof setInterval>;
+  private ipc?: DownloadIPC;
 
   public constructor(id: string, ids: number[], size: number, force: boolean, hashes: string[]) {
     this.id = id;
@@ -205,7 +205,7 @@ export class DownloadController {
           if (res.status >= 200 && res.status <= 299) {
             window?.webContents.send("server-down", false)
             this.resume()
-            clearInterval(this.interval)
+            if (this.interval) clearInterval(this.interval)
           }
         })
       }, 1000)
@@ -226,6 +226,7 @@ export class DownloadController {
 
     try {
       const before = new Date();
+      if (!this.ipc) return Status.PAUSED
       const res = await this.ipc.download(setId.toString(), path, index)
       const after = new Date();
       const difference = after.getTime() - before.getTime();

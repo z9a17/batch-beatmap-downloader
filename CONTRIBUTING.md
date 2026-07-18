@@ -4,7 +4,8 @@ Thank you for helping maintain Batch Beatmap Downloader.
 
 ## Before opening a change
 
-1. Keep the interface dark-only. Do not add a parallel light theme.
+1. Follow the established interface tokens and avoid decorative gradients,
+   glows, or unnecessary accent colors.
 2. Preserve the existing filter, collection, and transfer behavior unless the
    change explicitly replaces it.
 3. Do not commit service credentials, OAuth secrets, databases, or downloaded

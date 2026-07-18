@@ -22,7 +22,6 @@ const colorMap: Record<Colors, string> = {
 const Button: React.FC<PropTypes> = ({
   color = 'blue',
   type = 'button',
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   onClick = () => {},
   disabled = false,
   children = null,

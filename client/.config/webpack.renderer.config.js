@@ -1,7 +1,6 @@
 /* eslint @typescript-eslint/no-var-requires: "off"  */
 const rules = require("./webpack.rules");
 const plugins = require("./webpack.renderer.plugins");
-const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 const path = require("path");
 
 rules.push({
@@ -28,10 +27,5 @@ module.exports = {
   resolve: {
     fallback: { domain: false },
     extensions: [".js", ".ts", ".jsx", ".tsx", ".css"],
-    plugins: [
-      new TsconfigPathsPlugin({
-        baseUrl: ".",
-      }),
-    ],
   },
 };

@@ -1,6 +1,6 @@
-# Batch Beatmap Downloader — Community Edition
+# Batch Beatmap Downloader Community
 
-A dark-first desktop application for discovering and downloading osu! beatmaps in bulk.
+A desktop application for discovering and downloading osu! beatmaps in bulk.
 
 This repository is a community-maintained fork of
 [`nzbasic/batch-beatmap-downloader`](https://github.com/nzbasic/batch-beatmap-downloader).
@@ -8,13 +8,17 @@ The upstream history is preserved, including the original MIT license.
 
 ## Current release
 
-`1.4.0-alpha.1` is the first community preview. It focuses on:
+`1.4.0-alpha.2` is the current community preview. It includes:
 
-- a complete dark-only interface redesign;
+- a complete interface redesign with a restrained, flatter visual system;
+- a new application icon and a separate Windows application identity;
 - a current supported Electron runtime and reproducible Windows packaging;
 - new overview, discovery, queue, service, and release-note workspaces;
 - clearer search, result review, transfer setup, and download progress;
 - release ownership and update metadata belonging to this fork.
+
+The current client foundation uses Electron 43, React 19, Material UI 9,
+React Router 7, Tailwind CSS 4, TypeScript 6, and ESLint 10.
 
 ## Important infrastructure note
 
@@ -65,6 +69,10 @@ Create the Squirrel installer:
 ```powershell
 npm run make:win
 ```
+
+The community installer is produced as `BBDCommunitySetup.exe`. It installs
+alongside the original application instead of replacing or sharing its Windows
+application identity.
 
 ## Repository layout
 

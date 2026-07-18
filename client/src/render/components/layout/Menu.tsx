@@ -9,6 +9,7 @@ import HistoryRoundedIcon from "@mui/icons-material/HistoryRounded";
 import StorageRoundedIcon from "@mui/icons-material/StorageRounded";
 
 import { useStatus } from "../../context/StatusProvider";
+import appIcon from "../../assets/bbd.png";
 
 interface PropTypes {
   version: string;
@@ -29,12 +30,10 @@ export const Menu = ({ version }: PropTypes) => {
   return (
     <aside className="app-sidebar flex h-screen flex-col">
       <div className="flex h-[74px] items-center gap-3 border-b border-[#222a42]/60 px-5">
-        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-violet-500 to-cyan-400 text-lg font-black text-white shadow-lg shadow-violet-950/50">
-          B
-        </div>
+        <img src={appIcon} className="h-10 w-10 rounded-[10px]" alt="" />
         <div className="min-w-0">
           <div className="truncate text-[15px] font-semibold tracking-[-0.03em] text-white">Beatmap Downloader</div>
-          <div className="mt-0.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-[#747d97]">Community edition</div>
+          <div className="mt-0.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-[#747d97]">Community build</div>
         </div>
       </div>
 
@@ -74,7 +73,12 @@ export const Menu = ({ version }: PropTypes) => {
           <span className="text-[10px] text-[#626b84]">↗</span>
         </button>
         <div className="flex items-center justify-between px-1">
-          <span className={classNames("pill border-0 bg-transparent p-0", online ? "text-emerald-400" : "text-rose-400")}>
+          <span className={classNames(
+            "pill px-2.5 py-1.5",
+            online
+              ? "border-emerald-400/25 bg-emerald-400/10 text-emerald-300"
+              : "border-rose-400/25 bg-rose-400/10 text-rose-300",
+          )}>
             <span className="status-dot" />
             {online ? "Service online" : "Service offline"}
           </span>

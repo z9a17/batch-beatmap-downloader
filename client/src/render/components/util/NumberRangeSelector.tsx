@@ -10,14 +10,14 @@ interface PropTypes {
 }
 
 export const NumberRangeSelector = ({ min, max, initial, onChange }: PropTypes) => {
-  const [buttons, setButtons] = useState<JSX.Element[]>()
+  const [buttons, setButtons] = useState<React.JSX.Element[]>()
 
   const handleClick = (i: number) => {
     onChange(i)
   }
 
   useEffect(() => {
-    const buttons: JSX.Element[] = []
+    const buttons: React.JSX.Element[] = []
     for (let i = min; i <= max; i++) {
       buttons.push(
         <Button

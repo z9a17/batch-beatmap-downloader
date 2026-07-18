@@ -66,17 +66,17 @@ export const Downloads = () => {
           <div className="stat-value">{maps.toLocaleString()}</div>
           <div className="stat-label">sets across all jobs</div>
         </div>
-        <div className="stat-card" style={{ "--stat-glow": "rgba(34, 211, 238, 0.16)" } as React.CSSProperties}>
+        <div className="stat-card">
           <TimelapseRoundedIcon className="mb-4 text-cyan-300" />
           <div className="stat-value">{remaining.toLocaleString()}</div>
           <div className="stat-label">sets remaining</div>
         </div>
-        <div className="stat-card" style={{ "--stat-glow": "rgba(52, 211, 153, 0.16)" } as React.CSSProperties}>
+        <div className="stat-card">
           <DownloadDoneRoundedIcon className="mb-4 text-emerald-300" />
           <div className="stat-value">{completed.toLocaleString()}</div>
           <div className="stat-label">sets completed</div>
         </div>
-        <div className="stat-card" style={{ "--stat-glow": "rgba(96, 165, 250, 0.16)" } as React.CSSProperties}>
+        <div className="stat-card">
           <SpeedRoundedIcon className="mb-4 text-blue-300" />
           <div className="stat-value">{speed.toFixed(2)}</div>
           <div className="stat-label">MB/s combined</div>

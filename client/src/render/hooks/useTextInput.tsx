@@ -10,7 +10,7 @@ interface UseTextInputArguments {
   required?: boolean
 }
 
-export const useTextInput = (args: UseTextInputArguments = {}): [JSX.Element, string] => {
+export const useTextInput = (args: UseTextInputArguments = {}): [React.JSX.Element, string] => {
   const {
     label = '',
     placeholder = '',

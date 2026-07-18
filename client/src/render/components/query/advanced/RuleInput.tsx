@@ -75,13 +75,13 @@ const RuleInputDate = ({ rule, onChange }: PropTypes) => {
     <DatePicker
       className="input-height"
       selected={new Date(parseInt(rule.value))}
-      onChange={(date) => setSelectedDate(date ?? new Date())}
+      onChange={(date: Date | null) => setSelectedDate(date ?? new Date())}
     />
   );
 };
 
 export const RuleInput = ({ rule, onChange }: PropTypes) => {
-  const inputMap = new Map<InputType, JSX.Element>([
+  const inputMap = new Map<InputType, React.JSX.Element>([
     [InputType.NUMBER, <RuleInputNumber rule={rule} onChange={onChange} />],
     [InputType.TEXT, <RuleInputText rule={rule} onChange={onChange} />],
     [InputType.DROPDOWN, <RuleInputDropdown rule={rule} onChange={onChange} />],

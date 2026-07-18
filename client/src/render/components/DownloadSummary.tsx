@@ -60,7 +60,7 @@ export const DownloadSummary = ({ status }: PropTypes) => {
   ];
 
   return (
-    <article className="overflow-hidden rounded-2xl border border-[#222a42] bg-gradient-to-br from-[#131729] to-[#0e121f] shadow-lg shadow-black/10">
+    <article className="overflow-hidden rounded-2xl border border-[#222a42] bg-[#111524]">
       <div className="flex items-center gap-4 p-5">
         <button
           className="button-danger flex h-9 w-9 items-center justify-center rounded-xl"

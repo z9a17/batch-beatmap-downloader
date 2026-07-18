@@ -9,8 +9,16 @@ console.log(packageAssetsPath);
 module.exports = {
   packagerConfig: {
     asar: true,
+    appBundleId: "io.github.z9a17.bbd-community",
     icon: path.join(packageAssetsPath, "bbd.ico"),
-    executableName: "batch-beatmap-downloader",
+    executableName: "bbd-community",
+    win32metadata: {
+      CompanyName: "Batch Beatmap Downloader Community",
+      FileDescription: "Batch Beatmap Downloader Community",
+      InternalName: "BBDCommunity",
+      OriginalFilename: "bbd-community.exe",
+      ProductName: "Batch Beatmap Downloader Community",
+    },
   },
   publishers: [
     {
@@ -33,12 +41,14 @@ module.exports = {
       platforms: ["win32"],
       config: {
         // https://js.electronforge.io/maker/squirrel/interfaces/makersquirrelconfig
-        setupExe: "BBDWindowsSetup.exe",
+        name: "BBDCommunity",
+        setupExe: "BBDCommunitySetup.exe",
         setupIcon: path.join(packageAssetsPath, "bbd.ico"),
         icon: path.join(packageAssetsPath, "bbd.ico"),
         iconUrl:
           "https://raw.githubusercontent.com/z9a17/batch-beatmap-downloader/main/client/src/render/assets/bbd.ico",
         authors: "Batch Beatmap Downloader Community",
+        description: "Discover and download osu! beatmaps in bulk.",
       },
     },
     // You can only build the DMG target on macOS machines.
@@ -49,7 +59,7 @@ module.exports = {
         // https://js.electronforge.io/maker/dmg/interfaces/makerdmgconfig
         icon: path.join(packageAssetsPath, "bbd.png"),
         overwrite: true,
-        name: "Batch Beatmap Downloader", // NEEDS TO BE SHORTER THAN 27 CHARACTERS
+        name: "BBD Community", // NEEDS TO BE SHORTER THAN 27 CHARACTERS
       },
     },
 

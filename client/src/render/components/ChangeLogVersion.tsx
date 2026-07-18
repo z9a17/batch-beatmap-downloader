@@ -12,7 +12,7 @@ export const ChangeLogVersion = ({ item, latest = false }: PropTypes) => {
   const [expanded, setExpanded] = useState(latest);
 
   return (
-    <article className="overflow-hidden rounded-2xl border border-[#222a42] bg-gradient-to-br from-[#131729] to-[#0e121f]">
+    <article className="overflow-hidden rounded-2xl border border-[#222a42] bg-[#111524]">
       <button className="flex w-full items-center gap-4 px-6 py-5 text-left" onClick={() => setExpanded((value) => !value)}>
         <div className={`flex h-10 min-w-[78px] items-center justify-center rounded-xl text-xs font-bold ${latest ? "bg-violet-500/15 text-violet-200" : "bg-white/[0.035] text-[#8d96af]"}`}>
           v{item.version}

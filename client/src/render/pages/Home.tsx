@@ -19,12 +19,11 @@ export const Home = () => {
 
   return (
     <div className="page-stack">
-      <section className="relative overflow-hidden rounded-[22px] border border-violet-500/20 bg-gradient-to-br from-violet-500/[0.14] via-[#121625] to-cyan-400/[0.06] p-7 shadow-2xl shadow-black/20">
-        <div className="absolute -right-16 -top-24 h-72 w-72 rounded-full bg-violet-500/15 blur-3xl" />
-        <div className="relative max-w-3xl">
+      <section className="rounded-[18px] border border-[#2a3150] bg-[#111524] p-7">
+        <div className="max-w-3xl">
           <div className="pill mb-5 border-violet-500/25 bg-violet-500/10 text-violet-200">
             <BoltRoundedIcon sx={{ fontSize: 15 }} />
-            Dark-first community rebuild
+            Community preview
           </div>
           <h2 className="max-w-2xl text-[36px] font-semibold leading-[1.08] tracking-[-0.055em] text-white">
             Build the beatmap library you actually want.
@@ -33,7 +32,7 @@ export const Home = () => {
             Search by difficulty, metadata, mapper, and play style—then move thousands of sets through one focused queue.
           </p>
           <div className="mt-6 flex items-center gap-3">
-            <Link to="/query" className="flex min-h-[42px] items-center gap-2 rounded-xl bg-violet-600 px-5 text-sm font-semibold text-white shadow-lg shadow-violet-950/40 transition hover:bg-violet-500">
+            <Link to="/query" className="flex min-h-[42px] items-center gap-2 rounded-xl bg-violet-600 px-5 text-sm font-semibold text-white transition hover:bg-violet-500">
               Discover beatmaps <ArrowForwardRoundedIcon fontSize="small" />
             </Link>
             <Link to="/downloads" className="button-secondary flex min-h-[42px] items-center rounded-xl px-5 text-sm font-semibold">
@@ -44,8 +43,8 @@ export const Home = () => {
       </section>
 
       <div className="grid grid-cols-3 gap-4">
-        <div className="stat-card" style={{ "--stat-glow": "rgba(34, 211, 238, 0.16)" } as React.CSSProperties}>
-          <LibraryMusicRoundedIcon className="mb-4 text-cyan-300" />
+        <div className="stat-card">
+          <LibraryMusicRoundedIcon className="mb-4 text-[#a6aec2]" />
           <div className="stat-value">{beatmapSetCount.toLocaleString()}</div>
           <div className="stat-label">sets detected locally</div>
         </div>

@@ -9,16 +9,38 @@ export interface ChangeLogItem {
 
 export const changeLog: ChangeLogItem[] = [
   {
+    version: "1.4.0-alpha.2",
+    date: 1784332800000,
+    changes: [
+      {
+        title: "Design",
+        changes: [
+          "Refined the interface with flatter surfaces and fewer decorative effects",
+          "Made service health use clear green and red status treatments",
+          "Replaced the original application artwork with a new community icon",
+        ],
+      },
+      {
+        title: "Platform",
+        changes: [
+          "Moved the renderer to React 19, Material UI 9, React Router 7, and Tailwind CSS 4",
+          "Updated the compiler and lint foundation to TypeScript 6 and ESLint 10",
+          "Gave the community build its own executable, installer, package, and Windows metadata",
+        ],
+      },
+    ],
+  },
+  {
     version: "1.4.0-alpha.1",
     date: 1784332800000,
     changes: [
       {
         title: "Interface",
         changes: [
-          "Rebuilt the complete desktop interface around a dark-only design system",
+          "Rebuilt the complete desktop interface",
           "Introduced new overview, discovery, downloads, service, and release-note workspaces",
           "Redesigned query controls, result review, transfer setup, and queue activity",
-          "Removed the light theme and its user-facing toggle",
+          "Consolidated interface styling into one consistent design system",
         ],
       },
       {
