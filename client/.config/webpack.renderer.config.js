@@ -1,7 +1,9 @@
 /* eslint @typescript-eslint/no-var-requires: "off"  */
-const rules = require("./webpack.rules");
+const { commonRules } = require("./webpack.rules");
 const plugins = require("./webpack.renderer.plugins");
 const path = require("path");
+
+const rules = [...commonRules];
 
 rules.push({
   test: /\.css$/,

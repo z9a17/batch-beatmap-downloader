@@ -9,6 +9,20 @@ export interface ChangeLogItem {
 
 export const changeLog: ChangeLogItem[] = [
   {
+    version: "1.4.0-alpha.3",
+    date: 1784332800000,
+    changes: [
+      {
+        title: "Reliability",
+        changes: [
+          "Fixed the packaged application opening to a blank window",
+          "Separated main-process native module handling from the renderer build",
+          "Added an automated packaged-interface startup test to release checks",
+        ],
+      },
+    ],
+  },
+  {
     version: "1.4.0-alpha.2",
     date: 1784332800000,
     changes: [

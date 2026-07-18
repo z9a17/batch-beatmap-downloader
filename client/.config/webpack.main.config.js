@@ -1,5 +1,6 @@
 /* eslint @typescript-eslint/no-var-requires: "off" */
 const plugins = require("./webpack.main.plugins");
+const { commonRules, nativeModuleRules } = require("./webpack.rules");
 
 module.exports = {
   /**
@@ -10,7 +11,7 @@ module.exports = {
   // Put your normal webpack config below here
 
   module: {
-    rules: require("./webpack.rules"),
+    rules: [...nativeModuleRules, ...commonRules],
   },
   resolve: {
     extensions: [".js", ".jsx", ".json", ".ts", ".tsx"],

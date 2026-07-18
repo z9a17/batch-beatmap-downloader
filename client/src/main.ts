@@ -47,7 +47,6 @@ const createWindow = (): void => {
       symbolColor: "#959db5",
       height: 44,
     },
-    icon: "./render/assets/bbd.ico",
     backgroundColor: "#070912",
     webPreferences: {
       contextIsolation: true,
