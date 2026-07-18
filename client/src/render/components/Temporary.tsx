@@ -76,7 +76,7 @@ export const Temporary = () => {
         <div className="grid grid-cols-[180px_minmax(0,1fr)] items-center gap-5 py-4">
           <div>
             <div className="text-sm font-semibold text-white">Use staging folder</div>
-            <div className="mt-1 text-xs text-[#68708a]">Recommended for large queues.</div>
+            <div className="mt-1 text-[13px] leading-5 text-[#8791aa]">Recommended for large queues.</div>
           </div>
           <Switch {...switchColors} checked={temp} onChange={handleToggle} />
         </div>
@@ -86,7 +86,7 @@ export const Temporary = () => {
             <div className="grid grid-cols-[180px_minmax(0,1fr)] items-center gap-5 py-4">
               <div>
                 <div className="text-sm font-semibold text-white">Staging location</div>
-                <div className="mt-1 text-xs text-[#68708a]">Must share a drive with your Songs folder.</div>
+                <div className="mt-1 text-[13px] leading-5 text-[#8791aa]">Must share a drive with your Songs folder.</div>
               </div>
               <div className="flex min-w-0 items-center gap-3">
                 <Browse path={tempPath} update={handleSetTempPath} />
@@ -101,7 +101,7 @@ export const Temporary = () => {
                   Auto transfer
                   <Tooltip title="Move completed archives into the Songs folder automatically when a queue finishes." />
                 </div>
-                <div className="mt-1 text-xs text-[#68708a]">Finish without another manual step.</div>
+                <div className="mt-1 text-[13px] leading-5 text-[#8791aa]">Finish without another manual step.</div>
               </div>
               <Switch {...switchColors} checked={tempAuto} onChange={handleSetTempAuto} />
             </div>
@@ -110,7 +110,7 @@ export const Temporary = () => {
       </div>
 
       {!isWindows && (
-        <div className="mt-4 rounded-xl border border-amber-400/20 bg-amber-400/[0.06] px-4 py-3 text-xs text-amber-200/70">
+        <div className="mt-4 rounded-xl border border-amber-400/20 bg-amber-400/[0.06] px-4 py-3 text-[13px] leading-5 text-amber-200/80">
           Cross-filesystem moves behave differently outside Windows; verify the destination before transferring.
         </div>
       )}

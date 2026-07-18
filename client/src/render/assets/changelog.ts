@@ -9,6 +9,29 @@ export interface ChangeLogItem {
 
 export const changeLog: ChangeLogItem[] = [
   {
+    version: "1.4.0-alpha.4",
+    date: 1784332800000,
+    changes: [
+      {
+        title: "Setup",
+        changes: [
+          "Replaced the Squirrel package with an NSIS setup wizard",
+          "Added a selectable Windows installation folder",
+          "Moved automatic update support to the NSIS-compatible updater",
+        ],
+      },
+      {
+        title: "Interface",
+        changes: [
+          "Fixed the Project on GitHub button",
+          "Made service health refresh automatically with green and red states",
+          "Moved the osu! installation warning to the top of Overview",
+          "Increased small labels, descriptions, and muted-text contrast",
+        ],
+      },
+    ],
+  },
+  {
     version: "1.4.0-alpha.3",
     date: 1784332800000,
     changes: [

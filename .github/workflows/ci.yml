@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - "agent/**"
   pull_request:
 
 permissions:
@@ -37,8 +36,16 @@ jobs:
       - name: Lint
         run: npm run lint
 
-      - name: Package Windows application
-        run: npm run package:win
+      - name: Build Windows installer
+        run: npm run make:win
 
       - name: Smoke-test packaged renderer
         run: npm run smoke:win
+
+      - name: Verify NSIS artifact
+        shell: pwsh
+        run: |
+          $installer = Get-ChildItem out/make -Filter "BBDCommunity-Setup-*.exe" -File
+          if ($installer.Count -ne 1) {
+            throw "Expected exactly one versioned NSIS installer, found $($installer.Count)."
+          }

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useMemo } from "react";
 import { CircularProgress } from "@mui/material";
 import CloudDoneRoundedIcon from "@mui/icons-material/CloudDoneRounded";
 import CloudOffRoundedIcon from "@mui/icons-material/CloudOffRounded";
@@ -20,13 +20,7 @@ const headers: TableHeader[] = [
 ];
 
 export const Status = () => {
-  const { online, metrics, loading, collectMetrics } = useStatus();
-
-  useEffect(() => {
-    collectMetrics();
-    const interval = setInterval(collectMetrics, 5000);
-    return () => clearInterval(interval);
-  }, [collectMetrics]);
+  const { online, metrics, loading } = useStatus();
 
   const [activeDownloads, currentBandwidth] = useMemo(() => {
     const currentDownloads = metrics?.Download?.CurrentDownloads ?? [];
@@ -114,12 +108,12 @@ export const Status = () => {
               ["Unranked", metrics.Database.NumberStoredUnranked, "bg-cyan-400"],
             ].map(([label, value, color]) => (
               <div key={label as string} className="flex items-center justify-between rounded-xl border border-[#222a42] bg-[#0b0f1b] px-4 py-3">
-                <span className="flex items-center gap-2 text-xs font-semibold text-[#a6aec2]"><span className={`h-2 w-2 rounded-full ${color}`} />{label}</span>
+                <span className="flex items-center gap-2 text-sm font-semibold text-[#a6aec2]"><span className={`h-2 w-2 rounded-full ${color}`} />{label}</span>
                 <span className="text-sm font-semibold text-white">{(value as number).toLocaleString()}</span>
               </div>
             ))}
           </div>
-          <div className="mt-4 flex gap-2 rounded-xl border border-amber-400/15 bg-amber-400/[0.05] p-3 text-[11px] leading-5 text-amber-100/55">
+          <div className="mt-4 flex gap-2 rounded-xl border border-amber-400/15 bg-amber-400/[0.05] p-3 text-[13px] leading-5 text-amber-100/70">
             <WarningAmberRoundedIcon sx={{ fontSize: 16, flexShrink: 0, marginTop: "2px" }} />
             The legacy “last beatmap added” value is the newest approval date, not proof that every status was fully ingested.
           </div>
@@ -131,15 +125,15 @@ export const Status = () => {
           <div className="mt-5 grid grid-cols-2 gap-3">
             <div className="rounded-xl border border-[#222a42] bg-[#0b0f1b] p-4">
               <div className="text-lg font-semibold text-white">{bytesToFileSize(metrics.Download.DailyStats.Size)}</div>
-              <div className="mt-1 text-[10px] uppercase tracking-[0.1em] text-[#59627b]">data delivered</div>
+              <div className="mt-1 text-xs uppercase tracking-[0.08em] text-[#77819a]">data delivered</div>
             </div>
             <div className="rounded-xl border border-[#222a42] bg-[#0b0f1b] p-4">
               <div className="text-lg font-semibold text-white">{metrics.Download.DailyStats.Completed.toLocaleString()}</div>
-              <div className="mt-1 text-[10px] uppercase tracking-[0.1em] text-[#59627b]">completed jobs</div>
+              <div className="mt-1 text-xs uppercase tracking-[0.08em] text-[#77819a]">completed jobs</div>
             </div>
             <div className="col-span-2 rounded-xl border border-[#222a42] bg-[#0b0f1b] p-4">
               <div className="text-lg font-semibold text-white">{bytesToFileSize(metrics.Download.DailyStats.Speed)}/s</div>
-              <div className="mt-1 text-[10px] uppercase tracking-[0.1em] text-[#59627b]">average completed speed</div>
+              <div className="mt-1 text-xs uppercase tracking-[0.08em] text-[#77819a]">average completed speed</div>
             </div>
           </div>
         </section>
@@ -150,13 +144,13 @@ export const Status = () => {
           <div className="eyebrow">Public load</div>
           <div className="mt-1 flex items-baseline justify-between">
             <h2 className="panel-title">Current downloads</h2>
-            <span className="text-xs text-[#626b84]">All users of the inherited service</span>
+            <span className="text-[13px] text-[#8791aa]">All users of the inherited service</span>
           </div>
         </div>
         {activeDownloads.length ? (
           <Table data={activeDownloads} headers={headers} RenderRow={StatusTableRow} />
         ) : (
-          <div className="px-6 py-10 text-center text-xs text-[#626b84]">No public downloads are active right now.</div>
+          <div className="px-6 py-10 text-center text-[13px] text-[#8791aa]">No public downloads are active right now.</div>
         )}
       </section>
     </div>

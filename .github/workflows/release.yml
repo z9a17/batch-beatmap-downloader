@@ -41,6 +41,18 @@ jobs:
       - name: Smoke-test packaged renderer
         run: npm run smoke:win
 
+      - name: Verify NSIS release files
+        shell: pwsh
+        run: |
+          $installer = Get-ChildItem out/make -Filter "BBDCommunity-Setup-*.exe" -File
+          $metadata = Get-ChildItem out/make -Filter "*.yml" -File
+          if ($installer.Count -ne 1) {
+            throw "Expected exactly one versioned NSIS installer, found $($installer.Count)."
+          }
+          if ($metadata.Count -lt 1) {
+            throw "Expected electron-updater metadata beside the installer."
+          }
+
       - name: Upload installer artifact
         uses: actions/upload-artifact@v7
         with:

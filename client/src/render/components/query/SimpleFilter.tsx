@@ -201,12 +201,12 @@ export const SimpleFilter: React.FC<PropTypes> = ({ tree, updateTree }) => {
           value={textInput}
           onChange={handleTextChange}
         />
-        <div className="mt-2 text-[11px] text-[#59627b]">Changes here stay synchronized with the visual controls below.</div>
+        <div className="mt-2 text-[13px] leading-5 text-[#8791aa]">Changes here stay synchronized with the visual controls below.</div>
       </div>
 
       <div className="grid grid-cols-[190px_minmax(0,1fr)]">
         <div className="border-r border-[#222a42] p-3">
-          <div className="mb-2 px-2 text-[10px] font-bold uppercase tracking-[0.15em] text-[#515a73]">Filter groups</div>
+          <div className="mb-2 px-2 text-xs font-bold uppercase tracking-[0.12em] text-[#77819a]">Filter groups</div>
           {sections.map(item => (
             <button
               key={item.title}
@@ -233,7 +233,7 @@ export const SimpleFilter: React.FC<PropTypes> = ({ tree, updateTree }) => {
           <div className="mb-3 flex items-center justify-between border-t border-[#222a42] pt-5">
             <div>
               <div className="text-sm font-semibold text-white">{section.title}</div>
-              <div className="mt-0.5 text-[11px] text-[#626b84]">Only adjusted values become active rules.</div>
+              <div className="mt-1 text-[13px] leading-5 text-[#8791aa]">Only adjusted values become active rules.</div>
             </div>
           </div>
           <div className="grid grid-cols-2 gap-x-6">

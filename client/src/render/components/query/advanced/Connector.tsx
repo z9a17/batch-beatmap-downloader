@@ -33,7 +33,7 @@ export const Connector = ({ id, details, update }: PropTypes) => {
     <div className="my-2 flex items-center">
       {types.map((type, index) => (
         <button
-          className={classNames("w-12 border border-[#303a5a] px-2 py-1 text-[10px] font-bold transition",
+          className={classNames("w-12 border border-[#303a5a] px-2 py-1 text-xs font-bold transition",
             { "rounded-l-lg border-r-0": index === 0 },
             { "rounded-r-lg border-l-0": index === types.length - 1 },
             { "bg-violet-500/20 text-violet-200": details.type === type },
@@ -48,7 +48,7 @@ export const Connector = ({ id, details, update }: PropTypes) => {
       ))}
 
       <button
-        className={classNames("ml-2 rounded-lg border border-[#303a5a] px-2 py-1 text-[10px] font-bold transition",
+        className={classNames("ml-2 rounded-lg border border-[#303a5a] px-2 py-1 text-xs font-bold transition",
           { "border-rose-400/30 bg-rose-400/15 text-rose-200": isNot },
           { "bg-[#111524] text-[#68708a] hover:text-white": !isNot },
         )}

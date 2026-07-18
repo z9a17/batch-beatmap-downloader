@@ -36,21 +36,6 @@ module.exports = {
   makers: [
     // https://www.electronforge.io/config/makers
 
-    {
-      name: "@electron-forge/maker-squirrel",
-      platforms: ["win32"],
-      config: {
-        // https://js.electronforge.io/maker/squirrel/interfaces/makersquirrelconfig
-        name: "BBDCommunity",
-        setupExe: "BBDCommunitySetup.exe",
-        setupIcon: path.join(packageAssetsPath, "bbd.ico"),
-        icon: path.join(packageAssetsPath, "bbd.ico"),
-        iconUrl:
-          "https://raw.githubusercontent.com/z9a17/batch-beatmap-downloader/main/client/src/render/assets/bbd.ico",
-        authors: "Batch Beatmap Downloader Community",
-        description: "Discover and download osu! beatmaps in bulk.",
-      },
-    },
     // You can only build the DMG target on macOS machines.
     {
       name: "@electron-forge/maker-dmg",

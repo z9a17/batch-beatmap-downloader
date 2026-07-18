@@ -19,6 +19,8 @@ export const Home = () => {
 
   return (
     <div className="page-stack">
+      {!validPath && <InvalidPath />}
+
       <section className="rounded-[18px] border border-[#2a3150] bg-[#111524] p-7">
         <div className="max-w-3xl">
           <div className="pill mb-5 border-violet-500/25 bg-violet-500/10 text-violet-200">
@@ -59,9 +61,7 @@ export const Home = () => {
       <Settings />
       <Temporary />
 
-      {!validPath ? (
-        <InvalidPath />
-      ) : (
+      {validPath && (
         <>
           <SampleFilters />
           <FindMissingMaps />

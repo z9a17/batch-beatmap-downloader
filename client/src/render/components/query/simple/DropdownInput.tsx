@@ -17,7 +17,7 @@ export const DropdownInput: React.FC<TInputItemProps<TInputItemDropdown>> = ({ l
       />
 
       {warning && value.option.value === defaultValue.option.value && (
-        <div className="col-start-2 -mt-1 flex gap-1.5 text-[10px] text-amber-300/70">
+        <div className="col-start-2 -mt-1 flex gap-1.5 text-xs leading-5 text-amber-300/80">
           <WarningIcon sx={{ fontSize: 14 }} />
           <span>{warning}</span>
         </div>

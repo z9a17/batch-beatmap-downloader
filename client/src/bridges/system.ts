@@ -1,11 +1,7 @@
-import {
-  ipcRenderer,
-  shell,
-  OpenExternalOptions,
-} from "electron";
+import { ipcRenderer } from "electron";
 
 export const handleBrowse = () => ipcRenderer.invoke("browse") as Promise<Electron.OpenDialogReturnValue>;
-export const handleOpenUrl = (url: string, options?: OpenExternalOptions) => shell.openExternal(url, options);
+export const handleOpenUrl = (url: string) => ipcRenderer.invoke("open-url", url) as Promise<void>;
 export const handleQuit = () => ipcRenderer.send("quit");
 export const handleListenForErrors = (callback: (error: string) => void) => {
   ipcRenderer.on("error", (event, error: string) => {

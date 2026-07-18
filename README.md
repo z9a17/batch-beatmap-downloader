@@ -8,14 +8,15 @@ The upstream history is preserved, including the original MIT license.
 
 ## Current release
 
-`1.4.0-alpha.3` is the current community preview. It includes:
+`1.4.0-alpha.4` is the current community preview. It includes:
 
 - a complete interface redesign with a restrained, flatter visual system;
 - a new application icon and a separate Windows application identity;
 - a current supported Electron runtime and reproducible Windows packaging;
+- an NSIS setup wizard with a selectable installation folder;
 - new overview, discovery, queue, service, and release-note workspaces;
 - clearer search, result review, transfer setup, and download progress;
-- release ownership and update metadata belonging to this fork.
+- release ownership and update metadata belonging to this fork;
 - a packaged-renderer smoke test that prevents blank-window releases.
 
 The current client foundation uses Electron 43, React 19, Material UI 9,
@@ -65,15 +66,20 @@ Create a packaged Windows directory:
 npm run package:win
 ```
 
-Create the Squirrel installer:
+Create the Windows NSIS installer:
 
 ```powershell
 npm run make:win
 ```
 
-The community installer is produced as `BBDCommunitySetup.exe`. It installs
-alongside the original application instead of replacing or sharing its Windows
-application identity.
+The community installer is produced as
+`BBDCommunity-Setup-<version>.exe`. Its setup wizard lets users choose an
+installation folder. It installs alongside the original application instead of
+replacing or sharing its Windows application identity.
+
+The NSIS installer replaces the Squirrel package used through
+`1.4.0-alpha.3`. Existing alpha users must run the NSIS installer manually once;
+subsequent NSIS releases can use the new update metadata.
 
 ## Repository layout
 
@@ -85,6 +91,14 @@ download/  Original Go download helper
 
 The public repository does not contain the production database, private
 environment configuration, or deployment credentials.
+
+## AI assistance disclosure
+
+The community redesign and modernization work in this fork has been created
+with substantial generative AI assistance, including code, interface copy,
+documentation, and release automation. The work is directed and reviewed by
+the maintainer, but it can still contain mistakes. Please report anything
+suspicious or broken through the repository issue tracker.
 
 ## Baseline preservation
 

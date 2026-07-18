@@ -19,7 +19,7 @@ export const ChangeLogVersion = ({ item, latest = false }: PropTypes) => {
         </div>
         <div className="min-w-0 flex-1">
           <div className="text-sm font-semibold text-white">{latest ? "Latest community build" : `Version ${item.version}`}</div>
-          <div className="mt-1 text-[11px] text-[#626b84]">{new Date(item.date).toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" })}</div>
+          <div className="mt-1 text-xs text-[#8791aa]">{new Date(item.date).toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" })}</div>
         </div>
         {latest && <span className="pill border-violet-500/20 text-violet-200">Current</span>}
         <ExpandMoreRoundedIcon className={`text-[#68708a] transition-transform ${expanded ? "rotate-180" : ""}`} />
@@ -32,7 +32,7 @@ export const ChangeLogVersion = ({ item, latest = false }: PropTypes) => {
               <h3 className="text-xs font-semibold uppercase tracking-[0.1em] text-[#b4a5ef]">{change.title}</h3>
               <ul className="mt-3 space-y-2">
                 {change.changes.map((text) => (
-                  <li key={text} className="flex gap-2 text-xs leading-5 text-[#8d96af]">
+                  <li key={text} className="flex gap-2 text-[13px] leading-5 text-[#a6aec2]">
                     <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-violet-400" />
                     {text}
                   </li>
