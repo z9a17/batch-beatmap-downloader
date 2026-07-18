@@ -1,7 +1,7 @@
 {
   "name": "batch-beatmap-downloader-community",
   "productName": "Batch Beatmap Downloader Community",
-  "version": "1.4.0-alpha.5",
+  "version": "1.4.0-alpha.6",
   "description": "A desktop app for discovering and downloading osu! beatmaps in bulk.",
   "main": ".webpack/main",
   "repository": {
@@ -10,6 +10,7 @@
   },
   "scripts": {
     "start": "electron-forge start",
+    "build:icons": "node scripts/build-icon.mjs",
     "lint": "cross-env NODE_ENV=development eslint \"src/**/*.{ts,tsx}\" --cache",
     "typecheck": "tsc --noEmit",
     "smoke:win": "node scripts/smoke-packaged.mjs",
@@ -78,6 +79,7 @@
     "postcss": "^8.5.19",
     "postcss-loader": "^8.2.1",
     "prettier": "^3.9.5",
+    "sharp": "^0.35.3",
     "style-loader": "^4.0.0",
     "tailwindcss": "^4.3.3",
     "ts-loader": "^9.6.2",

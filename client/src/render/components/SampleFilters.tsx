@@ -23,7 +23,7 @@ interface Filter {
 const filters: Filter[] = [
   { name: "Ranked essentials", detail: "All ranked osu!standard sets", tree: allRankedOsu, accent: "#22d3ee" },
   { name: "Loved catalogue", detail: "Community-loved beatmaps", tree: allLoved, accent: "#fb7185" },
-  { name: "Sotarks collection", detail: "Every indexed Sotarks set", tree: allSotarks, accent: "#a78bfa" },
+  { name: "Sotarks collection", detail: "Every indexed Sotarks set", tree: allSotarks, accent: "#60a5fa" },
   { name: "Seven star range", detail: "Ranked maps from 7★ to 8★", tree: allRanked7Star, accent: "#fb923c" },
   { name: "Stream maps", detail: "Sets tagged for stream patterns", tree: allStream, accent: "#60a5fa" },
   { name: "Farm maps", detail: "Sets tagged as performance farm", tree: allFarm, accent: "#f472b6" },
@@ -40,7 +40,7 @@ export const SampleFilters = () => {
           <h2 className="panel-title mt-1">Curated searches</h2>
           <p className="panel-description mt-1">Start from a useful filter and refine it in Discover.</p>
         </div>
-        <AutoAwesomeRoundedIcon className="text-violet-300" />
+        <AutoAwesomeRoundedIcon className="text-blue-300" />
       </div>
       <div className="grid grid-cols-3 gap-3">
         {filters.map((filter) => (

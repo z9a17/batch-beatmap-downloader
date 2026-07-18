@@ -90,7 +90,7 @@ export const QueryGroup = ({ group, id, updateParent }: PropTypes) => {
 
   return (
     <div className="flex w-full overflow-hidden rounded-2xl border border-[#262e48] bg-[#0d111e]">
-      <div className="w-1 shrink-0 bg-violet-500" />
+      <div className="w-1 shrink-0 bg-blue-500" />
       <div className="w-full p-4">
         <div className="flex w-full flex-col">
           {group.children.map((child, index) => (

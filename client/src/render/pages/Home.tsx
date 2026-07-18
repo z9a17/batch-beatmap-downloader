@@ -23,7 +23,7 @@ export const Home = () => {
 
       <section className="rounded-[18px] border border-[#2a3150] bg-[#111524] p-7">
         <div className="max-w-3xl">
-          <div className="pill mb-5 border-violet-500/25 bg-violet-500/10 text-violet-200">
+          <div className="pill pill-accent mb-5">
             <BoltRoundedIcon sx={{ fontSize: 15 }} />
             Community preview
           </div>
@@ -34,7 +34,7 @@ export const Home = () => {
             Search by difficulty, metadata, mapper, and play style—then move thousands of sets through one focused queue.
           </p>
           <div className="mt-6 flex items-center gap-3">
-            <Link to="/query" className="flex min-h-[42px] items-center gap-2 rounded-xl bg-violet-600 px-5 text-sm font-semibold text-white transition hover:bg-violet-500">
+            <Link to="/query" className="flex min-h-[42px] items-center gap-2 rounded-xl bg-blue-600 px-5 text-sm font-semibold text-white transition hover:bg-blue-500">
               Discover beatmaps <ArrowForwardRoundedIcon fontSize="small" />
             </Link>
             <Link to="/downloads" className="button-secondary flex min-h-[42px] items-center rounded-xl px-5 text-sm font-semibold">
@@ -51,7 +51,7 @@ export const Home = () => {
           <div className="stat-label">sets detected locally</div>
         </div>
         <div className="stat-card">
-          <TuneRoundedIcon className="mb-4 text-violet-300" />
+          <TuneRoundedIcon className="mb-4 text-blue-300" />
           <div className="stat-value">{maxConcurrentDownloads ?? 5}</div>
           <div className="stat-label">parallel transfer slots</div>
         </div>

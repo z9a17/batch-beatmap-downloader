@@ -12,7 +12,7 @@ interface PropTypes {
 }
 
 const colorMap: Record<Colors, string> = {
-  blue: 'bg-violet-600 hover:bg-violet-500 shadow-lg shadow-violet-950/30',
+  blue: 'bg-blue-600 hover:bg-blue-500 shadow-lg shadow-blue-950/30',
   green: 'bg-emerald-500 hover:bg-emerald-400 text-[#06130f]',
   red: 'button-danger',
   transparent: 'bg-transparent hover:bg-transparent',

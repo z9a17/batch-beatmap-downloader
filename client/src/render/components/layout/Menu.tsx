@@ -48,11 +48,11 @@ export const Menu = ({ version }: PropTypes) => {
               className={classNames(
                 "group flex items-center gap-3 rounded-xl border px-3 py-3 transition-all",
                 active
-                  ? "border-violet-500/25 bg-violet-500/10 text-white shadow-inner shadow-violet-500/5"
+                  ? "border-blue-500/30 bg-blue-500/10 text-white shadow-inner shadow-blue-500/5"
                   : "border-transparent text-[#8d96af] hover:border-[#222a42] hover:bg-white/[0.025] hover:text-white",
               )}
             >
-              <span className={classNames("flex h-9 w-9 items-center justify-center rounded-lg", active ? "bg-violet-500/15 text-violet-300" : "bg-white/[0.03] text-[#68708a] group-hover:text-[#b1b8cc]")}>
+              <span className={classNames("flex h-9 w-9 items-center justify-center rounded-lg", active ? "bg-blue-500/15 text-blue-300" : "bg-white/[0.03] text-[#68708a] group-hover:text-[#b1b8cc]")}>
                 {icon}
               </span>
               <span className="min-w-0">
@@ -76,10 +76,10 @@ export const Menu = ({ version }: PropTypes) => {
           <span className={classNames(
             "pill px-2.5 py-1.5",
             loading
-              ? "border-[#303a5a] bg-white/[0.035] text-[#a6aec2]"
+              ? "pill-checking"
               : online
-              ? "border-emerald-400/25 bg-emerald-400/10 text-emerald-300"
-              : "border-rose-400/25 bg-rose-400/10 text-rose-300",
+              ? "pill-online"
+              : "pill-offline",
           )}>
             <span className="status-dot" />
             {loading ? "Checking service" : online ? "Service online" : "Service offline"}
