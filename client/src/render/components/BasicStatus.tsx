@@ -1,35 +1,50 @@
 import React from "react";
 import { CircularProgress } from "@mui/material";
+import CloudDoneRoundedIcon from "@mui/icons-material/CloudDoneRounded";
+import CloudOffRoundedIcon from "@mui/icons-material/CloudOffRounded";
 import { Link } from "react-router-dom";
 import { useStatus } from "../context/StatusProvider";
 
-export const BasicStatus = () => {
+interface Props {
+  compact?: boolean;
+}
+
+export const BasicStatus = ({ compact = false }: Props) => {
   const { loading, online, metrics } = useStatus();
+  const active = (metrics?.Download?.CurrentDownloads ?? []).filter((item) => item.Active).length;
+
+  if (compact) {
+    return (
+      <Link
+        to="/status"
+        className="stat-card panel-interactive block"
+        style={{ "--stat-glow": online ? "rgba(52, 211, 153, 0.16)" : "rgba(251, 113, 133, 0.16)" } as React.CSSProperties}
+      >
+        {loading ? (
+          <CircularProgress size={24} />
+        ) : online ? (
+          <CloudDoneRoundedIcon className="mb-4 text-emerald-300" />
+        ) : (
+          <CloudOffRoundedIcon className="mb-4 text-rose-300" />
+        )}
+        <div className="stat-value">{loading ? "Checking" : online ? "Online" : "Offline"}</div>
+        <div className="stat-label">{online ? `${active} active public transfer${active === 1 ? "" : "s"}` : "inherited backend unavailable"}</div>
+      </Link>
+    );
+  }
 
   return (
-    <div className="content-box flex flex-col dark:text-white w-full">
-      <div className="flex flex-col gap-2">
-        <span className="font-bold text-lg">Basic Status</span>
-        <div className="flex flex-col">
-          {loading ? <CircularProgress /> : (
-            <span className={`${online ? "text-green-500" : "text-red-500"}`}>
-              Server connection: {online ? "Online" : "Offline"}
-            </span>
-          )}
-          {metrics && (
-            <div className="flex flex-col">
-              <span>Active downloads: {(metrics.Download?.CurrentDownloads ?? []).filter((i) => i.Active).length}</span>
-              <span>Ranked beatmaps available: {metrics.Database.NumberStoredRanked}</span>
-              <span>Loved beatmaps available: {metrics.Database.NumberStoredLoved}</span>
-              <span>Unranked beatmaps available: {metrics.Database.NumberStoredUnranked}</span>
-              <span>Last beatmap added: {new Date(metrics.Database.LastBeatmapAdded).toLocaleDateString()}</span>
-            </div>
-          )}
+    <section className="content-box">
+      <div className="panel-header mb-0">
+        <div>
+          <div className="eyebrow">Connectivity</div>
+          <h2 className="panel-title mt-1">Inherited service</h2>
+          <p className="panel-description mt-1">This alpha still uses the original metadata and delivery backend.</p>
         </div>
-        <Link to="/status" className="text-blue-500 font-medium">
-          See more stats
-        </Link>
+        <span className={`pill ${online ? "text-emerald-300" : "text-rose-300"}`}>
+          <span className="status-dot" />{online ? "Online" : "Offline"}
+        </span>
       </div>
-    </div>
+    </section>
   );
 };

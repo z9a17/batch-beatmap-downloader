@@ -35,25 +35,32 @@ export const ResultTable = ({ result }: PropTypes) => {
   }, [result, pageNumber])
 
   return (
-    <div className="w-full flex flex-col pb-6">
-      <Table headers={headers} data={beatmaps} className="border-b dark:border-black" />
+    <div className="flex w-full flex-col">
+      <Table headers={headers} data={beatmaps} />
 
-      <div className="flex justify-center items-center gap-2 mt-6">
+      <div className="flex items-center justify-between border-t border-[#222a42] px-5 py-4">
+        <span className="text-[11px] text-[#626b84]">25 difficulties per page</span>
+        <div className="flex items-center gap-2">
         <Button
-          color="blue"
+          color="none"
+          className="button-secondary"
           onClick={() => setPageNumber(pageNumber - 1)}
           disabled={pageNumber === 1}
         >
           Prev
         </Button>
-        {pageNumber}/{Math.ceil(result.beatmaps / pageSize)}
+        <span className="min-w-[74px] text-center text-xs text-[#959db5]">
+          {pageNumber} / {Math.ceil(result.beatmaps / pageSize)}
+        </span>
         <Button
-          color="blue"
+          color="none"
+          className="button-secondary"
           onClick={() => setPageNumber(pageNumber + 1)}
           disabled={pageNumber === Math.ceil(result.beatmaps / pageSize)}
         >
           Next
         </Button>
+        </div>
       </div>
     </div>
   );

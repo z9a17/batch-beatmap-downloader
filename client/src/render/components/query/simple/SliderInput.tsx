@@ -24,12 +24,12 @@ export const SliderInput: React.FC<TInputItemProps<TInputItemSlider>> = ({ label
   }
 
   return (
-    <div className="flex items-center w-full">
-      <span className="min-w-[8rem] label">{label}</span>
-      <div className="flex items-center gap-4 w-full">
-        <div className="w-16">
+    <div className="field-row">
+      <span className="field-label">{label}</span>
+      <div className="flex w-full items-center gap-3">
+        <div className="w-14 shrink-0">
           <Input
-            className="p-1 px-2"
+            className="min-h-[36px] px-2 text-center text-xs"
             value={value[0].toString()}
             onChange={(value) => updateValue(value, 0)}
           />
@@ -41,9 +41,9 @@ export const SliderInput: React.FC<TInputItemProps<TInputItemSlider>> = ({ label
           max={max}
           step={step}
         />
-        <div className="w-16">
+        <div className="w-14 shrink-0">
           <Input
-            className="p-1 px-2"
+            className="min-h-[36px] px-2 text-center text-xs"
             value={value[1].toString()}
             onChange={(value) => updateValue(value, 1)}
           />

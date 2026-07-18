@@ -1,14 +1,29 @@
-import Switch from "react-switch";
 import React, { useMemo, useState } from "react";
+import Switch from "react-switch";
 import { Link } from "react-router-dom";
-import { bytesToFileSize } from "../util/fileSize";
+import DownloadRoundedIcon from "@mui/icons-material/DownloadRounded";
+import PlaylistAddRoundedIcon from "@mui/icons-material/PlaylistAddRounded";
+import ReplayRoundedIcon from "@mui/icons-material/ReplayRounded";
 import { toast } from "react-toastify";
-import Button from "./util/Button";
+
 import { DownloadDetails } from "../../models/api";
+import { bytesToFileSize } from "../util/fileSize";
+import Button from "./util/Button";
 
 interface PropTypes {
   result: DownloadDetails;
 }
+
+const switchColors = {
+  onColor: "#7c3aed",
+  offColor: "#242b40",
+  onHandleColor: "#ffffff",
+  offHandleColor: "#68708a",
+  uncheckedIcon: false,
+  checkedIcon: false,
+  height: 22,
+  width: 42,
+};
 
 export const DownloadSettings = ({ result }: PropTypes) => {
   const [force, setForce] = useState(false);
@@ -16,66 +31,76 @@ export const DownloadSettings = ({ result }: PropTypes) => {
   const [collectionName, setCollectionName] = useState("");
 
   const download = () => {
-    toast.success(`Download started!`);
-    window.electron.startDownload(force, collectionName)
+    toast.success("Download queued");
+    window.electron.startDownload(force, collectionName);
   };
 
-  const downloadDisabled = useMemo(() => {
-    return collection && (collectionName === "")
-  }, [collection, collectionName])
-
-  const fileSize = useMemo(() => {
-    return bytesToFileSize(force ? result.totalSizeForce : result.totalSize)
-  }, [force, result.totalSizeForce, result.totalSize])
+  const downloadDisabled = useMemo(() => collection && collectionName.trim() === "", [collection, collectionName]);
+  const fileSize = useMemo(
+    () => bytesToFileSize(force ? result.totalSizeForce : result.totalSize),
+    [force, result.totalSizeForce, result.totalSize],
+  );
+  const setCount = force ? result.setsForce : result.sets;
 
   return (
-    <div className="flex flex-col gap-4">
-      <span className="font-bold text-lg dark:text-white">Download</span>
-      <div className="flex flex-col gap-1">
-        <span className="font-medium">Summary</span>
-        <div className="flex flex-col gap-0">
-          <span>
-            {result.beatmaps} Beatmaps ({result.setsForce} Beatmap Sets)
-          </span>
-          <span>
-            {force ? result.setsForce : result.sets} Sets to download
-          </span>
-          <span>Total Size: {fileSize}</span>
+    <div>
+      <div className="eyebrow">Queue setup</div>
+      <h2 className="panel-title mt-1">Download selection</h2>
+      <p className="panel-description mt-1">Review this batch before handing it to the transfer queue.</p>
+
+      <div className="mt-5 grid grid-cols-2 gap-2">
+        <div className="rounded-xl border border-[#222a42] bg-[#0b0f1b] p-3">
+          <div className="text-lg font-semibold text-white">{setCount.toLocaleString()}</div>
+          <div className="mt-0.5 text-[10px] uppercase tracking-[0.1em] text-[#626b84]">sets to fetch</div>
+        </div>
+        <div className="rounded-xl border border-[#222a42] bg-[#0b0f1b] p-3">
+          <div className="text-lg font-semibold text-white">{fileSize}</div>
+          <div className="mt-0.5 text-[10px] uppercase tracking-[0.1em] text-[#626b84]">estimated size</div>
         </div>
       </div>
-      <div className="flex flex-col gap-1">
-        <span className="font-medium">Settings</span>
-        <div className="flex flex-col gap-2">
-          <div className="flex items-center gap-2">
-            <span>Force Download All Maps</span>
-            <Switch checked={force} onChange={(e) => setForce(e)} />
+
+      <div className="mt-5 divide-y divide-[#222a42] border-y border-[#222a42]">
+        <div className="flex items-center gap-3 py-4">
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-violet-500/10 text-violet-300">
+            <ReplayRoundedIcon fontSize="small" />
           </div>
-          <div className="flex items-center gap-2">
-            <span>Create Collection</span>
-            <Switch checked={collection} onChange={(e) => setCollection(e)} />
-            {collection && (
-              <input
-                className="input-height p-2 w-40 border-gray-300 border rounded focus:outline-blue-500"
-                placeholder="Name"
-                value={collectionName}
-                onChange={(e) => setCollectionName(e.target.value)}
-              />
-            )}
+          <div className="min-w-0 flex-1">
+            <div className="text-xs font-semibold text-white">Force every matched set</div>
+            <div className="mt-0.5 text-[10px] text-[#626b84]">Include archives already detected locally.</div>
           </div>
+          <Switch {...switchColors} checked={force} onChange={setForce} />
+        </div>
+
+        <div className="py-4">
+          <div className="flex items-center gap-3">
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-cyan-400/10 text-cyan-300">
+              <PlaylistAddRoundedIcon fontSize="small" />
+            </div>
+            <div className="min-w-0 flex-1">
+              <div className="text-xs font-semibold text-white">Create a collection</div>
+              <div className="mt-0.5 text-[10px] text-[#626b84]">Group downloaded difficulties in osu!stable.</div>
+            </div>
+            <Switch {...switchColors} checked={collection} onChange={setCollection} />
+          </div>
+          {collection && (
+            <input
+              className="mt-3"
+              placeholder="Collection name"
+              value={collectionName}
+              onChange={(event) => setCollectionName(event.target.value)}
+            />
+          )}
         </div>
       </div>
-      <div className="flex items-center">
-        <Link className={`${downloadDisabled ? 'pointer-events-none' : ''}`} to="/downloads">
-          <Button color="green" onClick={download} disabled={downloadDisabled}>
-            Download
-          </Button>
-        </Link>
-        {downloadDisabled && (
-          <span className="text-red-500 text-sm ml-4">
-            Collection name cannot be empty
-          </span>
-        )}
-      </div>
+
+      {downloadDisabled && <div className="mt-3 text-[11px] text-rose-300">Add a collection name before starting.</div>}
+
+      <Link className={`mt-5 block ${downloadDisabled ? "pointer-events-none" : ""}`} to="/downloads">
+        <Button color="green" className="flex w-full items-center justify-center gap-2 py-2.5" onClick={download} disabled={downloadDisabled}>
+          <DownloadRoundedIcon sx={{ fontSize: 18 }} />
+          Queue {setCount.toLocaleString()} sets
+        </Button>
+      </Link>
     </div>
   );
 };

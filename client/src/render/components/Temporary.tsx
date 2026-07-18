@@ -1,8 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import Switch from 'react-switch';
-import { Browse } from './Browse';
-import Button from './util/Button';
-import { Tooltip } from './util/Tooltip';
+import React, { useEffect, useState } from "react";
+import Switch from "react-switch";
+import AutoAwesomeMotionRoundedIcon from "@mui/icons-material/AutoAwesomeMotionRounded";
+
+import { Browse } from "./Browse";
+import Button from "./util/Button";
+import { Tooltip } from "./util/Tooltip";
+
+const switchColors = {
+  onColor: "#7c3aed",
+  offColor: "#242b40",
+  onHandleColor: "#ffffff",
+  offHandleColor: "#68708a",
+  uncheckedIcon: false,
+  checkedIcon: false,
+  height: 22,
+  width: 42,
+};
 
 export const Temporary = () => {
   const [temp, setTemp] = useState(true);
@@ -11,44 +24,30 @@ export const Temporary = () => {
   const [tempAuto, setTempAuto] = useState(false);
   const [moving, setMoving] = useState(false);
   const [tempValid, setTempValid] = useState(true);
-  const [isWindows, setIsWindows] = useState(true)
+  const [isWindows, setIsWindows] = useState(true);
 
   const updateData = () => {
     window.electron.getTempData().then((data) => {
       setTemp(data.enabled);
       setTempPath(data.path);
       setTempCount(data.count);
-      setTempValid(data.valid)
+      setTempValid(data.valid);
       setTempAuto(data.auto);
     });
   };
 
   useEffect(() => {
     updateData();
-
-    window.electron.getPlatform().then(res => {
-      setIsWindows(res === "win32")
-    })
+    window.electron.getPlatform().then((platform) => setIsWindows(platform === "win32"));
   }, []);
 
-  const handleToggle = () => {
-    window.electron.setSetting("temp", !temp).then(() => updateData());
-  };
-
-  const handleSetTempPath = (path: string) => {
-    window.electron.setSetting("tempPath", path).then(() => updateData());
-  };
-
-  const handleResetPath = () => {
-    window.electron.resetTempPath().then(() => updateData());
-  };
-
-  const handleSetTempAuto = (auto: boolean) => {
-    window.electron.setSetting("autoTemp", auto).then(() => updateData());
-  }
+  const handleToggle = () => window.electron.setSetting("temp", !temp).then(updateData);
+  const handleSetTempPath = (path: string) => window.electron.setSetting("tempPath", path).then(updateData);
+  const handleResetPath = () => window.electron.resetTempPath().then(updateData);
+  const handleSetTempAuto = (auto: boolean) => window.electron.setSetting("autoTemp", auto).then(updateData);
 
   const handleMoveDownloads = () => {
-    setMoving(true)
+    setMoving(true);
     window.electron.moveTempDownloads().then(() => {
       updateData();
       setMoving(false);
@@ -56,48 +55,71 @@ export const Temporary = () => {
   };
 
   return (
-    <div className="content-box flex flex-col items-start gap-6">
-      <h1 className="font-bold text-lg">Temporary Folder</h1>
-      <div className="flex flex-col">
-        <span>Sends all beatmap downloads to a temporary folder until downloads are finished.</span>
-        <span>This prevents each download from interrupting your game during in song selection.</span>
+    <section className="content-box">
+      <div className="panel-header">
+        <div>
+          <div className="eyebrow">Staging</div>
+          <h2 className="panel-title mt-1">Quiet import</h2>
+          <p className="panel-description mt-1">
+            Stage incoming archives away from Songs, then move them together to avoid interrupting song selection.
+          </p>
+        </div>
+        <div className="flex items-center gap-3">
+          <span className="pill">{tempCount} waiting</span>
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-400/10 text-cyan-300">
+            <AutoAwesomeMotionRoundedIcon />
+          </div>
+        </div>
       </div>
 
-      <span className="font-bold text-orange-500">The temp folder MUST be on the same disk / partition as your songs folder.</span>
-
-      {!isWindows && (
-        <span className="font-bold text-red-500">You aren't on Windows so I assume you know what you are doing.</span>
-      )}
-
-      <span>There are currently {tempCount} downloads in the temp folder.</span>
-
-      <div>
-        <div className="flex items-center gap-2">
-          <span className="w-52">Enabled</span>
-          <Switch checked={temp} onChange={handleToggle} />
+      <div className="divide-y divide-[#222a42]">
+        <div className="grid grid-cols-[180px_minmax(0,1fr)] items-center gap-5 py-4">
+          <div>
+            <div className="text-sm font-semibold text-white">Use staging folder</div>
+            <div className="mt-1 text-xs text-[#68708a]">Recommended for large queues.</div>
+          </div>
+          <Switch {...switchColors} checked={temp} onChange={handleToggle} />
         </div>
+
         {temp && (
           <>
-            <div className="flex items-center mt-4 gap-2">
-              <span className="w-52">Temp Path</span>
-              <Browse path={tempPath} update={handleSetTempPath} />
-              <Button onClick={handleResetPath}>Reset</Button>
-              {!tempValid && (
-                <span className="text-red-500">Invalid Path</span>
-              )}
+            <div className="grid grid-cols-[180px_minmax(0,1fr)] items-center gap-5 py-4">
+              <div>
+                <div className="text-sm font-semibold text-white">Staging location</div>
+                <div className="mt-1 text-xs text-[#68708a]">Must share a drive with your Songs folder.</div>
+              </div>
+              <div className="flex min-w-0 items-center gap-3">
+                <Browse path={tempPath} update={handleSetTempPath} />
+                <Button color="none" className="button-secondary shrink-0" onClick={handleResetPath}>Reset</Button>
+                {!tempValid && <span className="pill border-rose-400/20 text-rose-300">Invalid path</span>}
+              </div>
             </div>
-            <div className="flex items-center mt-4 gap-2">
-              <span className="w-52">
-                Auto Transfer
-                <Tooltip title="Automatically move downloads from the temp folder to your songs folder when downloads are finished." />
-              </span>
-              <Switch checked={tempAuto} onChange={handleSetTempAuto} />
+
+            <div className="grid grid-cols-[180px_minmax(0,1fr)] items-center gap-5 py-4">
+              <div>
+                <div className="flex items-center gap-1.5 text-sm font-semibold text-white">
+                  Auto transfer
+                  <Tooltip title="Move completed archives into the Songs folder automatically when a queue finishes." />
+                </div>
+                <div className="mt-1 text-xs text-[#68708a]">Finish without another manual step.</div>
+              </div>
+              <Switch {...switchColors} checked={tempAuto} onChange={handleSetTempAuto} />
             </div>
           </>
         )}
       </div>
 
-      <Button disabled={tempCount === 0 || moving} onClick={handleMoveDownloads}>Move Contents</Button>
-    </div>
+      {!isWindows && (
+        <div className="mt-4 rounded-xl border border-amber-400/20 bg-amber-400/[0.06] px-4 py-3 text-xs text-amber-200/70">
+          Cross-filesystem moves behave differently outside Windows; verify the destination before transferring.
+        </div>
+      )}
+
+      <div className="mt-5 flex justify-end">
+        <Button disabled={tempCount === 0 || moving} onClick={handleMoveDownloads}>
+          {moving ? "Moving archives…" : "Move staged archives"}
+        </Button>
+      </div>
+    </section>
   );
 };

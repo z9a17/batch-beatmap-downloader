@@ -18,13 +18,13 @@ export const Browse = ({ path, update }: PropTypes) => {
   };
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex min-w-0 flex-1 items-center gap-2">
       <input
         value={path}
         disabled={true}
-        className="input-height p-2 w-40 border-gray-300 border rounded focus:outline-blue-500"
+        className="input-height min-w-[220px] flex-1"
       />
-      <Button color="blue" onClick={() => browse()}>Browse</Button>
+      <Button color="none" className="button-secondary" onClick={() => browse()}>Browse</Button>
     </div>
   )
 }

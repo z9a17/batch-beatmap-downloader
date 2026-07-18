@@ -36,6 +36,7 @@ export interface DailyDownloadStatsV2 extends DailyDownloadStats {
 }
 
 export interface CurrentDownloadV2 {
+  [key: string]: unknown;
   Size: number;
   Progress: number;
   Speed: number;

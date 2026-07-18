@@ -10,13 +10,14 @@ module.exports = {
   packagerConfig: {
     asar: true,
     icon: path.join(packageAssetsPath, "bbd.ico"),
+    executableName: "batch-beatmap-downloader",
   },
   publishers: [
     {
       name: "@electron-forge/publisher-github",
       config: {
         repository: {
-          owner: "nzbasic",
+          owner: "z9a17",
           name: "batch-beatmap-downloader",
           authToken: process.env.GITHUB_TOKEN,
         },
@@ -29,19 +30,21 @@ module.exports = {
 
     {
       name: "@electron-forge/maker-squirrel",
+      platforms: ["win32"],
       config: {
         // https://js.electronforge.io/maker/squirrel/interfaces/makersquirrelconfig
         setupExe: "BBDWindowsSetup.exe",
         setupIcon: path.join(packageAssetsPath, "bbd.ico"),
         icon: path.join(packageAssetsPath, "bbd.ico"),
         iconUrl:
-          "https://raw.githubusercontent.com/nzbasic/batch-beatmap-downloader/0d3d2a2f6754e0ba95f8470e71b82c579e0c5ee2/client/src/bbd.ico",
-        authors: "nzbasic",
+          "https://raw.githubusercontent.com/z9a17/batch-beatmap-downloader/main/client/src/render/assets/bbd.ico",
+        authors: "Batch Beatmap Downloader Community",
       },
     },
     // You can only build the DMG target on macOS machines.
     {
       name: "@electron-forge/maker-dmg",
+      platforms: ["darwin"],
       config: {
         // https://js.electronforge.io/maker/dmg/interfaces/makerdmgconfig
         icon: path.join(packageAssetsPath, "bbd.png"),
@@ -59,6 +62,7 @@ module.exports = {
 
     {
       name: "@electron-forge/maker-deb",
+      platforms: ["linux"],
       config: {
         // https://js.electronforge.io/maker/deb/interfaces/makerdebconfig
         icon: path.join(packageAssetsPath, "bbd.png"),
@@ -66,13 +70,13 @@ module.exports = {
     },
   ],
   plugins: [
-    [
-      "@electron-forge/plugin-webpack",
-      {
+    {
+      name: "@electron-forge/plugin-webpack",
+      config: {
         mainConfig: "./.config/webpack.main.config.js",
         renderer: {
           config: "./.config/webpack.renderer.config.js",
-          devContentSecurityPolicy: `img-src * 'self' data: https:; default-src 'self' 'unsafe-inline' data:; script-src 'self' 'unsafe-eval' https://cdnjs.buymeacoffee.com;`,
+          devContentSecurityPolicy: `img-src * 'self' data: https:; default-src 'self' 'unsafe-inline' data:; script-src 'self' 'unsafe-eval';`,
           entryPoints: [
             {
               html: "./src/render/index.html",
@@ -85,6 +89,6 @@ module.exports = {
           ],
         },
       },
-    ],
+    },
   ],
 };

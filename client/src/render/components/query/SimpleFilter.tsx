@@ -136,7 +136,6 @@ export const SimpleFilter: React.FC<PropTypes> = ({ tree, updateTree }) => {
   }
 
   const removeRule = (item: TInputItem, operator: string) => {
-    console.log(item, operator)
     const clone = cloneDeep(tree)
     if (!clone.group) return
     clone.group.children = clone.group.children.filter(child => {
@@ -193,38 +192,59 @@ export const SimpleFilter: React.FC<PropTypes> = ({ tree, updateTree }) => {
   }
 
   return (
-    <div className="content-box flex flex-col gap-4">
-      <div className="flex items-center">
-        <label className="min-w-[8rem] label">Text Input</label>
+    <div className="overflow-hidden rounded-2xl border border-[#222a42] bg-[#0b0f1b]/75">
+      <div className="border-b border-[#222a42] p-5">
+        <label className="field-label mb-2 block">Quick syntax</label>
         <Input
-          placeholder="Use osu! search terms e.g. cs>5 ar=8"
+          className="text-[13px]"
+          placeholder="Try: status=r mode=o stars>=6 ar>=9.5"
           value={textInput}
-          onChange={(t) => handleTextChange(t)}
+          onChange={handleTextChange}
         />
+        <div className="mt-2 text-[11px] text-[#59627b]">Changes here stay synchronized with the visual controls below.</div>
       </div>
 
-      {aboveSection.items.map(item => (
-        <InputItem {...item} onChange={(value) => handleChange(value, item)} value={getValue(tree, item)} />
-      ))}
-
-      <div className="flex items-center gap-2 w-full justify-between mt-2">
-        {sections.map(item => (
-          <div
-            key={item.title}
-            className={classNames(
-              { 'bg-emerald-600 pointer-events-none': section.title === item.title },
-              { 'bg-sky-500 hover:bg-sky-600': section.title !== item.title },
-              "w-full p-1 text-center text-white py-2 rounded font-medium cursor-pointer")}
-            onClick={() => setSection(item)}
-          >
-            {item.title}
+      <div className="grid grid-cols-[190px_minmax(0,1fr)]">
+        <div className="border-r border-[#222a42] p-3">
+          <div className="mb-2 px-2 text-[10px] font-bold uppercase tracking-[0.15em] text-[#515a73]">Filter groups</div>
+          {sections.map(item => (
+            <button
+              key={item.title}
+              className={classNames(
+                "mb-1 w-full rounded-xl px-3 py-2.5 text-left text-xs font-semibold transition",
+                section.title === item.title
+                  ? "bg-violet-500/12 text-violet-200 shadow-inner shadow-violet-500/5"
+                  : "text-[#737d98] hover:bg-white/[0.03] hover:text-white",
+              )}
+              onClick={() => setSection(item)}
+            >
+              {item.title}
+            </button>
+          ))}
+        </div>
+        <div className="p-5">
+          <div className="mb-5 grid grid-cols-2 gap-x-6">
+            {aboveSection.items.map(item => (
+              <div key={item.key}>
+                <InputItem {...item} onChange={(value) => handleChange(value, item)} value={getValue(tree, item)} />
+              </div>
+            ))}
           </div>
-        ))}
+          <div className="mb-3 flex items-center justify-between border-t border-[#222a42] pt-5">
+            <div>
+              <div className="text-sm font-semibold text-white">{section.title}</div>
+              <div className="mt-0.5 text-[11px] text-[#626b84]">Only adjusted values become active rules.</div>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-x-6">
+            {section.items.map(item => (
+              <div key={item.key}>
+                <InputItem {...item} onChange={(value) => handleChange(value, item)} value={getValue(tree, item)} />
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
-
-      {section.items.map(item => (
-        <InputItem {...item} onChange={(value) => handleChange(value, item)} value={getValue(tree, item)} />
-      ))}
     </div>
   )
 }

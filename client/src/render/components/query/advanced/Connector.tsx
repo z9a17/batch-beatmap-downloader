@@ -30,14 +30,14 @@ export const Connector = ({ id, details, update }: PropTypes) => {
   }
 
   return (
-    <div className="flex items-center py-2 text-black dark:text-white">
+    <div className="my-2 flex items-center">
       {types.map((type, index) => (
         <button
-          className={classNames("px-2 py-1 border-gray-600 dark:border-monokai-border border w-12 transition duration-200",
-            { 'rounded-l border-r-0': index === 0 },
-            { 'rounded-r border-l-0': index === types.length - 1 },
-            { 'bg-blue-500 dark:bg-blue-500 text-white': details.type === type },
-            { 'bg-white dark:bg-monokai-light2 dark:hover:bg-blue-500 hover:bg-blue-500': details.type !== type },
+          className={classNames("w-12 border border-[#303a5a] px-2 py-1 text-[10px] font-bold transition",
+            { "rounded-l-lg border-r-0": index === 0 },
+            { "rounded-r-lg border-l-0": index === types.length - 1 },
+            { "bg-violet-500/20 text-violet-200": details.type === type },
+            { "bg-[#111524] text-[#68708a] hover:text-white": details.type !== type },
           )}
           disabled={type === details.type}
           onClick={() => update({ ...details, type })}
@@ -48,9 +48,9 @@ export const Connector = ({ id, details, update }: PropTypes) => {
       ))}
 
       <button
-        className={classNames("ml-2 border-gray-600 dark:border-monokai-border border px-2 py-1 rounded transition duration-100",
-          { 'bg-red-500 dark:bg-red-600 text-white': isNot },
-          { 'hover:bg-red-500 bg-white dark:bg-monokai-light2 dark:hover:bg-red-600': !isNot },
+        className={classNames("ml-2 rounded-lg border border-[#303a5a] px-2 py-1 text-[10px] font-bold transition",
+          { "border-rose-400/30 bg-rose-400/15 text-rose-200": isNot },
+          { "bg-[#111524] text-[#68708a] hover:text-white": !isNot },
         )}
         onClick={() => handleUpdate()}
       >

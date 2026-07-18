@@ -33,7 +33,7 @@ const RuleInputDropdown = ({ rule, onChange }: PropTypes) => {
 
   return (
     <Select
-      className="w-40 my-react-select-container"
+      className="min-w-0 my-react-select-container"
       classNamePrefix="my-react-select"
       options={dropdownMap.get(rule.type as RuleType)}
       value={selectedOption}
@@ -45,7 +45,7 @@ const RuleInputDropdown = ({ rule, onChange }: PropTypes) => {
 const RuleInputNumber = ({ rule, onChange }: PropTypes) => {
   return (
     <input
-      className="input-height p-2 w-40 border-gray-300 border rounded focus:border-blue-500"
+      className="input-height"
       type="number"
       defaultValue={rule.value}
       onChange={(e) => onChange({ ...rule, value: e.target.value })}
@@ -56,7 +56,7 @@ const RuleInputNumber = ({ rule, onChange }: PropTypes) => {
 const RuleInputText = ({ rule, onChange }: PropTypes) => {
   return (
     <input
-      className="input-height p-2 w-40 border-gray-300 border rounded focus:outline-blue-500"
+      className="input-height"
       defaultValue={rule.value}
       onChange={(e) => onChange({ ...rule, value: e.target.value })}
     />
@@ -73,7 +73,7 @@ const RuleInputDate = ({ rule, onChange }: PropTypes) => {
 
   return (
     <DatePicker
-      className="input-height p-2 w-40 border-gray-300 border rounded focus:outline-blue-500"
+      className="input-height"
       selected={new Date(parseInt(rule.value))}
       onChange={(date) => setSelectedDate(date ?? new Date())}
     />
@@ -89,7 +89,7 @@ export const RuleInput = ({ rule, onChange }: PropTypes) => {
   ]);
 
   return (
-    <div className="">
+    <div className="min-w-0">
       {inputMap.get(inputTypeMap[rule.type as RuleType])}
     </div>
   );

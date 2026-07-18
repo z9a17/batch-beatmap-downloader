@@ -28,7 +28,7 @@ const downloadBinary = async (fileName: string, checksum: string) => {
 
   // download from uri to app path
   const dl = new Download({
-    url: `https://direct.nzbasic.com/${fileName}`,
+    url: `${process.env.BBD_DIRECT_URL ?? "https://direct.nzbasic.com"}/${fileName}`,
     directory: appPath,
     fileName,
   })

@@ -1,5 +1,5 @@
 import React, {
-  useState, createContext, useEffect, PropsWithChildren, useContext,
+  useState, createContext, useEffect, useContext,
 } from 'react';
 import { MetricsV2 } from '../../models/metrics';
 
@@ -19,7 +19,7 @@ const defaultContext: Status = {
 
 export const StatusContext = createContext<Status>(defaultContext);
 
-const StatusProvider: React.FC<PropsWithChildren<any>> = ({ children }) => {
+const StatusProvider: React.FC = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [online, setOnline] = useState(false)
   const [metrics, setMetrics] = useState<MetricsV2 | null>(null)

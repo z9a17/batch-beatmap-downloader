@@ -3,9 +3,7 @@ export interface TableHeader {
   key: string;
 }
 
-export interface TableData {
-  [key: string]: any
-}
+export type TableData = Record<string, unknown>
 
 export interface RowProps {
   entry: TableData

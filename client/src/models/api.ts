@@ -59,6 +59,7 @@ export interface Rule {
 }
 
 export interface BeatmapDetails {
+  [key: string]: unknown;
   Title: string;
   Artist: string;
   Creator: string;
