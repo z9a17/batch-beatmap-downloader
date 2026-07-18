@@ -60,10 +60,10 @@ export const DownloadSummary = ({ status }: PropTypes) => {
   ];
 
   return (
-    <article className="overflow-hidden rounded-2xl border border-[#222a42] bg-[#111524]">
+    <article className="border-t border-[#202631] last:border-b">
       <div className="flex items-center gap-4 p-5">
         <button
-          className="button-danger flex h-9 w-9 items-center justify-center rounded-xl"
+          className="button-danger flex h-9 w-9 items-center justify-center rounded-[2px]"
           onClick={remove}
           disabled={loading}
           aria-label="Delete download"
@@ -73,7 +73,7 @@ export const DownloadSummary = ({ status }: PropTypes) => {
 
         {!finished && (
           <button
-            className="button-secondary flex h-9 w-9 items-center justify-center rounded-xl"
+            className="button-secondary flex h-9 w-9 items-center justify-center rounded-[2px]"
             disabled={loading}
             onClick={togglePause}
             aria-label={status.paused ? "Resume download" : "Pause download"}
@@ -99,7 +99,7 @@ export const DownloadSummary = ({ status }: PropTypes) => {
         </div>
 
         <button
-          className="flex h-9 w-9 items-center justify-center rounded-xl text-[#68708a] transition hover:bg-white/[0.04] hover:text-white"
+          className="flex h-9 w-9 items-center justify-center text-[#68708a] transition hover:bg-white/[0.04] hover:text-white"
           onClick={() => setExpanded((value) => !value)}
           aria-label={expanded ? "Collapse details" : "Expand details"}
         >
@@ -108,7 +108,7 @@ export const DownloadSummary = ({ status }: PropTypes) => {
       </div>
 
       {expanded && (
-        <div className="grid grid-cols-6 border-t border-[#222a42] bg-[#0a0e19]/55">
+        <div className="grid grid-cols-6 border-t border-[#202631] bg-white/[0.012]">
           {details.map(([label, value], index) => (
             <div key={label} className={`px-5 py-4 ${index > 0 ? "border-l border-[#1d2438]" : ""}`}>
               <div className="text-sm font-semibold text-white">{value}</div>

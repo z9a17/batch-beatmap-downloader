@@ -17,13 +17,7 @@ export const BasicStatus = ({ compact = false }: Props) => {
     return (
       <Link
         to="/status"
-        className={`stat-card panel-interactive block ${
-          loading
-            ? "border-[#303a5a] bg-white/[0.02]"
-            : online
-            ? "border-emerald-400/25 bg-emerald-400/[0.045]"
-            : "border-rose-400/25 bg-rose-400/[0.045]"
-        }`}
+        className="stat-card panel-interactive block"
       >
         {loading ? (
           <CircularProgress size={24} />

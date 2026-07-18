@@ -37,11 +37,11 @@ const createWindow = (): void => {
     title: "Batch Beatmap Downloader Community",
     titleBarStyle: "hidden",
     titleBarOverlay: {
-      color: "#070912",
+      color: "#080a0e",
       symbolColor: "#959db5",
       height: 44,
     },
-    backgroundColor: "#070912",
+    backgroundColor: "#080a0e",
     webPreferences: {
       contextIsolation: true,
       nodeIntegration: false,

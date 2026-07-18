@@ -80,7 +80,7 @@ export const QuerySettings = ({ limit, updateLimit, order, updateOrder }: PropTy
       </div>
 
       {limit && (
-        <div className="mt-5 grid grid-cols-[160px_minmax(0,1fr)_minmax(0,1fr)] gap-3 rounded-2xl border border-[#222a42] bg-[#0b0f1b]/65 p-4">
+        <div className="mt-5 grid grid-cols-[160px_minmax(0,1fr)_minmax(0,1fr)] gap-5 border-y border-[#202631] py-5">
           <div>
             <label className="field-label mb-2 block">Maximum results</label>
             <NumericInput

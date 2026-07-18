@@ -33,7 +33,7 @@ export const Settings = () => {
           <h2 className="panel-title mt-1">Storage and delivery</h2>
           <p className="panel-description mt-1">Choose where beatmaps land and how aggressively transfers run.</p>
         </div>
-        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-500/10 text-blue-300">
+        <div className="icon-plain">
           <FolderRoundedIcon />
         </div>
       </div>
@@ -75,7 +75,7 @@ export const Settings = () => {
             <div className="mt-1 text-[13px] leading-5 text-[#8791aa]">Applies the next time a job starts or resumes.</div>
           </div>
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-400/10 text-cyan-300">
+            <div className="icon-plain text-cyan-300">
               <SpeedRoundedIcon fontSize="small" />
             </div>
             <NumericInput

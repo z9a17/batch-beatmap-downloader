@@ -192,8 +192,8 @@ export const SimpleFilter: React.FC<PropTypes> = ({ tree, updateTree }) => {
   }
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-[#222a42] bg-[#0b0f1b]/75">
-      <div className="border-b border-[#222a42] p-5">
+    <div className="border-y border-[#202631]">
+      <div className="border-b border-[#202631] py-5">
         <label className="field-label mb-2 block">Quick syntax</label>
         <Input
           className="text-[13px]"
@@ -205,16 +205,16 @@ export const SimpleFilter: React.FC<PropTypes> = ({ tree, updateTree }) => {
       </div>
 
       <div className="grid grid-cols-[190px_minmax(0,1fr)]">
-        <div className="border-r border-[#222a42] p-3">
+        <div className="border-r border-[#202631] py-4 pr-4">
           <div className="mb-2 px-2 text-xs font-bold uppercase tracking-[0.12em] text-[#77819a]">Filter groups</div>
           {sections.map(item => (
             <button
               key={item.title}
               className={classNames(
-                "mb-1 w-full rounded-xl px-3 py-2.5 text-left text-xs font-semibold transition",
+                "mb-1 w-full border-l-2 px-3 py-2.5 text-left text-xs font-semibold transition",
                 section.title === item.title
-                  ? "bg-blue-500/12 text-blue-200 shadow-inner shadow-blue-500/5"
-                  : "text-[#737d98] hover:bg-white/[0.03] hover:text-white",
+                  ? "border-blue-500 bg-blue-500/[0.04] text-blue-200"
+                  : "border-transparent text-[#737d98] hover:bg-white/[0.02] hover:text-white",
               )}
               onClick={() => setSection(item)}
             >
@@ -222,7 +222,7 @@ export const SimpleFilter: React.FC<PropTypes> = ({ tree, updateTree }) => {
             </button>
           ))}
         </div>
-        <div className="p-5">
+        <div className="py-5 pl-6">
           <div className="mb-5 grid grid-cols-2 gap-x-6">
             {aboveSection.items.map(item => (
               <div key={item.key}>

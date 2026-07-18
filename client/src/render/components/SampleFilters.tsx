@@ -40,17 +40,17 @@ export const SampleFilters = () => {
           <h2 className="panel-title mt-1">Curated searches</h2>
           <p className="panel-description mt-1">Start from a useful filter and refine it in Discover.</p>
         </div>
-        <AutoAwesomeRoundedIcon className="text-blue-300" />
+        <AutoAwesomeRoundedIcon className="text-[#667086]" />
       </div>
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid grid-cols-3 border-t border-[#202631]">
         {filters.map((filter) => (
           <Link
             onClick={() => loadFilter(filter)}
             to="/query"
             key={filter.name}
-            className="panel-interactive group relative overflow-hidden rounded-2xl border border-[#222a42] bg-[#0d111e] p-4"
+            className="panel-interactive group relative min-h-[116px] border-b border-r border-[#202631] p-4 first:border-l"
           >
-            <div className="mb-5 h-1 w-10 rounded-full" style={{ backgroundColor: filter.accent, boxShadow: `0 0 18px ${filter.accent}` }} />
+            <div className="mb-5 h-0.5 w-8" style={{ backgroundColor: filter.accent }} />
             <div className="font-semibold text-white">{filter.name}</div>
             <div className="mt-1 text-[13px] leading-5 text-[#8791aa]">{filter.detail}</div>
             <ArrowForwardRoundedIcon className="absolute bottom-4 right-4 text-[#4f5871] transition group-hover:translate-x-0.5 group-hover:text-white" fontSize="small" />

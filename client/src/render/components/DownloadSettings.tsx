@@ -48,12 +48,12 @@ export const DownloadSettings = ({ result }: PropTypes) => {
       <h2 className="panel-title mt-1">Download selection</h2>
       <p className="panel-description mt-1">Review this batch before handing it to the transfer queue.</p>
 
-      <div className="mt-5 grid grid-cols-2 gap-2">
-        <div className="rounded-xl border border-[#222a42] bg-[#0b0f1b] p-3">
+      <div className="mt-5 grid grid-cols-2 border-y border-[#202631]">
+        <div className="py-4 pr-4">
           <div className="text-lg font-semibold text-white">{setCount.toLocaleString()}</div>
           <div className="mt-1 text-xs uppercase tracking-[0.08em] text-[#8791aa]">sets to fetch</div>
         </div>
-        <div className="rounded-xl border border-[#222a42] bg-[#0b0f1b] p-3">
+        <div className="border-l border-[#202631] py-4 pl-4">
           <div className="text-lg font-semibold text-white">{fileSize}</div>
           <div className="mt-1 text-xs uppercase tracking-[0.08em] text-[#8791aa]">estimated size</div>
         </div>
@@ -61,7 +61,7 @@ export const DownloadSettings = ({ result }: PropTypes) => {
 
       <div className="mt-5 divide-y divide-[#222a42] border-y border-[#222a42]">
         <div className="flex items-center gap-3 py-4">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-500/10 text-blue-300">
+          <div className="icon-plain">
             <ReplayRoundedIcon fontSize="small" />
           </div>
           <div className="min-w-0 flex-1">
@@ -73,7 +73,7 @@ export const DownloadSettings = ({ result }: PropTypes) => {
 
         <div className="py-4">
           <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-cyan-400/10 text-cyan-300">
+            <div className="icon-plain text-cyan-300">
               <PlaylistAddRoundedIcon fontSize="small" />
             </div>
             <div className="min-w-0 flex-1">

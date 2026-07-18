@@ -127,7 +127,7 @@ export const Query = () => {
         <InvalidPath />
       ) : (
         <>
-          <section className="content-box">
+          <section className="content-box border-t-0 pt-0">
             <div className="panel-header">
               <div>
                 <div className="eyebrow">Query workspace</div>
@@ -175,13 +175,13 @@ export const Query = () => {
       )}
 
       {result && result.beatmaps === 0 && (
-        <div className="rounded-2xl border border-[#222a42] bg-white/[0.02] px-6 py-10 text-center text-[#68708a]">
+        <div className="flat-empty min-h-[180px] text-[#68708a]">
           No beatmaps matched this query. Loosen a filter and try again.
         </div>
       )}
 
       {result && result.beatmaps > 0 && (
-        <div className="grid grid-cols-[minmax(0,1fr)_340px] items-start gap-4">
+        <div className="grid grid-cols-[minmax(0,1fr)_340px] items-start gap-8 border-t border-[#202631] pt-7">
           <section className="content-box no-pad">
             <div className="border-b border-[#222a42] px-6 py-5">
               <div className="eyebrow">Matches</div>

@@ -30,7 +30,7 @@ export const Status = () => {
   if (loading) {
     return (
       <div className="page-stack">
-        <div className="flex min-h-[280px] items-center justify-center rounded-2xl border border-[#222a42] bg-white/[0.015]">
+        <div className="flex min-h-[280px] items-center justify-center border-l-[3px] border-[#354055]">
           <div className="text-center">
             <CircularProgress size={30} />
             <div className="mt-4 text-sm text-[#737d98]">Checking inherited infrastructure…</div>
@@ -43,7 +43,7 @@ export const Status = () => {
   if (!online || !metrics) {
     return (
       <div className="page-stack">
-        <div className="flex items-center gap-4 rounded-2xl border border-rose-400/20 bg-rose-400/[0.06] p-6">
+        <div className="flat-alert text-rose-300">
           <CloudOffRoundedIcon className="text-rose-300" />
           <div>
             <div className="font-semibold text-rose-100">Service unavailable</div>
@@ -61,9 +61,9 @@ export const Status = () => {
 
   return (
     <div className="page-stack">
-      <section className="flex items-center justify-between rounded-2xl border border-emerald-400/20 bg-emerald-400/[0.055] px-6 py-5">
+      <section className="flat-alert justify-between text-emerald-300">
         <div className="flex items-center gap-4">
-          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-400/10 text-emerald-300">
+          <div className="icon-plain text-emerald-300">
             <CloudDoneRoundedIcon />
           </div>
           <div>
@@ -74,7 +74,7 @@ export const Status = () => {
         <span className="pill pill-online"><span className="status-dot" />Live</span>
       </section>
 
-      <div className="grid grid-cols-4 gap-3">
+      <div className="metric-strip grid-cols-4">
         <div className="stat-card">
           <DownloadingRoundedIcon className="mb-4 text-blue-300" />
           <div className="stat-value">{activeDownloads.length}</div>
@@ -101,19 +101,19 @@ export const Status = () => {
         <section className="content-box">
           <div className="eyebrow">Catalogue snapshot</div>
           <h2 className="panel-title mt-1">Indexed content</h2>
-          <div className="mt-5 space-y-3">
+          <div className="mt-5">
             {[
               ["Ranked", metrics.Database.NumberStoredRanked, "bg-blue-400"],
               ["Loved", metrics.Database.NumberStoredLoved, "bg-rose-400"],
               ["Unranked", metrics.Database.NumberStoredUnranked, "bg-cyan-400"],
             ].map(([label, value, color]) => (
-              <div key={label as string} className="flex items-center justify-between rounded-xl border border-[#222a42] bg-[#0b0f1b] px-4 py-3">
+              <div key={label as string} className="data-row">
                 <span className="flex items-center gap-2 text-sm font-semibold text-[#a6aec2]"><span className={`h-2 w-2 rounded-full ${color}`} />{label}</span>
                 <span className="text-sm font-semibold text-white">{(value as number).toLocaleString()}</span>
               </div>
             ))}
           </div>
-          <div className="mt-4 flex gap-2 rounded-xl border border-amber-400/15 bg-amber-400/[0.05] p-3 text-[13px] leading-5 text-amber-100/70">
+          <div className="mt-4 flex gap-2 border-l-2 border-amber-400 px-4 py-2 text-[13px] leading-5 text-amber-100/70">
             <WarningAmberRoundedIcon sx={{ fontSize: 16, flexShrink: 0, marginTop: "2px" }} />
             The legacy “last beatmap added” value is the newest approval date, not proof that every status was fully ingested.
           </div>
@@ -122,16 +122,16 @@ export const Status = () => {
         <section className="content-box">
           <div className="eyebrow">Daily delivery</div>
           <h2 className="panel-title mt-1">Network activity</h2>
-          <div className="mt-5 grid grid-cols-2 gap-3">
-            <div className="rounded-xl border border-[#222a42] bg-[#0b0f1b] p-4">
+          <div className="mt-5 grid grid-cols-2 border-y border-[#202631]">
+            <div className="border-r border-[#202631] p-4 pl-0">
               <div className="text-lg font-semibold text-white">{bytesToFileSize(metrics.Download.DailyStats.Size)}</div>
               <div className="mt-1 text-xs uppercase tracking-[0.08em] text-[#77819a]">data delivered</div>
             </div>
-            <div className="rounded-xl border border-[#222a42] bg-[#0b0f1b] p-4">
+            <div className="p-4">
               <div className="text-lg font-semibold text-white">{metrics.Download.DailyStats.Completed.toLocaleString()}</div>
               <div className="mt-1 text-xs uppercase tracking-[0.08em] text-[#77819a]">completed jobs</div>
             </div>
-            <div className="col-span-2 rounded-xl border border-[#222a42] bg-[#0b0f1b] p-4">
+            <div className="col-span-2 border-t border-[#202631] p-4 pl-0">
               <div className="text-lg font-semibold text-white">{bytesToFileSize(metrics.Download.DailyStats.Speed)}/s</div>
               <div className="mt-1 text-xs uppercase tracking-[0.08em] text-[#77819a]">average completed speed</div>
             </div>
