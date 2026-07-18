@@ -31,7 +31,7 @@ export const Settings = () => {
         <div>
           <div className="eyebrow">Library</div>
           <h2 className="panel-title mt-1">Storage and delivery</h2>
-          <p className="panel-description mt-1">Choose where beatmaps land and how aggressively transfers run.</p>
+          <p className="panel-description mt-1">Set download locations and concurrent connections.</p>
         </div>
         <div className="icon-plain">
           <FolderRoundedIcon />

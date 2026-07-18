@@ -37,8 +37,8 @@ export const BasicStatus = ({ compact = false }: Props) => {
       <div className="panel-header mb-0">
         <div>
           <div className="eyebrow">Connectivity</div>
-          <h2 className="panel-title mt-1">Inherited service</h2>
-          <p className="panel-description mt-1">This alpha still uses the original metadata and delivery backend.</p>
+          <h2 className="panel-title mt-1">Download service</h2>
+          <p className="panel-description mt-1">Metadata and downloads use the original nzbasic backend.</p>
         </div>
         <span className={`pill ${loading ? "pill-checking" : online ? "pill-online" : "pill-offline"}`}>
           <span className="status-dot" />{loading ? "Checking" : online ? "Online" : "Offline"}

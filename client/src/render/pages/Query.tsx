@@ -130,9 +130,9 @@ export const Query = () => {
           <section className="content-box border-t-0 pt-0">
             <div className="panel-header">
               <div>
-                <div className="eyebrow">Query workspace</div>
-                <h2 className="panel-title mt-1">Shape your search</h2>
-                <p className="panel-description mt-1">Start visually or compose nested rules when the collection needs exact logic.</p>
+                <div className="eyebrow">Filters</div>
+                <h2 className="panel-title mt-1">Beatmap filters</h2>
+                <p className="panel-description mt-1">Use simple controls or build nested AND, OR, and NOT rules.</p>
               </div>
               <div className="flex items-center gap-3">
                 <span className="pill">{ruleCount} active rule{ruleCount === 1 ? "" : "s"}</span>

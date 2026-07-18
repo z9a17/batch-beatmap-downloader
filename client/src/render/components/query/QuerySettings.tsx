@@ -68,9 +68,9 @@ export const QuerySettings = ({ limit, updateLimit, order, updateOrder }: PropTy
     <div>
       <div className="panel-header mb-0">
         <div>
-          <div className="eyebrow">Result policy</div>
+          <div className="eyebrow">Results</div>
           <h2 className="panel-title mt-1">Limit and order</h2>
-          <p className="panel-description mt-1">Cap broad searches and make the most relevant matches arrive first.</p>
+          <p className="panel-description mt-1">Optionally limit results and choose their sort order.</p>
         </div>
         <Switch
           {...switchColors}
