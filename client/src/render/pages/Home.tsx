@@ -27,7 +27,7 @@ export const Home = () => {
           <h2 className="max-w-2xl text-[36px] font-semibold leading-[1.08] tracking-[-0.055em] text-white">
             Build the beatmap library you actually want.
           </h2>
-          <p className="mt-4 max-w-2xl text-[15px] leading-7 text-[#9ca5bc]">
+          <p className="mt-4 max-w-2xl text-[15px] leading-7 text-[#b6c0ce]">
             Search by difficulty, metadata, mapper, and play style—then move thousands of sets through one focused queue.
           </p>
           <div className="mt-6 flex items-center gap-3">
@@ -43,7 +43,7 @@ export const Home = () => {
 
       <div className="metric-strip grid-cols-3">
         <div className="stat-card">
-          <LibraryMusicRoundedIcon className="mb-4 text-[#667086]" />
+          <LibraryMusicRoundedIcon className="mb-4 text-[#8d99ac]" />
           <div className="stat-value">{beatmapSetCount.toLocaleString()}</div>
           <div className="stat-label">sets detected locally</div>
         </div>

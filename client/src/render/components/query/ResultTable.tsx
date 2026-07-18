@@ -38,8 +38,8 @@ export const ResultTable = ({ result }: PropTypes) => {
     <div className="flex w-full flex-col">
       <Table headers={headers} data={beatmaps} />
 
-      <div className="flex items-center justify-between border-t border-[#222a42] px-5 py-4">
-        <span className="text-xs text-[#8791aa]">25 difficulties per page</span>
+      <div className="flex items-center justify-between border-t border-[#334055] px-5 py-4">
+        <span className="text-xs text-[#a4b0c2]">25 difficulties per page</span>
         <div className="flex items-center gap-2">
         <Button
           color="none"
@@ -49,7 +49,7 @@ export const ResultTable = ({ result }: PropTypes) => {
         >
           Prev
         </Button>
-        <span className="min-w-[74px] text-center text-xs text-[#959db5]">
+        <span className="min-w-[74px] text-center text-xs text-[#b0bac9]">
           {pageNumber} / {Math.ceil(result.beatmaps / pageSize)}
         </span>
         <Button
