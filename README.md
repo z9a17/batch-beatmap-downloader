@@ -8,7 +8,7 @@ The upstream history is preserved, including the original MIT license.
 
 ## Current release
 
-`1.4.0-alpha.2` is the current community preview. It includes:
+`1.4.0-alpha.3` is the current community preview. It includes:
 
 - a complete interface redesign with a restrained, flatter visual system;
 - a new application icon and a separate Windows application identity;
@@ -16,6 +16,7 @@ The upstream history is preserved, including the original MIT license.
 - new overview, discovery, queue, service, and release-note workspaces;
 - clearer search, result review, transfer setup, and download progress;
 - release ownership and update metadata belonging to this fork.
+- a packaged-renderer smoke test that prevents blank-window releases.
 
 The current client foundation uses Electron 43, React 19, Material UI 9,
 React Router 7, Tailwind CSS 4, TypeScript 6, and ESLint 10.

@@ -21,6 +21,7 @@ export const checkValidTempPath = async (path: string) => {
   if (platform !== "win32") return true;
 
   const songsPath = await getSongsFolder();
+  if (!path || !songsPath) return false;
 
   // check drive letters are the same
   const songsDrive = songsPath.split(":")[0];
@@ -34,10 +35,11 @@ export const getSongsFolder = async () => {
 
   if (altPathEnabled) {
     const altPath = await settings.get("altPath") as string;
-    return altPath;
+    return typeof altPath === "string" ? altPath : "";
   }
 
   const osuPath = await settings.get("path") as string;
+  if (typeof osuPath !== "string" || !osuPath) return "";
   return path.join(osuPath, "Songs")
 }
 
@@ -46,6 +48,7 @@ export const getDefaultTempPath = async () => {
   if (altPathEnabled) return "";
 
   const osuPath = await settings.get("path") as string;
+  if (typeof osuPath !== "string" || !osuPath) return "";
   const tempPath = path.join(osuPath, "bbd-temp")
 
   if (!fs.existsSync(tempPath)) {

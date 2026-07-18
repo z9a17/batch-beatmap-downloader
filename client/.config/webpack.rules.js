@@ -1,5 +1,4 @@
-module.exports = [
-  // Native node modules
+const nativeModuleRules = [
   {
     test: /\.node$/,
     use: "node-loader",
@@ -14,6 +13,9 @@ module.exports = [
       },
     },
   },
+];
+
+const commonRules = [
   {
     test: /\.tsx?$/,
     exclude: /(node_modules|\.webpack)/,
@@ -39,3 +41,8 @@ module.exports = [
     },
   },
 ];
+
+module.exports = {
+  commonRules,
+  nativeModuleRules,
+};

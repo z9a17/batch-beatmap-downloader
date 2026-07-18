@@ -39,3 +39,6 @@ jobs:
 
       - name: Package Windows application
         run: npm run package:win
+
+      - name: Smoke-test packaged renderer
+        run: npm run smoke:win
