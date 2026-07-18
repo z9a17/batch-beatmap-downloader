@@ -1,5 +1,6 @@
 appId: io.github.z9a17.bbd-community
 productName: Batch Beatmap Downloader Community
+executableName: bbd-community
 artifactName: BBDCommunity-Setup-${version}.${ext}
 
 directories:

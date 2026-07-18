@@ -9,6 +9,21 @@ export interface ChangeLogItem {
 
 export const changeLog: ChangeLogItem[] = [
   {
+    version: "1.4.0-alpha.5",
+    date: 1784332800000,
+    changes: [
+      {
+        title: "Installer",
+        changes: [
+          "Fixed Windows shortcuts targeting an executable that did not exist",
+          "Fixed Add or remove programs metadata using the wrong executable name",
+          "Added a clean-install test that launches the application through the installed NSIS layout",
+          "Added automated verification of the desktop shortcut target",
+        ],
+      },
+    ],
+  },
+  {
     version: "1.4.0-alpha.4",
     date: 1784332800000,
     changes: [

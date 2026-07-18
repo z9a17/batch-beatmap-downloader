@@ -41,6 +41,9 @@ jobs:
       - name: Smoke-test packaged renderer
         run: npm run smoke:win
 
+      - name: Install and smoke-test NSIS application
+        run: npm run smoke:installer:win
+
       - name: Verify NSIS release files
         shell: pwsh
         run: |
