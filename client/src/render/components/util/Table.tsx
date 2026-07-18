@@ -35,7 +35,7 @@ const Table: React.FC<PropTypes> = ({ data, headers, RenderRow = DefaultTableRow
             key={header.key}
             className={classNames(
               { 'pl-6': index === 0 },
-              'px-4 py-3 text-left text-[10px] font-bold uppercase tracking-[0.12em] text-[#626b84]',
+              'px-4 py-3 text-left text-xs font-bold uppercase tracking-[0.1em] text-[#8791aa]',
             )}
           >
             {header.title}
@@ -44,7 +44,7 @@ const Table: React.FC<PropTypes> = ({ data, headers, RenderRow = DefaultTableRow
       </tr>
     </thead>
     <tbody>
-      {data.length === 0 ? <tr><td colSpan={6} className="px-6 py-8 text-center text-xs text-[#626b84]">No results found</td></tr> : (
+      {data.length === 0 ? <tr><td colSpan={6} className="px-6 py-8 text-center text-[13px] text-[#8791aa]">No results found</td></tr> : (
         data.map((entry, index) => (
           <tr key={index} className={classNames(
             { 'border-b-0': index === data.length - 1 },

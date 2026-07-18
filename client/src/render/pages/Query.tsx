@@ -162,7 +162,7 @@ export const Query = () => {
               updateOrder={setOrder}
             />
             <div className="mt-5 flex items-center border-t border-[#222a42] pt-5">
-              <div className="text-xs text-[#68708a]">
+              <div className="text-[13px] text-[#8791aa]">
                 {limit ? `Returning up to ${limit.toLocaleString()} ordered results.` : "No result limit. Large catalogue queries can take longer."}
               </div>
               <Button color="blue" className="ml-auto flex items-center gap-2 px-5" onClick={exportData} disabled={loading}>
@@ -187,7 +187,7 @@ export const Query = () => {
               <div className="eyebrow">Matches</div>
               <div className="mt-1 flex items-baseline justify-between">
                 <h2 className="panel-title">Catalogue results</h2>
-                <span className="text-xs text-[#68708a]">{result.beatmaps.toLocaleString()} difficulties</span>
+                <span className="text-[13px] text-[#8791aa]">{result.beatmaps.toLocaleString()} difficulties</span>
               </div>
             </div>
             <ResultTable result={result} />

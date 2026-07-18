@@ -42,7 +42,7 @@ export const Settings = () => {
         <div className="grid grid-cols-[180px_minmax(0,1fr)] items-center gap-5 py-4">
           <div>
             <div className="text-sm font-semibold text-white">osu! installation</div>
-            <div className="mt-1 text-xs text-[#68708a]">The stable client folder containing collection.db.</div>
+            <div className="mt-1 text-[13px] leading-5 text-[#8791aa]">The stable client folder containing collection.db.</div>
           </div>
           <div className="flex flex-wrap items-center gap-3">
             <Browse path={path} update={setPath} />
@@ -55,7 +55,7 @@ export const Settings = () => {
         <div className="grid grid-cols-[180px_minmax(0,1fr)] items-center gap-5 py-4">
           <div>
             <div className="text-sm font-semibold text-white">Alternate songs folder</div>
-            <div className="mt-1 text-xs text-[#68708a]">Store downloads outside the detected osu! location.</div>
+            <div className="mt-1 text-[13px] leading-5 text-[#8791aa]">Store downloads outside the detected osu! location.</div>
           </div>
           <div className="flex flex-wrap items-center gap-3">
             <Switch {...switchColors} onChange={setAltPathEnabled} checked={altPathEnabled} />
@@ -72,7 +72,7 @@ export const Settings = () => {
               Parallel transfers
               <Tooltip title={parallelTooltip} />
             </div>
-            <div className="mt-1 text-xs text-[#68708a]">Applies the next time a job starts or resumes.</div>
+            <div className="mt-1 text-[13px] leading-5 text-[#8791aa]">Applies the next time a job starts or resumes.</div>
           </div>
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-400/10 text-cyan-300">
@@ -85,7 +85,7 @@ export const Settings = () => {
               value={maxConcurrentDownloads ?? 5}
               onChange={(value) => setMaxConcurrentDownloads(Math.max(1, Math.min(25, value)))}
             />
-            <span className="text-xs text-[#68708a]">connections</span>
+            <span className="text-[13px] text-[#8791aa]">connections</span>
           </div>
         </div>
       </div>

@@ -87,11 +87,11 @@ export const DownloadSummary = ({ status }: PropTypes) => {
             <span className={`status-dot ${finished ? "text-emerald-400" : status.paused ? "text-amber-300" : "text-violet-400"}`} />
             <span className="text-sm font-semibold text-white">{state}</span>
           </div>
-          <div className="mt-1 truncate text-[10px] text-[#626b84]">Job {status.id.slice(0, 8)}</div>
+          <div className="mt-1 truncate text-xs text-[#8791aa]">Job {status.id.slice(0, 8)}</div>
         </div>
 
         <div className="min-w-0 flex-1">
-          <div className="mb-2 flex items-center justify-between text-[11px] text-[#737d98]">
+          <div className="mb-2 flex items-center justify-between text-xs text-[#8791aa]">
             <span>{bytesToFileSize(status.totalProgress)} of {bytesToFileSize(status.totalSize)}</span>
             <span className="font-semibold text-[#a6aec2]">{progress.toFixed(0)}%</span>
           </div>
@@ -112,7 +112,7 @@ export const DownloadSummary = ({ status }: PropTypes) => {
           {details.map(([label, value], index) => (
             <div key={label} className={`px-5 py-4 ${index > 0 ? "border-l border-[#1d2438]" : ""}`}>
               <div className="text-sm font-semibold text-white">{value}</div>
-              <div className="mt-1 text-[10px] uppercase tracking-[0.1em] text-[#59627b]">{label}</div>
+              <div className="mt-1 text-xs uppercase tracking-[0.08em] text-[#77819a]">{label}</div>
             </div>
           ))}
         </div>

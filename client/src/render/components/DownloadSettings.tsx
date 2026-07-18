@@ -51,11 +51,11 @@ export const DownloadSettings = ({ result }: PropTypes) => {
       <div className="mt-5 grid grid-cols-2 gap-2">
         <div className="rounded-xl border border-[#222a42] bg-[#0b0f1b] p-3">
           <div className="text-lg font-semibold text-white">{setCount.toLocaleString()}</div>
-          <div className="mt-0.5 text-[10px] uppercase tracking-[0.1em] text-[#626b84]">sets to fetch</div>
+          <div className="mt-1 text-xs uppercase tracking-[0.08em] text-[#8791aa]">sets to fetch</div>
         </div>
         <div className="rounded-xl border border-[#222a42] bg-[#0b0f1b] p-3">
           <div className="text-lg font-semibold text-white">{fileSize}</div>
-          <div className="mt-0.5 text-[10px] uppercase tracking-[0.1em] text-[#626b84]">estimated size</div>
+          <div className="mt-1 text-xs uppercase tracking-[0.08em] text-[#8791aa]">estimated size</div>
         </div>
       </div>
 
@@ -65,8 +65,8 @@ export const DownloadSettings = ({ result }: PropTypes) => {
             <ReplayRoundedIcon fontSize="small" />
           </div>
           <div className="min-w-0 flex-1">
-            <div className="text-xs font-semibold text-white">Force every matched set</div>
-            <div className="mt-0.5 text-[10px] text-[#626b84]">Include archives already detected locally.</div>
+            <div className="text-sm font-semibold text-white">Force every matched set</div>
+            <div className="mt-1 text-[13px] leading-5 text-[#8791aa]">Include archives already detected locally.</div>
           </div>
           <Switch {...switchColors} checked={force} onChange={setForce} />
         </div>
@@ -77,8 +77,8 @@ export const DownloadSettings = ({ result }: PropTypes) => {
               <PlaylistAddRoundedIcon fontSize="small" />
             </div>
             <div className="min-w-0 flex-1">
-              <div className="text-xs font-semibold text-white">Create a collection</div>
-              <div className="mt-0.5 text-[10px] text-[#626b84]">Group downloaded difficulties in osu!stable.</div>
+              <div className="text-sm font-semibold text-white">Create a collection</div>
+              <div className="mt-1 text-[13px] leading-5 text-[#8791aa]">Group downloaded difficulties in osu!stable.</div>
             </div>
             <Switch {...switchColors} checked={collection} onChange={setCollection} />
           </div>
@@ -93,7 +93,7 @@ export const DownloadSettings = ({ result }: PropTypes) => {
         </div>
       </div>
 
-      {downloadDisabled && <div className="mt-3 text-[11px] text-rose-300">Add a collection name before starting.</div>}
+      {downloadDisabled && <div className="mt-3 text-[13px] text-rose-300">Add a collection name before starting.</div>}
 
       <Link className={`mt-5 block ${downloadDisabled ? "pointer-events-none" : ""}`} to="/downloads">
         <Button color="green" className="flex w-full items-center justify-center gap-2 py-2.5" onClick={download} disabled={downloadDisabled}>

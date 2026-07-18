@@ -8,7 +8,7 @@ export const InvalidPath = () => (
     </div>
     <div>
       <div className="font-semibold text-amber-100">Connect your osu! installation</div>
-      <div className="mt-1 text-sm text-amber-100/55">Choose a valid folder above before searching, comparing collections, or starting downloads.</div>
+      <div className="mt-1 text-sm leading-6 text-amber-100/75">Choose a valid folder below before searching, comparing collections, or starting downloads.</div>
     </div>
   </div>
 );

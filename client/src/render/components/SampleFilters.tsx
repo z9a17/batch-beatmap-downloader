@@ -52,7 +52,7 @@ export const SampleFilters = () => {
           >
             <div className="mb-5 h-1 w-10 rounded-full" style={{ backgroundColor: filter.accent, boxShadow: `0 0 18px ${filter.accent}` }} />
             <div className="font-semibold text-white">{filter.name}</div>
-            <div className="mt-1 text-xs leading-5 text-[#68708a]">{filter.detail}</div>
+            <div className="mt-1 text-[13px] leading-5 text-[#8791aa]">{filter.detail}</div>
             <ArrowForwardRoundedIcon className="absolute bottom-4 right-4 text-[#4f5871] transition group-hover:translate-x-0.5 group-hover:text-white" fontSize="small" />
           </Link>
         ))}

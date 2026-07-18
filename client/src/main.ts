@@ -1,9 +1,8 @@
 import { app, BrowserWindow, nativeTheme, shell } from "electron";
 import isDev from "electron-is-dev";
 import Store from "electron-persist-secure/lib/store";
-import { updateElectronApp } from 'update-electron-app'
-import log from 'electron-log'
-updateElectronApp({ logger: log })
+import log from "electron-log";
+import { autoUpdater } from "electron-updater";
 
 // Import all IPCs to make sure they register their respective listeners
 import "./app/ipc/main";
@@ -16,11 +15,6 @@ import { setAllDownloadStatus } from "./app/download/settings";
 // whether you're running in development or production).
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
-
-// Handle creating/removing shortcuts on Windows when installing/uninstalling.
-if (require("electron-squirrel-startup")) {
-  app.quit();
-}
 
 // Make sure to call this ONCE.
 const createStores = (): void => {
@@ -89,6 +83,19 @@ app.on("ready", () => {
   createStores();
   createWindow();
   nativeTheme.themeSource = "dark";
+
+  if (!isDev) {
+    autoUpdater.logger = log;
+    autoUpdater.allowPrerelease = true;
+    autoUpdater.setFeedURL({
+      provider: "github",
+      owner: "z9a17",
+      repo: "batch-beatmap-downloader",
+    });
+    autoUpdater.checkForUpdatesAndNotify().catch((error: unknown) => {
+      log.warn("Update check failed", error);
+    });
+  }
 });
 
 app.once("before-quit", () => {

@@ -39,7 +39,7 @@ export const ResultTable = ({ result }: PropTypes) => {
       <Table headers={headers} data={beatmaps} />
 
       <div className="flex items-center justify-between border-t border-[#222a42] px-5 py-4">
-        <span className="text-[11px] text-[#626b84]">25 difficulties per page</span>
+        <span className="text-xs text-[#8791aa]">25 difficulties per page</span>
         <div className="flex items-center gap-2">
         <Button
           color="none"

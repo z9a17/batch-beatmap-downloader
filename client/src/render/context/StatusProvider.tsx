@@ -1,5 +1,5 @@
 import React, {
-  useState, createContext, useEffect, useContext,
+  useState, createContext, useEffect, useContext, useCallback,
 } from 'react';
 import { MetricsV2 } from '../../models/metrics';
 
@@ -24,19 +24,24 @@ const StatusProvider = ({ children }: React.PropsWithChildren) => {
   const [online, setOnline] = useState(false)
   const [metrics, setMetrics] = useState<MetricsV2 | null>(null)
 
-  const collectMetrics = () => {
-    window.electron.getMetrics().then(([online, data]) => {
-      setOnline(online);
+  const collectMetrics = useCallback(async () => {
+    try {
+      const [isOnline, data] = await window.electron.getMetrics();
+      setOnline(isOnline);
       setMetrics(data);
-      setLoading(false)
-    });
-  };
+    } catch {
+      setOnline(false);
+      setMetrics(null);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
 
   useEffect(() => {
     collectMetrics();
-    // const interval = setInterval(() => collectMetrics(), 5000);
-    // return () => clearInterval(interval);
-  }, []);
+    const interval = setInterval(collectMetrics, 15_000);
+    return () => clearInterval(interval);
+  }, [collectMetrics]);
 
   return (
     <StatusContext.Provider

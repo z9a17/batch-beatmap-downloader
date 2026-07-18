@@ -14,7 +14,7 @@ export const AdvancedFilter: React.FC<PropTypes> = ({ tree, updateTree }) => {
       <div className="flex items-center justify-between border-b border-[#222a42] px-5 py-4">
         <div>
           <div className="text-sm font-semibold text-white">Logic tree</div>
-          <div className="mt-0.5 text-[11px] text-[#626b84]">Combine nested AND, OR, and NOT conditions.</div>
+          <div className="mt-1 text-[13px] leading-5 text-[#8791aa]">Combine nested AND, OR, and NOT conditions.</div>
         </div>
         <ShareFilter tree={tree} updateTree={updateTree} />
       </div>

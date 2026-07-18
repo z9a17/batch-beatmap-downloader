@@ -1,0 +1,31 @@
+appId: io.github.z9a17.bbd-community
+productName: Batch Beatmap Downloader Community
+artifactName: BBDCommunity-Setup-${version}.${ext}
+
+directories:
+  output: out/make
+  buildResources: src/render/assets
+
+win:
+  icon: src/render/assets/bbd.ico
+  target:
+    - target: nsis
+      arch:
+        - x64
+
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  allowElevation: true
+  perMachine: false
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: Batch Beatmap Downloader Community
+  uninstallDisplayName: Batch Beatmap Downloader Community
+  runAfterFinish: true
+
+publish:
+  provider: github
+  owner: z9a17
+  repo: batch-beatmap-downloader
+  releaseType: prerelease

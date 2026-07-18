@@ -1,4 +1,4 @@
-import { app, ipcMain } from "electron";
+import { app, ipcMain, shell } from "electron";
 import { loadClientId, loadDownloads } from "../download/settings";
 import {
   handleCreateDownload,
@@ -32,6 +32,18 @@ loadClientId()
 
 ipcMain.on("quit", () => app.quit());
 ipcMain.handle("get-version", () => app.getVersion())
+ipcMain.handle("open-url", async (_event, value: unknown) => {
+  if (typeof value !== "string") {
+    throw new TypeError("External URL must be a string");
+  }
+
+  const url = new URL(value);
+  if (url.protocol !== "https:") {
+    throw new Error("Only secure external links are allowed");
+  }
+
+  await shell.openExternal(url.toString());
+});
 
 ipcMain.handle("start-download", handleStartDownload)
 ipcMain.handle("get-downloads-status", handleGetDownloadsStatus)

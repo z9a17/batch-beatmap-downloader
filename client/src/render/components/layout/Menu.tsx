@@ -25,7 +25,7 @@ const pages = [
 
 export const Menu = ({ version }: PropTypes) => {
   const { pathname } = useLocation();
-  const { online } = useStatus();
+  const { loading, online } = useStatus();
 
   return (
     <aside className="app-sidebar flex h-screen flex-col">
@@ -33,12 +33,12 @@ export const Menu = ({ version }: PropTypes) => {
         <img src={appIcon} className="h-10 w-10 rounded-[10px]" alt="" />
         <div className="min-w-0">
           <div className="truncate text-[15px] font-semibold tracking-[-0.03em] text-white">Beatmap Downloader</div>
-          <div className="mt-0.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-[#747d97]">Community build</div>
+          <div className="mt-0.5 text-xs font-semibold uppercase tracking-[0.13em] text-[#8791aa]">Community build</div>
         </div>
       </div>
 
       <nav className="flex-1 space-y-1 overflow-auto px-3 py-5">
-        <div className="mb-3 px-3 text-[10px] font-bold uppercase tracking-[0.16em] text-[#545d77]">Workspace</div>
+        <div className="mb-3 px-3 text-xs font-bold uppercase tracking-[0.13em] text-[#737d98]">Workspace</div>
         {pages.map(({ link, title, description, icon }) => {
           const active = pathname === link;
           return (
@@ -57,7 +57,7 @@ export const Menu = ({ version }: PropTypes) => {
               </span>
               <span className="min-w-0">
                 <span className="block text-[13px] font-semibold">{title}</span>
-                <span className="mt-0.5 block truncate text-[10px] text-[#626b84]">{description}</span>
+                <span className="mt-0.5 block truncate text-xs text-[#8791aa]">{description}</span>
               </span>
             </Link>
           );
@@ -70,19 +70,21 @@ export const Menu = ({ version }: PropTypes) => {
           className="flex w-full items-center justify-between rounded-xl border border-[#222a42] bg-white/[0.02] px-3 py-2.5 text-xs font-semibold text-[#a6aec2] transition hover:border-[#303a5a] hover:bg-white/[0.045] hover:text-white"
         >
           <span className="flex items-center gap-2"><GitHubIcon fontSize="small" />Project on GitHub</span>
-          <span className="text-[10px] text-[#626b84]">↗</span>
+          <span className="text-xs text-[#8791aa]">↗</span>
         </button>
         <div className="flex items-center justify-between px-1">
           <span className={classNames(
             "pill px-2.5 py-1.5",
-            online
+            loading
+              ? "border-[#303a5a] bg-white/[0.035] text-[#a6aec2]"
+              : online
               ? "border-emerald-400/25 bg-emerald-400/10 text-emerald-300"
               : "border-rose-400/25 bg-rose-400/10 text-rose-300",
           )}>
             <span className="status-dot" />
-            {online ? "Service online" : "Service offline"}
+            {loading ? "Checking service" : online ? "Service online" : "Service offline"}
           </span>
-          <span className="text-[10px] font-medium text-[#545d77]">v{version}</span>
+          <span className="text-xs font-medium text-[#737d98]">v{version}</span>
         </div>
       </div>
     </aside>
