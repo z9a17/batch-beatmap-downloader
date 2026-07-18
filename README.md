@@ -8,10 +8,11 @@ The upstream history is preserved, including the original MIT license.
 
 ## Current release
 
-`1.4.0-alpha.7` is the current community preview. It includes:
+`1.4.0-alpha.8` is the current community preview. It includes:
 
 - a card-free blue interface built from open sections, dividers, metric rails, and edge-to-edge rows;
 - compact inline status labels instead of decorative capsules;
+- a softer blue-charcoal palette with brighter secondary text and clearer controls;
 - a new blue application icon and a separate Windows application identity;
 - a live service indicator that is green online and red offline;
 - a current supported Electron runtime and reproducible Windows packaging;

@@ -2,18 +2,18 @@
 
 :root {
   color-scheme: dark;
-  --canvas: #080a0e;
-  --canvas-raised: #0c0f15;
-  --sidebar: #090b10;
+  --canvas: #111720;
+  --canvas-raised: #151c27;
+  --sidebar: #0f141c;
   --panel: transparent;
   --panel-solid: transparent;
   --panel-hover: rgba(255, 255, 255, 0.022);
-  --input: #0d1118;
-  --border: #202631;
-  --border-strong: #354055;
-  --text: #f4f6ff;
-  --muted: #959db5;
-  --subtle: #8791aa;
+  --input: #18212d;
+  --border: #303c4d;
+  --border-strong: #46566d;
+  --text: #e5ebf4;
+  --muted: #b0bac9;
+  --subtle: #9aa6b8;
   --accent: #3b82f6;
   --accent-strong: #2563eb;
   --accent-soft: rgba(59, 130, 246, 0.14);
@@ -41,6 +41,10 @@ body {
   font-size: 15px;
   letter-spacing: -0.01em;
   text-rendering: optimizeLegibility;
+}
+
+.text-white {
+  color: var(--text) !important;
 }
 
 button,
@@ -226,7 +230,7 @@ input {
 }
 
 input::placeholder {
-  color: #626b84;
+  color: #8793a6;
 }
 
 input:hover:not(:disabled) {
@@ -344,7 +348,7 @@ input:disabled {
 }
 
 .pill.pill-checking {
-  color: #a6aec2;
+  color: #bbc4d2;
 }
 
 .status-dot {
@@ -384,7 +388,7 @@ input:disabled {
 }
 
 .rc-slider-rail {
-  background: #242b40;
+  background: #354155;
 }
 
 .rc-slider-track {
@@ -393,7 +397,7 @@ input:disabled {
 
 .rc-slider-handle {
   border-color: #60a5fa;
-  background: #111524;
+  background: #18212d;
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.14);
 }
 
@@ -417,12 +421,12 @@ input:disabled {
   overflow: hidden;
   border: 1px solid var(--border-strong);
   border-radius: 3px;
-  background: #111524;
+  background: #18212d;
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.4);
 }
 
 .my-react-select-container .my-react-select__option {
-  background: #111524;
+  background: #18212d;
   color: var(--muted);
 }
 
@@ -450,7 +454,7 @@ input:disabled {
 .MuiLinearProgress-root {
   height: 3px !important;
   border-radius: 0;
-  background-color: #242b40 !important;
+  background-color: #354155 !important;
 }
 
 .MuiLinearProgress-bar {
@@ -469,7 +473,7 @@ input:disabled {
 .Toastify__toast {
   border: 1px solid var(--border);
   border-radius: 3px;
-  background: #121625;
+  background: #1c2532;
   color: var(--text);
   box-shadow: 0 18px 46px rgba(0, 0, 0, 0.34);
 }
@@ -490,12 +494,12 @@ input:disabled {
 ::-webkit-scrollbar-thumb {
   border: 3px solid transparent;
   border-radius: 0;
-  background: #303750;
+  background: #465368;
   background-clip: padding-box;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #46506f;
+  background: #5d6d86;
   background-clip: padding-box;
 }
 
@@ -530,7 +534,7 @@ input:disabled {
   position: absolute;
   top: 28px;
   right: 4px;
-  color: #171d29;
+  color: #263244;
   font-family: "Cascadia Mono", "SFMono-Regular", Consolas, monospace;
   font-size: 112px;
   font-weight: 700;
@@ -592,7 +596,7 @@ input:disabled {
   align-items: center;
   gap: 13px;
   padding: 8px 14px 8px 18px;
-  color: #7f899f;
+  color: #a0aabd;
   transition: color 140ms ease, background 140ms ease;
 }
 
@@ -608,7 +612,7 @@ input:disabled {
 
 .nav-entry:hover {
   background: rgba(255, 255, 255, 0.018);
-  color: #d9deea;
+  color: #eef2f8;
 }
 
 .nav-entry-active {
@@ -624,7 +628,7 @@ input:disabled {
   width: 24px;
   align-items: center;
   justify-content: center;
-  color: #59647a;
+  color: #7d899e;
 }
 
 .nav-entry-active .nav-icon {
@@ -638,7 +642,7 @@ input:disabled {
   justify-content: space-between;
   padding: 11px 0;
   border-top: 1px solid var(--border);
-  color: #98a2b7;
+  color: #b2bccb;
   font-size: 12px;
   font-weight: 650;
   transition: color 140ms ease;

@@ -49,7 +49,7 @@ export const Downloads = () => {
             <DownloadingRoundedIcon sx={{ fontSize: 32 }} />
           </div>
           <h2 className="mt-5 text-xl font-semibold text-white">Your queue is clear</h2>
-          <p className="mt-2 max-w-md leading-6 text-[#737d98]">Run a catalogue search, review the matches, and send a batch here when it is ready.</p>
+          <p className="mt-2 max-w-md leading-6 text-[#9aa6b8]">Run a catalogue search, review the matches, and send a batch here when it is ready.</p>
           <Link to="/query" className="mt-5 rounded-[2px] bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-500">
             Discover beatmaps
           </Link>

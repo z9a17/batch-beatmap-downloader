@@ -11,7 +11,7 @@ export const Changelog = () => (
       <div>
         <div className="section-kicker">Community timeline</div>
         <h2 className="mt-1 text-lg font-semibold text-white">From maintenance mode to a new foundation</h2>
-        <p className="mt-1 text-sm text-[#8d96af]">Every shipped change, including the inherited upstream history.</p>
+        <p className="mt-1 text-sm text-[#aab5c5]">Every shipped change, including the inherited upstream history.</p>
       </div>
       <HistoryRoundedIcon className="relative z-[1] ml-auto text-blue-300" />
     </section>

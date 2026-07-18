@@ -44,9 +44,9 @@ const defaultOrder = {
 
 const switchColors = {
   onColor: "#2563eb",
-  offColor: "#242b40",
+  offColor: "#354155",
   onHandleColor: "#ffffff",
-  offHandleColor: "#68708a",
+  offHandleColor: "#8f9bad",
   uncheckedIcon: false,
   checkedIcon: false,
   height: 22,
@@ -80,7 +80,7 @@ export const QuerySettings = ({ limit, updateLimit, order, updateOrder }: PropTy
       </div>
 
       {limit && (
-        <div className="mt-5 grid grid-cols-[160px_minmax(0,1fr)_minmax(0,1fr)] gap-5 border-y border-[#202631] py-5">
+        <div className="mt-5 grid grid-cols-[160px_minmax(0,1fr)_minmax(0,1fr)] gap-5 border-y border-[#303c4d] py-5">
           <div>
             <label className="field-label mb-2 block">Maximum results</label>
             <NumericInput

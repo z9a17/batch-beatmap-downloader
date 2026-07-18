@@ -9,6 +9,28 @@ export interface ChangeLogItem {
 
 export const changeLog: ChangeLogItem[] = [
   {
+    version: "1.4.0-alpha.8",
+    date: 1784332800000,
+    changes: [
+      {
+        title: "Readability",
+        changes: [
+          "Lifted the near-black canvas to a softer blue-charcoal palette",
+          "Brightened secondary text, navigation descriptions, metadata, and disabled controls",
+          "Made dividers, input surfaces, tables, and inactive navigation easier to distinguish",
+          "Softened pure-white interface text to reduce glare against the dark background",
+        ],
+      },
+      {
+        title: "Design",
+        changes: [
+          "Preserved the flat section-based alpha7 layout without bringing cards or capsules back",
+          "Retained semantic green, red, amber, and blue states while reducing overall contrast fatigue",
+        ],
+      },
+    ],
+  },
+  {
     version: "1.4.0-alpha.7",
     date: 1784332800000,
     changes: [
