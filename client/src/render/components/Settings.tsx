@@ -11,10 +11,10 @@ import { Tooltip } from "./util/Tooltip";
 const parallelTooltip = `The number of simultaneous download requests. Higher values can improve throughput, but may saturate your connection. Pause and resume active jobs after changing this value.`;
 
 const switchColors = {
-  onColor: "#2563eb",
-  offColor: "#242b40",
+  onColor: "#ff66a3",
+  offColor: "#3a2f38",
   onHandleColor: "#ffffff",
-  offHandleColor: "#68708a",
+  offHandleColor: "#8d7f88",
   uncheckedIcon: false,
   checkedIcon: false,
   height: 22,
@@ -29,7 +29,6 @@ export const Settings = () => {
     <section className="content-box">
       <div className="panel-header">
         <div>
-          <div className="eyebrow">Library</div>
           <h2 className="panel-title mt-1">Storage and delivery</h2>
           <p className="panel-description mt-1">Choose where beatmaps land and how aggressively transfers run.</p>
         </div>
@@ -38,11 +37,11 @@ export const Settings = () => {
         </div>
       </div>
 
-      <div className="divide-y divide-[#222a42]">
+      <div className="divide-y divide-line">
         <div className="grid grid-cols-[180px_minmax(0,1fr)] items-center gap-5 py-4">
           <div>
-            <div className="text-sm font-semibold text-white">osu! installation</div>
-            <div className="mt-1 text-[13px] leading-5 text-[#8791aa]">The stable client folder containing collection.db.</div>
+            <div className="text-sm font-semibold text-ink">osu! installation</div>
+            <div className="mt-1 text-[13px] leading-5 text-faint">The stable client folder containing collection.db.</div>
           </div>
           <div className="flex flex-wrap items-center gap-3">
             <Browse path={path} update={setPath} />
@@ -54,8 +53,8 @@ export const Settings = () => {
 
         <div className="grid grid-cols-[180px_minmax(0,1fr)] items-center gap-5 py-4">
           <div>
-            <div className="text-sm font-semibold text-white">Alternate songs folder</div>
-            <div className="mt-1 text-[13px] leading-5 text-[#8791aa]">Store downloads outside the detected osu! location.</div>
+            <div className="text-sm font-semibold text-ink">Alternate songs folder</div>
+            <div className="mt-1 text-[13px] leading-5 text-faint">Store downloads outside the detected osu! location.</div>
           </div>
           <div className="flex flex-wrap items-center gap-3">
             <Switch {...switchColors} onChange={setAltPathEnabled} checked={altPathEnabled} />
@@ -68,14 +67,14 @@ export const Settings = () => {
 
         <div className="grid grid-cols-[180px_minmax(0,1fr)] items-center gap-5 py-4">
           <div>
-            <div className="flex items-center gap-1.5 text-sm font-semibold text-white">
+            <div className="flex items-center gap-1.5 text-sm font-semibold text-ink">
               Parallel transfers
               <Tooltip title={parallelTooltip} />
             </div>
-            <div className="mt-1 text-[13px] leading-5 text-[#8791aa]">Applies the next time a job starts or resumes.</div>
+            <div className="mt-1 text-[13px] leading-5 text-faint">Applies the next time a job starts or resumes.</div>
           </div>
           <div className="flex items-center gap-3">
-            <div className="icon-plain text-cyan-300">
+            <div className="icon-plain text-faint">
               <SpeedRoundedIcon fontSize="small" />
             </div>
             <NumericInput
@@ -85,7 +84,7 @@ export const Settings = () => {
               value={maxConcurrentDownloads ?? 5}
               onChange={(value) => setMaxConcurrentDownloads(Math.max(1, Math.min(25, value)))}
             />
-            <span className="text-[13px] text-[#8791aa]">connections</span>
+            <span className="text-[13px] text-faint">connections</span>
           </div>
         </div>
       </div>

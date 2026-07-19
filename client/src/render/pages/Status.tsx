@@ -30,10 +30,10 @@ export const Status = () => {
   if (loading) {
     return (
       <div className="page-stack">
-        <div className="flex min-h-[280px] items-center justify-center border-l-[3px] border-[#354055]">
+        <div className="panel flex min-h-[280px] items-center justify-center">
           <div className="text-center">
             <CircularProgress size={30} />
-            <div className="mt-4 text-sm text-[#737d98]">Checking inherited infrastructure…</div>
+            <div className="mt-4 text-sm text-faint">Checking inherited infrastructure…</div>
           </div>
         </div>
       </div>
@@ -76,17 +76,17 @@ export const Status = () => {
 
       <div className="metric-strip grid-cols-4">
         <div className="stat-card">
-          <DownloadingRoundedIcon className="mb-4 text-blue-300" />
+          <DownloadingRoundedIcon className="mb-4 text-faint" />
           <div className="stat-value">{activeDownloads.length}</div>
           <div className="stat-label">public active downloads</div>
         </div>
         <div className="stat-card">
-          <SpeedRoundedIcon className="mb-4 text-cyan-300" />
+          <SpeedRoundedIcon className="mb-4 text-faint" />
           <div className="stat-value">{bytesToFileSize(currentBandwidth)}/s</div>
           <div className="stat-label">current public throughput</div>
         </div>
         <div className="stat-card">
-          <DataObjectRoundedIcon className="mb-4 text-blue-300" />
+          <DataObjectRoundedIcon className="mb-4 text-faint" />
           <div className="stat-value">{databaseTotal.toLocaleString()}</div>
           <div className="stat-label">indexed difficulties</div>
         </div>
@@ -99,17 +99,16 @@ export const Status = () => {
 
       <div className="grid grid-cols-2 gap-4">
         <section className="content-box">
-          <div className="eyebrow">Catalogue snapshot</div>
           <h2 className="panel-title mt-1">Indexed content</h2>
           <div className="mt-5">
             {[
-              ["Ranked", metrics.Database.NumberStoredRanked, "bg-blue-400"],
+              ["Ranked", metrics.Database.NumberStoredRanked, "bg-accent"],
               ["Loved", metrics.Database.NumberStoredLoved, "bg-rose-400"],
-              ["Unranked", metrics.Database.NumberStoredUnranked, "bg-cyan-400"],
+              ["Unranked", metrics.Database.NumberStoredUnranked, "bg-amber-400"],
             ].map(([label, value, color]) => (
               <div key={label as string} className="data-row">
-                <span className="flex items-center gap-2 text-sm font-semibold text-[#a6aec2]"><span className={`h-2 w-2 rounded-full ${color}`} />{label}</span>
-                <span className="text-sm font-semibold text-white">{(value as number).toLocaleString()}</span>
+                <span className="flex items-center gap-2 text-sm font-semibold text-mute"><span className={`h-2 w-2 rounded-full ${color}`} />{label}</span>
+                <span className="text-sm font-semibold text-ink">{(value as number).toLocaleString()}</span>
               </div>
             ))}
           </div>
@@ -120,37 +119,35 @@ export const Status = () => {
         </section>
 
         <section className="content-box">
-          <div className="eyebrow">Daily delivery</div>
           <h2 className="panel-title mt-1">Network activity</h2>
-          <div className="mt-5 grid grid-cols-2 border-y border-[#202631]">
-            <div className="border-r border-[#202631] p-4 pl-0">
-              <div className="text-lg font-semibold text-white">{bytesToFileSize(metrics.Download.DailyStats.Size)}</div>
-              <div className="mt-1 text-xs uppercase tracking-[0.08em] text-[#77819a]">data delivered</div>
+          <div className="mt-5 grid grid-cols-2 border-y border-line">
+            <div className="border-r border-line p-4 pl-0">
+              <div className="text-lg font-semibold text-ink">{bytesToFileSize(metrics.Download.DailyStats.Size)}</div>
+              <div className="mt-1 text-xs uppercase tracking-[0.08em] text-faint">data delivered</div>
             </div>
             <div className="p-4">
-              <div className="text-lg font-semibold text-white">{metrics.Download.DailyStats.Completed.toLocaleString()}</div>
-              <div className="mt-1 text-xs uppercase tracking-[0.08em] text-[#77819a]">completed jobs</div>
+              <div className="text-lg font-semibold text-ink">{metrics.Download.DailyStats.Completed.toLocaleString()}</div>
+              <div className="mt-1 text-xs uppercase tracking-[0.08em] text-faint">completed jobs</div>
             </div>
-            <div className="col-span-2 border-t border-[#202631] p-4 pl-0">
-              <div className="text-lg font-semibold text-white">{bytesToFileSize(metrics.Download.DailyStats.Speed)}/s</div>
-              <div className="mt-1 text-xs uppercase tracking-[0.08em] text-[#77819a]">average completed speed</div>
+            <div className="col-span-2 border-t border-line p-4 pl-0">
+              <div className="text-lg font-semibold text-ink">{bytesToFileSize(metrics.Download.DailyStats.Speed)}/s</div>
+              <div className="mt-1 text-xs uppercase tracking-[0.08em] text-faint">average completed speed</div>
             </div>
           </div>
         </section>
       </div>
 
       <section className="content-box no-pad">
-        <div className="border-b border-[#222a42] px-6 py-5">
-          <div className="eyebrow">Public load</div>
+        <div className="border-b border-line px-6 py-5">
           <div className="mt-1 flex items-baseline justify-between">
             <h2 className="panel-title">Current downloads</h2>
-            <span className="text-[13px] text-[#8791aa]">All users of the inherited service</span>
+            <span className="text-[13px] text-faint">All users of the inherited service</span>
           </div>
         </div>
         {activeDownloads.length ? (
           <Table data={activeDownloads} headers={headers} RenderRow={StatusTableRow} />
         ) : (
-          <div className="px-6 py-10 text-center text-[13px] text-[#8791aa]">No public downloads are active right now.</div>
+          <div className="px-6 py-10 text-center text-[13px] text-faint">No public downloads are active right now.</div>
         )}
       </section>
     </div>

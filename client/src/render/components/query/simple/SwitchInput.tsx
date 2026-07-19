@@ -38,7 +38,7 @@ const SwitchButton = ({ text, onChange, target, value }: {
       color="none"
       className={classNames(
         "segmented-item min-h-0 px-3 py-1.5",
-        { "text-[#737d98] hover:text-white": value === undefined || value !== target },
+        { "text-faint hover:text-ink": value === undefined || value !== target },
         { "segmented-item-active": value === target },
       )}>
       {text}

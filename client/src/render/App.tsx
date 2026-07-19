@@ -11,29 +11,24 @@ import { Query } from "./pages/Query";
 import { Status } from "./pages/Status";
 import "./index.css";
 
-const pageDetails: Record<string, { eyebrow: string; title: string; description: string }> = {
+const pageDetails: Record<string, { title: string; description: string }> = {
   "/": {
-    eyebrow: "Command center",
     title: "Overview",
     description: "Configure your library and jump into a curated beatmap search.",
   },
   "/query": {
-    eyebrow: "Library builder",
     title: "Discover",
     description: "Shape a precise collection from the indexed beatmap catalogue.",
   },
   "/downloads": {
-    eyebrow: "Transfer queue",
     title: "Downloads",
     description: "Track active jobs, throughput, failures, and completed sets.",
   },
   "/status": {
-    eyebrow: "Infrastructure",
     title: "Service",
     description: "Inspect the inherited API, catalogue, and live delivery health.",
   },
   "/changelog": {
-    eyebrow: "What changed",
     title: "Release notes",
     description: "A running history of improvements to Batch Beatmap Downloader.",
   },
@@ -41,7 +36,7 @@ const pageDetails: Record<string, { eyebrow: string; title: string; description:
 
 const ApplicationFrame = () => {
   const { pathname } = useLocation();
-  const [version, setVersion] = useState("1.4.0-alpha.7");
+  const [version, setVersion] = useState("1.4.0-alpha.9");
   const currentPage = useMemo(() => pageDetails[pathname] ?? pageDetails["/"], [pathname]);
 
   useEffect(() => {
@@ -56,17 +51,11 @@ const ApplicationFrame = () => {
       <Menu version={version} />
       <main className="app-workspace">
         <header className="app-titlebar">
-          <div>
-            <div className="eyebrow">{currentPage.eyebrow}</div>
-            <div className="mt-1 flex items-baseline gap-3">
-              <h1 className="text-[22px] font-semibold tracking-[-0.035em] text-white">{currentPage.title}</h1>
-              <span className="hidden text-xs text-[#747d97] xl:inline">{currentPage.description}</span>
-            </div>
+          <div className="flex min-w-0 items-baseline gap-3">
+            <h1 className="text-[19px] font-semibold tracking-[-0.02em] text-ink">{currentPage.title}</h1>
+            <span className="hidden truncate text-[13px] text-faint xl:inline">{currentPage.description}</span>
           </div>
-          <div className="flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.12em] text-[#6f7890]">
-            <span className="h-px w-8 bg-blue-500" />
-            Community alpha
-          </div>
+          <span className="chip">Community alpha</span>
         </header>
         <div className="app-content">
           <Routes>

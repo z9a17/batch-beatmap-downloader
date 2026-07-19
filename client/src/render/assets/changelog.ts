@@ -9,6 +9,27 @@ export interface ChangeLogItem {
 
 export const changeLog: ChangeLogItem[] = [
   {
+    version: "1.4.0-alpha.9",
+    date: 1784505600000,
+    changes: [
+      {
+        title: "Interface",
+        changes: [
+          "Introduced the hitcircle visual system: warm dark surfaces, one osu! pink accent, and rounded panels",
+          "Removed decorative eyebrows, kickers, marker dashes, and oversized background numerals",
+          "Rebuilt navigation as rounded entries with a soft pink active state",
+          "Restyled buttons, inputs, sliders, dropdowns, switches, tables, progress, and toasts around one radius and one accent",
+        ],
+      },
+      {
+        title: "Identity",
+        changes: [
+          "New hitcircle application icon with a download-arrow center",
+        ],
+      },
+    ],
+  },
+  {
     version: "1.4.0-alpha.7",
     date: 1784332800000,
     changes: [

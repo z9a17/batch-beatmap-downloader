@@ -26,7 +26,6 @@ export const FindMissingMaps = () => {
     <section className="content-box">
       <div className="panel-header mb-0">
         <div>
-          <div className="eyebrow">Collection repair</div>
           <h2 className="panel-title mt-1">Find missing beatmaps</h2>
           <p className="panel-description mt-1">Compare collection.db with your local Songs folder and recover indexed gaps.</p>
         </div>

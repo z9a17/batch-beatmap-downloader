@@ -29,16 +29,15 @@ export const Menu = ({ version }: PropTypes) => {
 
   return (
     <aside className="app-sidebar flex h-screen flex-col">
-      <div className="flex h-[68px] items-center gap-3 border-b border-[#202631] px-[18px]">
-        <img src={appIcon} className="h-8 w-8" alt="" />
+      <div className="flex h-[60px] items-center gap-3 border-b border-line px-4">
+        <img src={appIcon} className="h-9 w-9 rounded-[9px]" alt="" />
         <div className="min-w-0">
-          <div className="truncate text-[14px] font-semibold tracking-[-0.025em] text-white">Beatmap Downloader</div>
-          <div className="mt-0.5 text-[10px] font-bold uppercase tracking-[0.16em] text-[#687287]">Community / Windows</div>
+          <div className="truncate text-[13.5px] font-semibold tracking-[-0.01em] text-ink">Beatmap Downloader</div>
+          <div className="mt-px text-[11px] text-faint">Community edition</div>
         </div>
       </div>
 
-      <nav className="flex-1 overflow-auto px-3 py-6">
-        <div className="mb-3 px-[18px] text-[10px] font-bold uppercase tracking-[0.16em] text-[#586276]">Workspace</div>
+      <nav className="flex flex-1 flex-col gap-0.5 overflow-auto px-2.5 py-3">
         {pages.map(({ link, title, description, icon }) => {
           const active = pathname === link;
           return (
@@ -50,22 +49,22 @@ export const Menu = ({ version }: PropTypes) => {
               <span className="nav-icon">{icon}</span>
               <span className="min-w-0">
                 <span className="block text-[13px] font-semibold">{title}</span>
-                <span className="mt-0.5 block truncate text-[11px] text-[#667086]">{description}</span>
+                <span className={classNames("mt-px block truncate text-[11px]", active ? "text-accent/80" : "text-dim")}>{description}</span>
               </span>
             </Link>
           );
         })}
       </nav>
 
-      <div className="border-t border-[#202631] px-[18px] py-4">
+      <div className="border-t border-line px-4 py-3.5">
         <button
           onClick={() => window.electron.openUrl("https://github.com/z9a17/batch-beatmap-downloader")}
           className="link-row border-t-0 pt-0"
         >
-          <span className="flex items-center gap-2"><GitHubIcon fontSize="small" />Project on GitHub</span>
-          <span className="text-xs text-[#8791aa]">↗</span>
+          <span className="flex items-center gap-2"><GitHubIcon sx={{ fontSize: 16 }} />Project on GitHub</span>
+          <span className="text-xs text-dim">↗</span>
         </button>
-        <div className="flex items-center justify-between border-t border-[#202631] pt-3">
+        <div className="flex items-center justify-between border-t border-line pt-3">
           <span className={classNames(
             "pill",
             loading
@@ -75,9 +74,9 @@ export const Menu = ({ version }: PropTypes) => {
               : "pill-offline",
           )}>
             <span className="status-dot" />
-            {loading ? "Checking service" : online ? "Service online" : "Service offline"}
+            {loading ? "Checking" : online ? "Online" : "Offline"}
           </span>
-          <span className="font-mono text-[10px] text-[#596276]">v{version}</span>
+          <span className="font-mono text-[10px] text-dim">v{version}</span>
         </div>
       </div>
     </aside>

@@ -7,10 +7,10 @@ import Button from "./util/Button";
 import { Tooltip } from "./util/Tooltip";
 
 const switchColors = {
-  onColor: "#2563eb",
-  offColor: "#242b40",
+  onColor: "#ff66a3",
+  offColor: "#3a2f38",
   onHandleColor: "#ffffff",
-  offHandleColor: "#68708a",
+  offHandleColor: "#8d7f88",
   uncheckedIcon: false,
   checkedIcon: false,
   height: 22,
@@ -58,7 +58,6 @@ export const Temporary = () => {
     <section className="content-box">
       <div className="panel-header">
         <div>
-          <div className="eyebrow">Staging</div>
           <h2 className="panel-title mt-1">Quiet import</h2>
           <p className="panel-description mt-1">
             Stage incoming archives away from Songs, then move them together to avoid interrupting song selection.
@@ -66,17 +65,17 @@ export const Temporary = () => {
         </div>
         <div className="flex items-center gap-3">
           <span className="pill">{tempCount} waiting</span>
-          <div className="icon-plain text-cyan-300">
+          <div className="icon-plain text-faint">
             <AutoAwesomeMotionRoundedIcon />
           </div>
         </div>
       </div>
 
-      <div className="divide-y divide-[#222a42]">
+      <div className="divide-y divide-line">
         <div className="grid grid-cols-[180px_minmax(0,1fr)] items-center gap-5 py-4">
           <div>
-            <div className="text-sm font-semibold text-white">Use staging folder</div>
-            <div className="mt-1 text-[13px] leading-5 text-[#8791aa]">Recommended for large queues.</div>
+            <div className="text-sm font-semibold text-ink">Use staging folder</div>
+            <div className="mt-1 text-[13px] leading-5 text-faint">Recommended for large queues.</div>
           </div>
           <Switch {...switchColors} checked={temp} onChange={handleToggle} />
         </div>
@@ -85,8 +84,8 @@ export const Temporary = () => {
           <>
             <div className="grid grid-cols-[180px_minmax(0,1fr)] items-center gap-5 py-4">
               <div>
-                <div className="text-sm font-semibold text-white">Staging location</div>
-                <div className="mt-1 text-[13px] leading-5 text-[#8791aa]">Must share a drive with your Songs folder.</div>
+                <div className="text-sm font-semibold text-ink">Staging location</div>
+                <div className="mt-1 text-[13px] leading-5 text-faint">Must share a drive with your Songs folder.</div>
               </div>
               <div className="flex min-w-0 items-center gap-3">
                 <Browse path={tempPath} update={handleSetTempPath} />
@@ -97,11 +96,11 @@ export const Temporary = () => {
 
             <div className="grid grid-cols-[180px_minmax(0,1fr)] items-center gap-5 py-4">
               <div>
-                <div className="flex items-center gap-1.5 text-sm font-semibold text-white">
+                <div className="flex items-center gap-1.5 text-sm font-semibold text-ink">
                   Auto transfer
                   <Tooltip title="Move completed archives into the Songs folder automatically when a queue finishes." />
                 </div>
-                <div className="mt-1 text-[13px] leading-5 text-[#8791aa]">Finish without another manual step.</div>
+                <div className="mt-1 text-[13px] leading-5 text-faint">Finish without another manual step.</div>
               </div>
               <Switch {...switchColors} checked={tempAuto} onChange={handleSetTempAuto} />
             </div>

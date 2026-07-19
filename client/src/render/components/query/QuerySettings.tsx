@@ -43,10 +43,10 @@ const defaultOrder = {
 }
 
 const switchColors = {
-  onColor: "#2563eb",
-  offColor: "#242b40",
+  onColor: "#ff66a3",
+  offColor: "#3a2f38",
   onHandleColor: "#ffffff",
-  offHandleColor: "#68708a",
+  offHandleColor: "#8d7f88",
   uncheckedIcon: false,
   checkedIcon: false,
   height: 22,
@@ -68,7 +68,6 @@ export const QuerySettings = ({ limit, updateLimit, order, updateOrder }: PropTy
     <div>
       <div className="panel-header mb-0">
         <div>
-          <div className="eyebrow">Result policy</div>
           <h2 className="panel-title mt-1">Limit and order</h2>
           <p className="panel-description mt-1">Cap broad searches and make the most relevant matches arrive first.</p>
         </div>
@@ -80,7 +79,7 @@ export const QuerySettings = ({ limit, updateLimit, order, updateOrder }: PropTy
       </div>
 
       {limit && (
-        <div className="mt-5 grid grid-cols-[160px_minmax(0,1fr)_minmax(0,1fr)] gap-5 border-y border-[#202631] py-5">
+        <div className="mt-5 grid grid-cols-[160px_minmax(0,1fr)_minmax(0,1fr)] gap-5 border-y border-line py-5">
           <div>
             <label className="field-label mb-2 block">Maximum results</label>
             <NumericInput

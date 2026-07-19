@@ -89,7 +89,7 @@ export const QueryGroup = ({ group, id, updateParent }: PropTypes) => {
   };
 
   return (
-    <div className="flex w-full border-l-2 border-blue-500 bg-white/[0.012]">
+    <div className="flex w-full border-l-2 border-accent bg-white/[0.012]">
       <div className="w-full py-4 pl-4">
         <div className="flex w-full flex-col">
           {group.children.map((child, index) => (
@@ -106,7 +106,7 @@ export const QueryGroup = ({ group, id, updateParent }: PropTypes) => {
                   />
                   <RemoveCircleIcon
                     onClick={() => removeChild(child.id)}
-                    className="-ml-4 -mt-3 cursor-pointer bg-[#0d111e] text-rose-400 transition hover:text-rose-300"
+                    className="-ml-4 -mt-3 cursor-pointer bg-[#120f12] text-rose-400 transition hover:text-rose-300"
                     fontSize="large"
                   />
                 </div>
@@ -120,14 +120,14 @@ export const QueryGroup = ({ group, id, updateParent }: PropTypes) => {
                   {(id != "root" || index != 0) && (
                     <CancelOutlinedIcon
                       onClick={() => removeChild(child.id)}
-                      className="cursor-pointer text-[#59627b] transition hover:text-rose-300"
+                      className="cursor-pointer text-dim transition hover:text-rose-300"
                     />
                   )}
                 </div>
               )}
             </div>
           ))}
-          <div className="mt-4 flex items-center gap-2 border-t border-[#1d2438] pt-4">
+          <div className="mt-4 flex items-center gap-2 border-t border-line pt-4">
             <button
               onClick={() => addChild(cloneDeep(getLastRule()))}
               className="button-secondary min-h-[36px] px-3 text-xs font-semibold"

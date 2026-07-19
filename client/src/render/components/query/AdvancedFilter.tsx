@@ -10,11 +10,11 @@ interface PropTypes {
 
 export const AdvancedFilter: React.FC<PropTypes> = ({ tree, updateTree }) => {
   return (
-    <div className="border-y border-[#202631]">
-      <div className="flex items-center justify-between border-b border-[#202631] py-4">
+    <div className="border-y border-line">
+      <div className="flex items-center justify-between border-b border-line py-4">
         <div>
-          <div className="text-sm font-semibold text-white">Logic tree</div>
-          <div className="mt-1 text-[13px] leading-5 text-[#8791aa]">Combine nested AND, OR, and NOT conditions.</div>
+          <div className="text-sm font-semibold text-ink">Logic tree</div>
+          <div className="mt-1 text-[13px] leading-5 text-faint">Combine nested AND, OR, and NOT conditions.</div>
         </div>
         <ShareFilter tree={tree} updateTree={updateTree} />
       </div>

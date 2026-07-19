@@ -17,7 +17,7 @@ const DefaultTableRow: React.FC<RowProps> = ({ entry, headers }) => (
         key={header.key}
         className={classNames(
           { 'pl-6': index === 0 },
-          'h-12 px-4 py-2 text-xs whitespace-pre-wrap text-[#a6aec2]',
+          'h-12 px-4 py-2 text-xs whitespace-pre-wrap text-mute',
         )}
       >
         {(entry as Record<string, React.ReactNode>)[header.key]}
@@ -27,15 +27,15 @@ const DefaultTableRow: React.FC<RowProps> = ({ entry, headers }) => (
 );
 
 const Table: React.FC<PropTypes> = ({ data, headers, RenderRow = DefaultTableRow, className, onRowAction }) => (
-  <table className={classNames(className, 'w-full text-[#a6aec2]')}>
-    <thead className="border-b border-[#222a42] bg-[#0b0f1b]">
+  <table className={classNames(className, 'w-full text-mute')}>
+    <thead className="border-b border-line bg-sink">
       <tr>
         {headers.map((header, index) => (
           <th
             key={header.key}
             className={classNames(
               { 'pl-6': index === 0 },
-              'px-4 py-3 text-left text-xs font-bold uppercase tracking-[0.1em] text-[#8791aa]',
+              'px-4 py-3 text-left text-[11px] font-semibold uppercase tracking-[0.06em] text-faint',
             )}
           >
             {header.title}
@@ -44,11 +44,11 @@ const Table: React.FC<PropTypes> = ({ data, headers, RenderRow = DefaultTableRow
       </tr>
     </thead>
     <tbody>
-      {data.length === 0 ? <tr><td colSpan={6} className="px-6 py-8 text-center text-[13px] text-[#8791aa]">No results found</td></tr> : (
+      {data.length === 0 ? <tr><td colSpan={6} className="px-6 py-8 text-center text-[13px] text-faint">No results found</td></tr> : (
         data.map((entry, index) => (
           <tr key={index} className={classNames(
             { 'border-b-0': index === data.length - 1 },
-            'border-b border-[#1d2438] transition hover:bg-white/[0.025]'
+            'border-b border-line transition hover:bg-white/[0.02]'
           )}>
             {<RenderRow entry={entry} headers={headers} onRowAction={onRowAction} />}
           </tr>
