@@ -9,6 +9,28 @@ export interface ChangeLogItem {
 
 export const changeLog: ChangeLogItem[] = [
   {
+    version: "1.4.0-alpha.11",
+    date: 1784505600000,
+    changes: [
+      {
+        title: "Interface",
+        changes: [
+          "Removed the small uppercase eyebrow labels above panel titles",
+          "Simplified the titlebar, sidebar, and empty states",
+          "Unified stray gray text colors into one ink, mute, faint, and dim scale",
+        ],
+      },
+      {
+        title: "Design",
+        changes: [
+          "Moved every color into one theme token set shared by components and utilities",
+          "Gave inputs, buttons, dropdowns, and dialogs one corner radius and focus ring",
+          "Rounded progress bars and status dots to match the controls",
+        ],
+      },
+    ],
+  },
+  {
     version: "1.4.0-alpha.10",
     date: 1784332800000,
     changes: [

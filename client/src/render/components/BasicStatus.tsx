@@ -20,11 +20,11 @@ export const BasicStatus = ({ compact = false }: Props) => {
         className="stat-card panel-interactive block"
       >
         {loading ? (
-          <CircularProgress size={24} />
+          <CircularProgress size={20} />
         ) : online ? (
-          <CloudDoneRoundedIcon className="mb-4 text-emerald-300" />
+          <CloudDoneRoundedIcon className="mb-3 text-faint" sx={{ fontSize: 20 }} />
         ) : (
-          <CloudOffRoundedIcon className="mb-4 text-rose-300" />
+          <CloudOffRoundedIcon className="mb-3 text-faint" sx={{ fontSize: 20 }} />
         )}
         <div className="stat-value">{loading ? "Checking" : online ? "Online" : "Offline"}</div>
         <div className="stat-label">{online ? `${active} active public transfer${active === 1 ? "" : "s"}` : "inherited backend unavailable"}</div>
@@ -36,8 +36,7 @@ export const BasicStatus = ({ compact = false }: Props) => {
     <section className="content-box">
       <div className="panel-header mb-0">
         <div>
-          <div className="eyebrow">Connectivity</div>
-          <h2 className="panel-title mt-1">Download service</h2>
+          <h2 className="panel-title">Download service</h2>
           <p className="panel-description mt-1">Metadata and downloads use the original nzbasic backend.</p>
         </div>
         <span className={`pill ${loading ? "pill-checking" : online ? "pill-online" : "pill-offline"}`}>

@@ -21,18 +21,18 @@ export const Home = () => {
       {!validPath && <InvalidPath />}
 
       <section className="hero-block">
-        <div className="relative z-[1] max-w-3xl">
-          <h2 className="max-w-2xl text-[36px] font-semibold leading-[1.08] tracking-[-0.055em] text-white">
+        <div className="max-w-2xl">
+          <h2 className="max-w-xl text-[28px] font-semibold leading-[1.15] tracking-[-0.025em] text-ink">
             Search and download osu! beatmaps in bulk.
           </h2>
-          <p className="mt-4 max-w-2xl text-[15px] leading-7 text-[#b6c0ce]">
+          <p className="mt-3 max-w-xl text-[14px] leading-6 text-mute">
             Configure your folders below, then search the indexed catalogue by difficulty, metadata, mapper, or play style.
           </p>
-          <div className="mt-6 flex items-center gap-3">
-            <Link to="/query" className="flex min-h-[42px] items-center gap-2 rounded-[2px] bg-blue-600 px-5 text-sm font-semibold text-white transition hover:bg-blue-500">
-              Search beatmaps <ArrowForwardRoundedIcon fontSize="small" />
+          <div className="mt-6 flex items-center gap-2.5">
+            <Link to="/query" className="button-primary flex min-h-[38px] items-center gap-2 px-4 text-[13px]">
+              Search beatmaps <ArrowForwardRoundedIcon sx={{ fontSize: 17 }} />
             </Link>
-            <Link to="/downloads" className="button-secondary flex min-h-[42px] items-center rounded-[2px] px-5 text-sm font-semibold">
+            <Link to="/downloads" className="button-secondary flex min-h-[38px] items-center px-4 text-[13px]">
               Open queue
             </Link>
           </div>
@@ -41,12 +41,12 @@ export const Home = () => {
 
       <div className="metric-strip grid-cols-3">
         <div className="stat-card">
-          <LibraryMusicRoundedIcon className="mb-4 text-[#8d99ac]" />
+          <LibraryMusicRoundedIcon className="mb-3 text-faint" sx={{ fontSize: 20 }} />
           <div className="stat-value">{beatmapSetCount.toLocaleString()}</div>
           <div className="stat-label">sets detected locally</div>
         </div>
         <div className="stat-card">
-          <TuneRoundedIcon className="mb-4 text-blue-300" />
+          <TuneRoundedIcon className="mb-3 text-faint" sx={{ fontSize: 20 }} />
           <div className="stat-value">{maxConcurrentDownloads ?? 5}</div>
           <div className="stat-label">parallel transfer slots</div>
         </div>

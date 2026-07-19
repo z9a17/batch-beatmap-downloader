@@ -7,6 +7,6 @@ interface TooltipProps {
 
 export const Tooltip = ({ title }: TooltipProps) => (
   <MUITooltip title={title}>
-    <QuestionMark className="bg-sky-500 rounded-full p-1 ml-2" />
+    <QuestionMark className="ml-1.5 rounded-full bg-accent/15 p-0.5 text-accent-strong" sx={{ fontSize: 15 }} />
   </MUITooltip>
 );

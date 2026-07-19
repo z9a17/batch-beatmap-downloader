@@ -101,11 +101,10 @@ export const Query = () => {
   return (
     <div className="page-stack">
       {showCompatibilityModal && document.getElementById("modal") && createPortal(
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#090d13]/85 p-8">
-          <div className="w-full max-w-lg rounded-2xl border border-[#46566d] bg-[#18212d] p-7 shadow-2xl shadow-black/50">
-            <div className="eyebrow">Mode compatibility</div>
-            <h3 className="mt-2 text-xl font-semibold text-white">Flatten this advanced query?</h3>
-            <p className="mt-3 leading-6 text-[#b0bac9]">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 p-8">
+          <div className="w-full max-w-lg rounded-xl border border-line bg-overlay p-7 shadow-2xl shadow-black/50">
+            <h3 className="text-lg font-semibold text-ink">Flatten this advanced query?</h3>
+            <p className="mt-3 text-[13px] leading-6 text-mute">
               Simple mode cannot preserve nested groups, OR connectors, or NOT rules. Converting keeps compatible filters and flattens the rest.
             </p>
             <div className="mt-6 flex justify-end gap-2">
@@ -130,8 +129,7 @@ export const Query = () => {
           <section className="content-box border-t-0 pt-0">
             <div className="panel-header">
               <div>
-                <div className="eyebrow">Filters</div>
-                <h2 className="panel-title mt-1">Beatmap filters</h2>
+                <h2 className="panel-title">Beatmap filters</h2>
                 <p className="panel-description mt-1">Use simple controls or build nested AND, OR, and NOT rules.</p>
               </div>
               <div className="flex items-center gap-3">
@@ -161,8 +159,8 @@ export const Query = () => {
               order={order}
               updateOrder={setOrder}
             />
-            <div className="mt-5 flex items-center border-t border-[#334055] pt-5">
-              <div className="text-[13px] text-[#a4b0c2]">
+            <div className="mt-5 flex items-center border-t border-line pt-5">
+              <div className="text-[13px] text-mute">
                 {limit ? `Returning up to ${limit.toLocaleString()} ordered results.` : "No result limit. Large catalogue queries can take longer."}
               </div>
               <Button color="blue" className="ml-auto flex items-center gap-2 px-5" onClick={exportData} disabled={loading}>
@@ -175,19 +173,18 @@ export const Query = () => {
       )}
 
       {result && result.beatmaps === 0 && (
-        <div className="flat-empty min-h-[180px] text-[#8f9bad]">
+        <div className="flat-empty min-h-[180px] text-faint">
           No beatmaps matched this query. Loosen a filter and try again.
         </div>
       )}
 
       {result && result.beatmaps > 0 && (
-        <div className="grid grid-cols-[minmax(0,1fr)_340px] items-start gap-8 border-t border-[#303c4d] pt-7">
+        <div className="grid grid-cols-[minmax(0,1fr)_340px] items-start gap-8 border-t border-line pt-7">
           <section className="content-box no-pad">
-            <div className="border-b border-[#334055] px-6 py-5">
-              <div className="eyebrow">Matches</div>
-              <div className="mt-1 flex items-baseline justify-between">
+            <div className="border-b border-line px-6 py-5">
+              <div className="flex items-baseline justify-between">
                 <h2 className="panel-title">Catalogue results</h2>
-                <span className="text-[13px] text-[#a4b0c2]">{result.beatmaps.toLocaleString()} difficulties</span>
+                <span className="text-[13px] text-mute">{result.beatmaps.toLocaleString()} difficulties</span>
               </div>
             </div>
             <ResultTable result={result} />

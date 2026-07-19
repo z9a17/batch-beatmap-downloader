@@ -43,10 +43,10 @@ const defaultOrder = {
 }
 
 const switchColors = {
-  onColor: "#2563eb",
-  offColor: "#354155",
+  onColor: "#3b82f6",
+  offColor: "#262d3d",
   onHandleColor: "#ffffff",
-  offHandleColor: "#8f9bad",
+  offHandleColor: "#8a93a6",
   uncheckedIcon: false,
   checkedIcon: false,
   height: 22,
@@ -68,8 +68,7 @@ export const QuerySettings = ({ limit, updateLimit, order, updateOrder }: PropTy
     <div>
       <div className="panel-header mb-0">
         <div>
-          <div className="eyebrow">Results</div>
-          <h2 className="panel-title mt-1">Limit and order</h2>
+          <h2 className="panel-title">Limit and order</h2>
           <p className="panel-description mt-1">Optionally limit results and choose their sort order.</p>
         </div>
         <Switch
@@ -80,7 +79,7 @@ export const QuerySettings = ({ limit, updateLimit, order, updateOrder }: PropTy
       </div>
 
       {limit && (
-        <div className="mt-5 grid grid-cols-[160px_minmax(0,1fr)_minmax(0,1fr)] gap-5 border-y border-[#303c4d] py-5">
+        <div className="mt-5 grid grid-cols-[160px_minmax(0,1fr)_minmax(0,1fr)] gap-5 border-y border-line py-5">
           <div>
             <label className="field-label mb-2 block">Maximum results</label>
             <NumericInput

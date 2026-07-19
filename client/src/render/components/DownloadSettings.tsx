@@ -15,10 +15,10 @@ interface PropTypes {
 }
 
 const switchColors = {
-  onColor: "#2563eb",
-  offColor: "#354155",
+  onColor: "#3b82f6",
+  offColor: "#262d3d",
   onHandleColor: "#ffffff",
-  offHandleColor: "#8f9bad",
+  offHandleColor: "#8a93a6",
   uncheckedIcon: false,
   checkedIcon: false,
   height: 22,
@@ -44,41 +44,40 @@ export const DownloadSettings = ({ result }: PropTypes) => {
 
   return (
     <div>
-      <div className="eyebrow">Queue setup</div>
-      <h2 className="panel-title mt-1">Download selection</h2>
-      <p className="panel-description mt-1">Review the selected sets before starting the download.</p>
+      <h2 className="panel-title">Download selection</h2>
+      <p className="panel-description mt-1">Review this batch before handing it to the transfer queue.</p>
 
-      <div className="mt-5 grid grid-cols-2 border-y border-[#303c4d]">
+      <div className="mt-5 grid grid-cols-2 border-y border-line">
         <div className="py-4 pr-4">
-          <div className="text-lg font-semibold text-white">{setCount.toLocaleString()}</div>
-          <div className="mt-1 text-xs uppercase tracking-[0.08em] text-[#a4b0c2]">sets to fetch</div>
+          <div className="text-lg font-semibold text-ink">{setCount.toLocaleString()}</div>
+          <div className="mt-1 text-xs uppercase tracking-[0.08em] text-mute">sets to fetch</div>
         </div>
-        <div className="border-l border-[#303c4d] py-4 pl-4">
-          <div className="text-lg font-semibold text-white">{fileSize}</div>
-          <div className="mt-1 text-xs uppercase tracking-[0.08em] text-[#a4b0c2]">estimated size</div>
+        <div className="border-l border-line py-4 pl-4">
+          <div className="text-lg font-semibold text-ink">{fileSize}</div>
+          <div className="mt-1 text-xs uppercase tracking-[0.08em] text-mute">estimated size</div>
         </div>
       </div>
 
-      <div className="mt-5 divide-y divide-[#334055] border-y border-[#334055]">
+      <div className="mt-5 divide-y divide-line border-y border-line">
         <div className="flex items-center gap-3 py-4">
           <div className="icon-plain">
             <ReplayRoundedIcon fontSize="small" />
           </div>
           <div className="min-w-0 flex-1">
-            <div className="text-sm font-semibold text-white">Force every matched set</div>
-            <div className="mt-1 text-[13px] leading-5 text-[#a4b0c2]">Include archives already detected locally.</div>
+            <div className="text-sm font-semibold text-ink">Force every matched set</div>
+            <div className="mt-1 text-[13px] leading-5 text-mute">Include archives already detected locally.</div>
           </div>
           <Switch {...switchColors} checked={force} onChange={setForce} />
         </div>
 
         <div className="py-4">
           <div className="flex items-center gap-3">
-            <div className="icon-plain text-cyan-300">
+            <div className="icon-plain text-faint">
               <PlaylistAddRoundedIcon fontSize="small" />
             </div>
             <div className="min-w-0 flex-1">
-              <div className="text-sm font-semibold text-white">Create a collection</div>
-              <div className="mt-1 text-[13px] leading-5 text-[#a4b0c2]">Group downloaded difficulties in osu!stable.</div>
+              <div className="text-sm font-semibold text-ink">Create a collection</div>
+              <div className="mt-1 text-[13px] leading-5 text-mute">Group downloaded difficulties in osu!stable.</div>
             </div>
             <Switch {...switchColors} checked={collection} onChange={setCollection} />
           </div>

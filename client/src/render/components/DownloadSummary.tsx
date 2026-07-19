@@ -60,10 +60,10 @@ export const DownloadSummary = ({ status }: PropTypes) => {
   ];
 
   return (
-    <article className="border-t border-[#303c4d] last:border-b">
+    <article className="border-t border-line last:border-b">
       <div className="flex items-center gap-4 p-5">
         <button
-          className="button-danger flex h-9 w-9 items-center justify-center rounded-[2px]"
+          className="button-danger flex h-9 w-9 items-center justify-center rounded-md"
           onClick={remove}
           disabled={loading}
           aria-label="Delete download"
@@ -73,7 +73,7 @@ export const DownloadSummary = ({ status }: PropTypes) => {
 
         {!finished && (
           <button
-            className="button-secondary flex h-9 w-9 items-center justify-center rounded-[2px]"
+            className="button-secondary flex h-9 w-9 items-center justify-center rounded-md"
             disabled={loading}
             onClick={togglePause}
             aria-label={status.paused ? "Resume download" : "Pause download"}
@@ -84,22 +84,22 @@ export const DownloadSummary = ({ status }: PropTypes) => {
 
         <div className="min-w-[170px]">
           <div className="flex items-center gap-2">
-            <span className={`status-dot ${finished ? "text-emerald-400" : status.paused ? "text-amber-300" : "text-blue-400"}`} />
-            <span className="text-sm font-semibold text-white">{state}</span>
+            <span className={`status-dot ${finished ? "text-emerald-400" : status.paused ? "text-amber-300" : "text-accent"}`} />
+            <span className="text-sm font-semibold text-ink">{state}</span>
           </div>
-          <div className="mt-1 truncate text-xs text-[#a4b0c2]">Job {status.id.slice(0, 8)}</div>
+          <div className="mt-1 truncate text-xs text-mute">Job {status.id.slice(0, 8)}</div>
         </div>
 
         <div className="min-w-0 flex-1">
-          <div className="mb-2 flex items-center justify-between text-xs text-[#a4b0c2]">
+          <div className="mb-2 flex items-center justify-between text-xs text-mute">
             <span>{bytesToFileSize(status.totalProgress)} of {bytesToFileSize(status.totalSize)}</span>
-            <span className="font-semibold text-[#bbc4d2]">{progress.toFixed(0)}%</span>
+            <span className="font-semibold text-mute">{progress.toFixed(0)}%</span>
           </div>
           <LinearProgress variant="determinate" value={Math.min(progress, 100)} />
         </div>
 
         <button
-          className="flex h-9 w-9 items-center justify-center text-[#8f9bad] transition hover:bg-white/[0.04] hover:text-white"
+          className="flex h-9 w-9 items-center justify-center text-faint transition hover:bg-white/[0.04] hover:text-ink"
           onClick={() => setExpanded((value) => !value)}
           aria-label={expanded ? "Collapse details" : "Expand details"}
         >
@@ -108,11 +108,11 @@ export const DownloadSummary = ({ status }: PropTypes) => {
       </div>
 
       {expanded && (
-        <div className="grid grid-cols-6 border-t border-[#303c4d] bg-white/[0.012]">
+        <div className="grid grid-cols-6 border-t border-line bg-white/[0.012]">
           {details.map(([label, value], index) => (
-            <div key={label} className={`px-5 py-4 ${index > 0 ? "border-l border-[#2a3546]" : ""}`}>
-              <div className="text-sm font-semibold text-white">{value}</div>
-              <div className="mt-1 text-xs uppercase tracking-[0.08em] text-[#96a2b5]">{label}</div>
+            <div key={label} className={`px-5 py-4 ${index > 0 ? "border-l border-line" : ""}`}>
+              <div className="text-sm font-semibold text-ink">{value}</div>
+              <div className="mt-1 text-xs uppercase tracking-[0.08em] text-faint">{label}</div>
             </div>
           ))}
         </div>

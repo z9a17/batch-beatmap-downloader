@@ -192,8 +192,8 @@ export const SimpleFilter: React.FC<PropTypes> = ({ tree, updateTree }) => {
   }
 
   return (
-    <div className="border-y border-[#303c4d]">
-      <div className="border-b border-[#303c4d] py-5">
+    <div className="border-y border-line">
+      <div className="border-b border-line py-5">
         <label className="field-label mb-2 block">Quick syntax</label>
         <Input
           className="text-[13px]"
@@ -201,20 +201,20 @@ export const SimpleFilter: React.FC<PropTypes> = ({ tree, updateTree }) => {
           value={textInput}
           onChange={handleTextChange}
         />
-        <div className="mt-2 text-[13px] leading-5 text-[#a4b0c2]">Changes here stay synchronized with the visual controls below.</div>
+        <div className="mt-2 text-[13px] leading-5 text-mute">Changes here stay synchronized with the visual controls below.</div>
       </div>
 
       <div className="grid grid-cols-[190px_minmax(0,1fr)]">
-        <div className="border-r border-[#303c4d] py-4 pr-4">
-          <div className="mb-2 px-2 text-xs font-bold uppercase tracking-[0.12em] text-[#96a2b5]">Filter groups</div>
+        <div className="border-r border-line py-4 pr-4">
+          <div className="mb-2 px-2 text-[11px] font-semibold uppercase tracking-[0.1em] text-dim">Filter groups</div>
           {sections.map(item => (
             <button
               key={item.title}
               className={classNames(
                 "mb-1 w-full border-l-2 px-3 py-2.5 text-left text-xs font-semibold transition",
                 section.title === item.title
-                  ? "border-blue-500 bg-blue-500/[0.04] text-blue-200"
-                  : "border-transparent text-[#9aa6b8] hover:bg-white/[0.02] hover:text-white",
+                  ? "border-accent bg-accent/[0.06] text-accent-strong"
+                  : "border-transparent text-faint hover:bg-white/[0.02] hover:text-ink",
               )}
               onClick={() => setSection(item)}
             >
@@ -230,10 +230,10 @@ export const SimpleFilter: React.FC<PropTypes> = ({ tree, updateTree }) => {
               </div>
             ))}
           </div>
-          <div className="mb-3 flex items-center justify-between border-t border-[#334055] pt-5">
+          <div className="mb-3 flex items-center justify-between border-t border-line pt-5">
             <div>
-              <div className="text-sm font-semibold text-white">{section.title}</div>
-              <div className="mt-1 text-[13px] leading-5 text-[#a4b0c2]">Only adjusted values become active rules.</div>
+              <div className="text-sm font-semibold text-ink">{section.title}</div>
+              <div className="mt-1 text-[13px] leading-5 text-mute">Only adjusted values become active rules.</div>
             </div>
           </div>
           <div className="grid grid-cols-2 gap-x-6">

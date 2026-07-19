@@ -26,8 +26,7 @@ export const FindMissingMaps = () => {
     <section className="content-box">
       <div className="panel-header mb-0">
         <div>
-          <div className="eyebrow">Collections</div>
-          <h2 className="panel-title mt-1">Find missing beatmaps</h2>
+          <h2 className="panel-title">Find missing beatmaps</h2>
           <p className="panel-description mt-1">Find collection entries whose mapsets are not installed locally.</p>
         </div>
         <div className="icon-plain text-emerald-300">

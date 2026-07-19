@@ -45,12 +45,12 @@ export const Downloads = () => {
     return (
       <div className="page-stack">
         <div className="flat-empty">
-          <div className="text-blue-300">
-            <DownloadingRoundedIcon sx={{ fontSize: 32 }} />
+          <div className="text-faint">
+            <DownloadingRoundedIcon sx={{ fontSize: 30 }} />
           </div>
-          <h2 className="mt-5 text-xl font-semibold text-white">No downloads queued</h2>
-          <p className="mt-2 max-w-md leading-6 text-[#9aa6b8]">Search for beatmaps in Discover, then queue the selected sets.</p>
-          <Link to="/query" className="mt-5 rounded-[2px] bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-500">
+          <h2 className="mt-4 text-lg font-semibold text-ink">No downloads queued</h2>
+          <p className="mt-2 max-w-md text-[13px] leading-6 text-faint">Search for beatmaps in Discover, then queue the selected sets.</p>
+          <Link to="/query" className="button-primary mt-5 flex min-h-[38px] items-center px-4 text-[13px]">
             Search beatmaps
           </Link>
         </div>
@@ -62,22 +62,22 @@ export const Downloads = () => {
     <div className="page-stack">
       <div className="metric-strip grid-cols-4">
         <div className="stat-card">
-          <DownloadingRoundedIcon className="mb-4 text-blue-300" />
+          <DownloadingRoundedIcon className="mb-3 text-faint" sx={{ fontSize: 20 }} />
           <div className="stat-value">{maps.toLocaleString()}</div>
           <div className="stat-label">sets across all jobs</div>
         </div>
         <div className="stat-card">
-          <TimelapseRoundedIcon className="mb-4 text-cyan-300" />
+          <TimelapseRoundedIcon className="mb-3 text-faint" sx={{ fontSize: 20 }} />
           <div className="stat-value">{remaining.toLocaleString()}</div>
           <div className="stat-label">sets remaining</div>
         </div>
         <div className="stat-card">
-          <DownloadDoneRoundedIcon className="mb-4 text-emerald-300" />
+          <DownloadDoneRoundedIcon className="mb-3 text-faint" sx={{ fontSize: 20 }} />
           <div className="stat-value">{completed.toLocaleString()}</div>
           <div className="stat-label">sets completed</div>
         </div>
         <div className="stat-card">
-          <SpeedRoundedIcon className="mb-4 text-blue-300" />
+          <SpeedRoundedIcon className="mb-3 text-faint" sx={{ fontSize: 20 }} />
           <div className="stat-value">{speed.toFixed(2)}</div>
           <div className="stat-label">MB/s combined</div>
         </div>
@@ -85,10 +85,7 @@ export const Downloads = () => {
 
       <section className="content-box">
         <div className="flex items-center justify-between">
-          <div>
-            <div className="eyebrow">Aggregate progress</div>
-            <div className="mt-1 text-sm font-semibold text-white">{(progress * 100).toFixed(0)}% of queued work resolved</div>
-          </div>
+          <div className="text-sm font-semibold text-ink">{(progress * 100).toFixed(0)}% of queued work resolved</div>
           <span className="pill">{downloads.length} active job{downloads.length === 1 ? "" : "s"}</span>
         </div>
         <div className="mt-4"><LinearProgress value={progress * 100} variant="determinate" /></div>

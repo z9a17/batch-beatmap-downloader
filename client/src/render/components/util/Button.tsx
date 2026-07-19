@@ -12,8 +12,8 @@ interface PropTypes {
 }
 
 const colorMap: Record<Colors, string> = {
-  blue: 'bg-blue-600 hover:bg-blue-500',
-  green: 'bg-emerald-500 hover:bg-emerald-400 text-[#06130f]',
+  blue: 'button-primary',
+  green: 'button-green',
   red: 'button-danger',
   transparent: 'bg-transparent hover:bg-transparent',
   none: '',
@@ -31,7 +31,7 @@ const Button: React.FC<PropTypes> = ({
     type={type}
     className={`
       ${colorMap[color]}
-      min-h-[38px] px-4 py-2 rounded-[2px] text-white text-xs font-semibold
+      min-h-[36px] px-4 py-2 rounded-md text-xs font-semibold
       transition-all disabled:cursor-not-allowed disabled:opacity-40
       ${className}
     `}

@@ -11,29 +11,24 @@ import { Query } from "./pages/Query";
 import { Status } from "./pages/Status";
 import "./index.css";
 
-const pageDetails: Record<string, { eyebrow: string; title: string; description: string }> = {
+const pageDetails: Record<string, { title: string; description: string }> = {
   "/": {
-    eyebrow: "Setup",
     title: "Overview",
     description: "Configure osu! folders, download locations, and transfer limits.",
   },
   "/query": {
-    eyebrow: "Search",
     title: "Discover",
     description: "Filter and sort the indexed beatmap catalogue.",
   },
   "/downloads": {
-    eyebrow: "Queue",
     title: "Downloads",
     description: "View queued downloads and transfer progress.",
   },
   "/status": {
-    eyebrow: "Status",
     title: "Service",
     description: "Check metadata and download service availability.",
   },
   "/changelog": {
-    eyebrow: "Versions",
     title: "Release notes",
     description: "Version history and technical changes.",
   },
@@ -41,7 +36,7 @@ const pageDetails: Record<string, { eyebrow: string; title: string; description:
 
 const ApplicationFrame = () => {
   const { pathname } = useLocation();
-  const [version, setVersion] = useState("1.4.0-alpha.10");
+  const [version, setVersion] = useState("1.4.0-alpha.11");
   const currentPage = useMemo(() => pageDetails[pathname] ?? pageDetails["/"], [pathname]);
 
   useEffect(() => {
@@ -56,14 +51,10 @@ const ApplicationFrame = () => {
       <Menu version={version} />
       <main className="app-workspace">
         <header className="app-titlebar">
-          <div>
-            <div className="eyebrow">{currentPage.eyebrow}</div>
-            <div className="mt-1 flex items-baseline gap-3">
-              <h1 className="text-[22px] font-semibold tracking-[-0.035em] text-white">{currentPage.title}</h1>
-              <span className="hidden text-xs text-[#9aa6b8] xl:inline">{currentPage.description}</span>
-            </div>
+          <div className="flex min-w-0 items-baseline gap-3">
+            <h1 className="text-[18px] font-semibold tracking-[-0.015em] text-ink">{currentPage.title}</h1>
+            <span className="hidden truncate text-[13px] text-faint xl:inline">{currentPage.description}</span>
           </div>
-          <span className="font-mono text-[11px] text-[#929eb1]">v{version}</span>
         </header>
         <div className="app-content">
           <Routes>

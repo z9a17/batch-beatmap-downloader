@@ -1,7 +1,7 @@
 {
   "name": "batch-beatmap-downloader-community",
   "productName": "Batch Beatmap Downloader Community",
-  "version": "1.4.0-alpha.10",
+  "version": "1.4.0-alpha.11",
   "description": "A desktop app for discovering and downloading osu! beatmaps in bulk.",
   "main": ".webpack/main",
   "repository": {
