@@ -81,7 +81,7 @@ export const DownloadSettings = ({ result }: PropTypes) => {
             <div className="min-w-0 flex-1">
               <div className="text-sm font-semibold text-ink">Create a collection</div>
               <div className="mt-1 text-[13px] leading-5 text-mute">
-                {isLazer ? "Not available for osu!lazer in this test build." : "Group downloaded difficulties in osu!stable."}
+                {isLazer ? "Collection creation is not available for osu!lazer." : "Group downloaded difficulties in osu!stable."}
               </div>
             </div>
             <Switch {...switchColors} checked={!isLazer && collection} disabled={isLazer} onChange={setCollection} />

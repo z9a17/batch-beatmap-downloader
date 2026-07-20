@@ -36,7 +36,7 @@ const pageDetails: Record<string, { title: string; description: string }> = {
 
 const ApplicationFrame = () => {
   const { pathname } = useLocation();
-  const [version, setVersion] = useState("1.5.0-alpha.2");
+  const [version, setVersion] = useState("1.5.0");
   const currentPage = useMemo(() => pageDetails[pathname] ?? pageDetails["/"], [pathname]);
 
   useEffect(() => {

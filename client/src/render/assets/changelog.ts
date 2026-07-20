@@ -9,7 +9,7 @@ export interface ChangeLogItem {
 
 export const changeLog: ChangeLogItem[] = [
   {
-    version: "1.5.0-alpha.2",
+    version: "1.5.0",
     date: 1784505600000,
     changes: [
       {

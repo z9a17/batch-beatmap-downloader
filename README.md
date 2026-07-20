@@ -8,10 +8,10 @@ The upstream history is preserved, including the original MIT license.
 
 ## Current release
 
-[`1.4.0-alpha.10`](https://github.com/z9a17/batch-beatmap-downloader/releases/tag/v1.4.0-alpha.10)
+[`1.5.0`](https://github.com/z9a17/batch-beatmap-downloader/releases/tag/v1.5.0)
 is the current Windows release.
 
-**[Download the Windows installer](https://github.com/z9a17/batch-beatmap-downloader/releases/download/v1.4.0-alpha.10/BBDCommunity-Setup-1.4.0-alpha.10.exe)**
+**[Download the Windows installer](https://github.com/z9a17/batch-beatmap-downloader/releases/download/v1.5.0/BBDCommunity-Setup-1.5.0.exe)**
 
 SHA-256:
 `0A47D719E4D4144A8F0FCD468DD4F3A6FA5707A9446E86830DDC61BD9FBD4A15`
