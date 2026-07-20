@@ -1,12 +1,14 @@
 $ErrorActionPreference = "Stop"
 
-$installer = Get-ChildItem -Path "out/make" -Filter "BBDCommunity-Setup-*.exe" -File
+$packageVersion = (Get-Content package.json | ConvertFrom-Json).version
+$installer = Get-ChildItem -Path "out/make" -Filter "BBDCommunity-Setup-$packageVersion.exe" -File
 if ($installer.Count -ne 1) {
   throw "Expected exactly one versioned NSIS installer, found $($installer.Count)."
 }
 
 $installDirectory = Join-Path $env:RUNNER_TEMP "bbd-community-installer-smoke"
 $expectedExecutable = Join-Path $installDirectory "bbd-community.exe"
+$expectedLazerReader = Join-Path $installDirectory "resources\lazer-library-reader.exe"
 
 $process = Start-Process `
   -FilePath $installer.FullName `
@@ -20,6 +22,20 @@ if ($process.ExitCode -ne 0) {
 
 if (-not (Test-Path -LiteralPath $expectedExecutable -PathType Leaf)) {
   throw "Installer did not create the expected executable: $expectedExecutable"
+}
+
+if (-not (Test-Path -LiteralPath $expectedLazerReader -PathType Leaf)) {
+  throw "Installer did not include the osu!lazer library reader: $expectedLazerReader"
+}
+
+$readerVersion = & $expectedLazerReader --version | ConvertFrom-Json
+if ($readerVersion.protocolVersion -ne 1) {
+  throw "Installed osu!lazer library reader returned an unexpected protocol version."
+}
+
+$readerSelfTest = & $expectedLazerReader --self-test | ConvertFrom-Json
+if (-not $readerSelfTest.realmAvailable) {
+  throw "Installed osu!lazer library reader could not initialize Realm."
 }
 
 $desktopShortcutPath = Join-Path ([Environment]::GetFolderPath("Desktop")) "Batch Beatmap Downloader Community.lnk"
@@ -39,7 +55,7 @@ if ($resolvedShortcutTarget -ne $resolvedExpectedExecutable) {
 $uninstallEntry = Get-ItemProperty "HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*" |
   Where-Object {
     $_.DisplayName -eq "Batch Beatmap Downloader Community" -and
-    $_.DisplayVersion -eq (Get-Content package.json | ConvertFrom-Json).version
+    $_.DisplayVersion -eq $packageVersion
   } |
   Select-Object -First 1
 

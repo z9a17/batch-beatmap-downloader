@@ -27,6 +27,11 @@ jobs:
           cache: npm
           cache-dependency-path: client/package-lock.json
 
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 8.0.x
+
       - name: Install dependencies
         run: npm ci
 
@@ -41,6 +46,9 @@ jobs:
 
       - name: Smoke-test packaged renderer
         run: npm run smoke:win
+
+      - name: Smoke-test osu!lazer library reader
+        run: npm run smoke:lazer-reader:win
 
       - name: Install and smoke-test NSIS application
         run: npm run smoke:installer:win

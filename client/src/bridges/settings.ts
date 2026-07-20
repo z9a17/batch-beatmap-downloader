@@ -16,3 +16,4 @@ export const handleCheckValidPath = () => ipcRenderer.invoke("check-valid-path")
 export const handleLoadBeatmaps = () => ipcRenderer.invoke("load-beatmaps") as Promise<number[]>;
 export const handleGetTempData = () => ipcRenderer.invoke("get-temp-data") as Promise<TempData>;
 export const handleResetTempPath = () => ipcRenderer.invoke("reset-temp-path") as Promise<void>;
+export const handleBrowseExecutable = () => ipcRenderer.invoke("browse-executable") as Promise<Electron.OpenDialogReturnValue>;

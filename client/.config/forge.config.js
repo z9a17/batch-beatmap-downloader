@@ -9,6 +9,13 @@ console.log(packageAssetsPath);
 module.exports = {
   packagerConfig: {
     asar: true,
+    ...(process.platform === "win32"
+      ? {
+        extraResource: [
+          path.join(__dirname, "..", "bin", "lazer-library-reader", "win-x64", "lazer-library-reader.exe"),
+        ],
+      }
+      : {}),
     appBundleId: "io.github.z9a17.bbd-community",
     icon: path.join(packageAssetsPath, "bbd.ico"),
     executableName: "bbd-community",

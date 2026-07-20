@@ -88,3 +88,6 @@ typings/
 # Electron-Forge
 out/
 icon-build/
+bin/
+native/**/bin/
+native/**/obj/
