@@ -195,8 +195,9 @@ try {
     })()`,
   );
 
+  const lazerDeadline = Date.now() + 45_000;
   let lazerState;
-  while (Date.now() < deadline) {
+  while (Date.now() < lazerDeadline) {
     lazerState = await evaluate(
       target.webSocketDebuggerUrl,
       `({

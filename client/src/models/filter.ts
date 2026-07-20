@@ -93,6 +93,15 @@ export const allLoved: Node = {
           field: "Approved",
         },
       },
+      {
+        id: "2",
+        rule: {
+          type: RuleType.MODE,
+          value: "osu!",
+          operator: "=",
+          field: "Mode",
+        },
+      },
     ],
   },
 };
@@ -108,6 +117,15 @@ export const allFarm: Node = {
       {
         id: "1",
         rule: {
+          type: RuleType.STATUS,
+          value: "ranked",
+          operator: "=",
+          field: "Approved",
+        },
+      },
+      {
+        id: "2",
+        rule: {
           type: RuleType.MODE,
           value: "osu!",
           operator: "=",
@@ -115,7 +133,7 @@ export const allFarm: Node = {
         },
       },
       {
-        id: "2",
+        id: "3",
         rule: {
           type: RuleType.SPECIAL,
           value: "Farm",
@@ -138,6 +156,15 @@ export const allStream: Node = {
       {
         id: "1",
         rule: {
+          type: RuleType.STATUS,
+          value: "ranked",
+          operator: "=",
+          field: "Approved",
+        },
+      },
+      {
+        id: "2",
+        rule: {
           type: RuleType.MODE,
           value: "osu!",
           operator: "=",
@@ -145,7 +172,7 @@ export const allStream: Node = {
         },
       },
       {
-        id: "2",
+        id: "3",
         rule: {
           type: RuleType.SPECIAL,
           value: "Stream",
@@ -227,6 +254,15 @@ export const allSotarks: Node = {
       {
         id: "2",
         rule: {
+          type: RuleType.MODE,
+          value: "osu!",
+          operator: "=",
+          field: "Mode",
+        },
+      },
+      {
+        id: "3",
+        rule: {
           type: RuleType.TEXT,
           value: "Sotarks",
           operator: "=",
@@ -256,6 +292,15 @@ export const allRanked7Star: Node = {
       },
       {
         id: "2",
+        rule: {
+          type: RuleType.MODE,
+          value: "osu!",
+          operator: "=",
+          field: "Mode",
+        },
+      },
+      {
+        id: "3",
         group: {
           connector: {
             type: "AND",
@@ -263,7 +308,7 @@ export const allRanked7Star: Node = {
           },
           children: [
             {
-              id: "3",
+              id: "4",
               rule: {
                 type: RuleType.NUMBER,
                 value: "7",
@@ -272,7 +317,7 @@ export const allRanked7Star: Node = {
               },
             },
             {
-              id: "4",
+              id: "5",
               rule: {
                 type: RuleType.NUMBER,
                 value: "8",

@@ -1,83 +1,86 @@
+<img src="client/src/render/assets/bbd.png" width="88" align="right" alt="Batch Beatmap Downloader Community logo">
+
 # Batch Beatmap Downloader Community
 
-A desktop application for discovering and downloading osu! beatmaps in bulk.
-
-This repository is a community-maintained fork of
+A community-maintained Windows fork of
 [`nzbasic/batch-beatmap-downloader`](https://github.com/nzbasic/batch-beatmap-downloader).
-The upstream history is preserved, including the original MIT license.
+It searches the Batch Beatmap Downloader catalogue, compares results with a
+local osu! library, and downloads missing beatmap sets in bulk.
 
-## Current release
+## Download
 
-[`1.5.0`](https://github.com/z9a17/batch-beatmap-downloader/releases/tag/v1.5.0)
-is the current Windows release.
+**[Download Batch Beatmap Downloader Community 1.5.0 for Windows](https://github.com/z9a17/batch-beatmap-downloader/releases/download/v1.5.0/BBDCommunity-Setup-1.5.0.exe)**
 
-**[Download the Windows installer](https://github.com/z9a17/batch-beatmap-downloader/releases/download/v1.5.0/BBDCommunity-Setup-1.5.0.exe)**
+The installer supports Windows 10 and 11 on x64 systems and lets you choose the
+installation directory.
 
-SHA-256:
-`0A47D719E4D4144A8F0FCD468DD4F3A6FA5707A9446E86830DDC61BD9FBD4A15`
+You do **not** need Node.js, npm, the .NET SDK, or the original Batch Beatmap
+Downloader. The installer contains the desktop runtime and the helper used to
+read osu!lazer libraries.
 
-It includes:
-
-- a card-free blue interface built from open sections, dividers, metric rails, and edge-to-edge rows;
-- compact inline status labels instead of decorative capsules;
-- a softer blue-charcoal palette with brighter secondary text and clearer controls;
-- a new blue application icon and a separate Windows application identity;
-- a live service indicator that is green online and red offline;
-- a current supported Electron runtime and reproducible Windows packaging;
-- an NSIS setup wizard with a selectable installation folder;
-- verified Windows shortcuts and uninstall metadata that target the installed executable;
-- new overview, discovery, queue, service, and release-note workspaces;
-- clearer search, result review, transfer setup, and download progress;
-- release ownership and update metadata belonging to this fork;
-- a packaged-renderer smoke test that prevents blank-window releases.
-
-The current client foundation uses Electron 43, React 19, Material UI 9,
-React Router 7, Tailwind CSS 4, TypeScript 6, and ESLint 10.
-
-## Important infrastructure note
-
-This preview still uses the original hosted services by default:
-
-- metadata and filtering: `https://v2.nzbasic.com`
-- beatmap archives and helper binaries: `https://direct.nzbasic.com`
-
-Those services are not operated by this fork. Override their locations for
-development with:
+The installer is not code-signed, so Windows SmartScreen may show an
+unrecognized publisher warning. Release `1.5.0` installer SHA-256:
 
 ```text
-BBD_API_URL=https://your-api.example
-BBD_DIRECT_URL=https://your-download-provider.example
+CA3E63062B71E2FD1E6E18DD1C692A24A20F89EB4E3AA0F83B3371D7005D7B70
 ```
 
-Database independence and a provider-based archive system are planned follow-up
-work. The interface labels inherited service data accordingly.
+## What this fork adds
 
-## Requirements
+- A redesigned dark blue interface.
+- A separate application name, icon, installer, and update identity.
+- A selectable Windows installation directory.
+- osu!stable and osu!lazer library modes with separate saved paths.
+- Read-only detection of beatmaps in osu!lazer's `client.realm`.
+- Staged `.osz` importing into osu!lazer.
+- Search presets, download queuing, progress controls, and service status.
 
-- Windows 10 or newer for the primary supported build
+## Using it
+
+1. Open **Overview**.
+2. Choose **osu!stable** or **osu!lazer**.
+3. Confirm the detected installation or select it with **Browse**.
+4. Open **Discover**, set the filters you want, and run the search.
+5. Review the result and add it to **Downloads**.
+
+For osu!stable, select the folder containing `collection.db` and `Songs`.
+
+For osu!lazer, select the data folder containing `client.realm` and the
+`osu!.exe` used for imports. Common Windows locations and redirected lazer
+storage locations are detected automatically.
+
+## osu!lazer limitations
+
+- Lazer library access is read-only.
+- Downloads are staged as `.osz` files and removed only after the imported set
+  appears in the lazer library.
+- Collection creation and collection comparison are currently available only
+  in osu!stable mode.
+- Lazer detection and importing are currently supported only on Windows.
+
+## Catalogue and downloads
+
+This fork currently uses the original project's hosted services:
+
+- Metadata and filtering: `https://v2.nzbasic.com`
+- Beatmap archives and helper files: `https://direct.nzbasic.com`
+
+Those services and their database are not operated by this fork. Availability
+and catalogue coverage therefore depend on the original service.
+
+Developers can point a local build at other services with `BBD_API_URL` and
+`BBD_DIRECT_URL`.
+
+## Building from source
+
+This section is for contributors only. Installing the Windows release does not
+require any of these tools.
+
+Build requirements:
+
 - Node.js 22
 - npm 10
-- .NET 8 SDK when building the Windows client from source
-- An osu!stable folder containing `collection.db`, or an osu!lazer data folder
-  containing `client.realm`
-
-## osu! client modes
-
-The client can switch between osu!stable and osu!lazer without replacing either
-saved path.
-
-- Stable libraries are detected from the `Songs` directory. Staged downloads
-  can be moved into that directory.
-- Lazer libraries are read from `client.realm` through a bundled read-only
-  helper. Downloads are staged as `.osz` archives and passed to `osu!.exe`;
-  archives are removed only after their set IDs appear in the lazer library.
-- Lazer data locations redirected through `%APPDATA%\osu\storage.ini` and the
-  standard Windows lazer executable location are detected automatically.
-- Stable collection comparison and creation remain available in stable mode.
-  Lazer collection editing is deliberately disabled until it can be implemented
-  without unsafe database writes.
-
-## Development
+- .NET 8 SDK for the Windows osu!lazer helper
 
 ```powershell
 cd client
@@ -88,52 +91,34 @@ npm run lint
 npm start
 ```
 
-Create a packaged Windows directory:
-
-```powershell
-npm run package:win
-```
-
-Create the Windows NSIS installer:
+Create the Windows installer with:
 
 ```powershell
 npm run make:win
 ```
 
-The community installer is produced as
-`BBDCommunity-Setup-<version>.exe`. Its setup wizard lets users choose an
-installation folder. It installs alongside the original application instead of
-replacing or sharing its Windows application identity.
-
-The NSIS installer replaces the Squirrel package used through
-`1.4.0-alpha.3`. Existing alpha users must run the NSIS installer manually once;
-subsequent NSIS releases can use the new update metadata.
-
 ## Repository layout
 
 ```text
 api/       Original Go metadata and filter service
-client/    Electron, React, and TypeScript desktop application
+client/    Electron desktop application
 download/  Original Go download helper
 ```
 
-The public repository does not contain the production database, private
-environment configuration, or deployment credentials.
+The production database, deployment credentials, and private environment
+configuration are not stored in this repository.
 
-## AI assistance disclosure
+## Reporting problems
 
-The community redesign and modernization work in this fork has been created
-with substantial generative AI assistance, including code, interface copy,
-documentation, and release automation. The work is directed and reviewed by
-the maintainer, but it can still contain mistakes. Please report anything
-suspicious or broken through the repository issue tracker.
+Use the [GitHub issue tracker](https://github.com/z9a17/batch-beatmap-downloader/issues)
+and include the application version, osu! client mode, and the error shown.
 
-## Baseline preservation
+## AI assistance
 
-- `upstream-v1.3.0` points to the original v1.3.0 release.
-- `upstream-main-2023-05-08` points to the upstream branch state used to begin
-  this community fork.
+The redesign and modernization of this fork were produced with substantial
+generative AI assistance and reviewed by the maintainer.
 
 ## License
 
-MIT. See [LICENSE](LICENSE).
+MIT. The original project history and license are preserved. See
+[`LICENSE`](LICENSE).

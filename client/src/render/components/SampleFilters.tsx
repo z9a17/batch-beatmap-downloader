@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
-import AutoAwesomeRoundedIcon from "@mui/icons-material/AutoAwesomeRounded";
+import TuneRoundedIcon from "@mui/icons-material/TuneRounded";
 
 import {
   allFarm,
@@ -21,11 +21,11 @@ interface Filter {
 
 const filters: Filter[] = [
   { name: "Ranked osu!standard", detail: "All indexed ranked osu!standard sets", tree: allRankedOsu },
-  { name: "Loved", detail: "All indexed Loved beatmaps", tree: allLoved },
-  { name: "Sotarks", detail: "All indexed sets mapped by Sotarks", tree: allSotarks },
-  { name: "Ranked 7★–8★", detail: "Ranked beatmaps from 7★ to 8★", tree: allRanked7Star },
-  { name: "Stream maps", detail: "Sets tagged for stream patterns", tree: allStream },
-  { name: "Farm maps", detail: "Sets tagged as performance farm", tree: allFarm },
+  { name: "Loved osu!standard", detail: "Loved osu!standard sets", tree: allLoved },
+  { name: "Ranked Sotarks maps", detail: "Ranked osu!standard sets mapped by Sotarks", tree: allSotarks },
+  { name: "Ranked 7★–8★", detail: "Ranked osu!standard maps from 7★ to 8★", tree: allRanked7Star },
+  { name: "Ranked stream maps", detail: "Ranked osu!standard sets tagged as Stream", tree: allStream },
+  { name: "Ranked farm maps", detail: "Ranked osu!standard sets tagged as Farm", tree: allFarm },
 ];
 
 export const SampleFilters = () => {
@@ -35,10 +35,10 @@ export const SampleFilters = () => {
     <section className="content-box">
       <div className="panel-header">
         <div>
-          <h2 className="panel-title">Curated searches</h2>
-          <p className="panel-description mt-1">Start from a useful filter and refine it in Discover.</p>
+          <h2 className="panel-title">Search presets</h2>
+          <p className="panel-description mt-1">Open Discover with common filters already applied.</p>
         </div>
-        <AutoAwesomeRoundedIcon className="text-dim" sx={{ fontSize: 20 }} />
+        <TuneRoundedIcon className="text-dim" sx={{ fontSize: 20 }} />
       </div>
       <div className="grid grid-cols-3 border-t border-line">
         {filters.map((filter) => (
