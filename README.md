@@ -1,4 +1,4 @@
-<img src="client/src/render/assets/bbd.png" width="88" align="right" alt="Batch Beatmap Downloader Community logo">
+<img src="client/src/render/assets/bbd.png" width="88" alt="Batch Beatmap Downloader Community logo">
 
 # Batch Beatmap Downloader Community
 
@@ -13,10 +13,6 @@ local osu! library, and downloads missing beatmap sets in bulk.
 
 The installer supports Windows 10 and 11 on x64 systems and lets you choose the
 installation directory.
-
-You do **not** need Node.js, npm, the .NET SDK, or the original Batch Beatmap
-Downloader. The installer contains the desktop runtime and the helper used to
-read osu!lazer libraries.
 
 The installer is not code-signed, so Windows SmartScreen may show an
 unrecognized publisher warning. Release `1.5.0` installer SHA-256:
@@ -67,35 +63,6 @@ This fork currently uses the original project's hosted services:
 
 Those services and their database are not operated by this fork. Availability
 and catalogue coverage therefore depend on the original service.
-
-Developers can point a local build at other services with `BBD_API_URL` and
-`BBD_DIRECT_URL`.
-
-## Building from source
-
-This section is for contributors only. Installing the Windows release does not
-require any of these tools.
-
-Build requirements:
-
-- Node.js 22
-- npm 10
-- .NET 8 SDK for the Windows osu!lazer helper
-
-```powershell
-cd client
-npm ci
-npm run build:lazer-reader
-npm run typecheck
-npm run lint
-npm start
-```
-
-Create the Windows installer with:
-
-```powershell
-npm run make:win
-```
 
 ## Repository layout
 
